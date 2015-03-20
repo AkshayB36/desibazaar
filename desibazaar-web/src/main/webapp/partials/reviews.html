@@ -1,0 +1,7 @@
+<input ng-model="newReview.desc">
+<button ng-click="addReview()">Post Review</button>
+<ul>
+	<li ng-repeat="review in reviews">{{review.desc + '-' +
+		review.time}}</li>
+</ul>
+<!-- <a href="#/addReview">Add Review</a> -->
