@@ -1,8 +1,0 @@
-/* set default grid style */
-.wj-flexgrid {
-    height: 300px;
-    width: 605px;
-    background-color: white;
-    box-shadow: 4px 4px 10px 0px rgba(50, 50, 50, 0.75);
-    margin-bottom: 12px;
-}
