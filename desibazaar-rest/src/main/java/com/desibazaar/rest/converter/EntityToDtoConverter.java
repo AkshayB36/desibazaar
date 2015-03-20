@@ -39,6 +39,8 @@ public class EntityToDtoConverter {
 		item.setStartsAt(eItem.getStartsAt());
 		item.setEndsAt(eItem.getEndsAt());
 		item.setCategory(convertECategoryToCategory(eItem.getCategory()));
+		item.setSeller(convertEUserToUser(eItem.getSeller()));
+		item.setBuyer(convertEUserToUser(eItem.getBuyer()));
 		item.setRating(eItem.getRating());
 		item.setReview(eItem.getReview());
 		item.setStatus(eItem.getStatus());
@@ -50,6 +52,11 @@ public class EntityToDtoConverter {
 		if (eUser == null)
 			return null;
 		User user = new User();
+		user.setEmail(eUser.getEmail());
+		user.setName(eUser.getName());
+		user.setAddress(eUser.getAddress());
+		user.setNumber(eUser.getName());
+		user.setPassword(eUser.getPassword());
 		return user;
 	}
 
