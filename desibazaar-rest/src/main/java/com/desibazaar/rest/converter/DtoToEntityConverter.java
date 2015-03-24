@@ -54,7 +54,7 @@ public class DtoToEntityConverter {
 		eUser.setEmail(user.getEmail());
 		eUser.setName(user.getName());
 		eUser.setAddress(user.getAddress());
-		eUser.setNumber(user.getName());
+		eUser.setNumber(user.getNumber());
 		eUser.setPassword(user.getPassword());
 		return eUser;
 	}
