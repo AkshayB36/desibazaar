@@ -4,7 +4,7 @@ app.service('accountService', function($http, $q) {
 	});
 
 	function addUser(user) {
-		return $http.post("http://localhost:8080/desibazaar-rest/addUser", user)
+		return $http.post("http://localhost:8080/desibazaar-rest/users", user)
 				.then(handleSuccess, handleError)
 	}
 

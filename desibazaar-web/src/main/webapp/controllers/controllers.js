@@ -25,8 +25,9 @@ app.controller('AuctionController', function($scope, auctionService) {
 });
 
 app.controller('AccountController', function($scope, accountService) {
+	$scope.newUser = {};
 
-	function addUser() {
+	$scope.addUser = function() {
 		accountService.addUser($scope.newUser);
 	}
 
