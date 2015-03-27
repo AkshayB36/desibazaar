@@ -10,6 +10,12 @@ app.config(function($routeProvider) {
 	}).when('/listAuctions',{
 		controller : 'AuctionController',
 		templateUrl : 'partials/listAuctions.html'
+	}).when('/login', {
+		controller : 'AccountController',
+		templateUrl : 'partials/login.html'
+	}).when('/addUser', {
+		controller : 'AccountController',
+		templateUrl : 'partials/addUser.html'
 	}).otherwise({
 		redirectTo : '/review'
 	})

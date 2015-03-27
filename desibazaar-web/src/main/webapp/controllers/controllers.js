@@ -23,3 +23,11 @@ app.controller('AuctionController', function($scope, auctionService) {
 		});
 	}
 });
+
+app.controller('AccountController', function($scope, accountService) {
+
+	function addUser() {
+		accountService.addUser($scope.newUser);
+	}
+
+});
