@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.desibazaar.rest.service.IAuctionService;
@@ -24,13 +24,13 @@ public class AuctionController {
 	@Autowired
 	private IAuctionService auctionService;
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
-	public void createAuction(Item item) {
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public void createAuction(@RequestBody Item item) {
 		getAuctionService().createAuction(item);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.PUT, consumes = "application/json")
-	public void updateAuction(Item item) {
+	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+	public void updateAuction(@RequestBody Item item) {
 		getAuctionService().updateAuction(item);
 	}
 
@@ -44,10 +44,13 @@ public class AuctionController {
 		return getAuctionService().getAuction(itemId);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Item> getAuctions(
-			@RequestParam("logged_in_user_email") String email) {
-		return getAuctionService().getAuctions(email);
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Item> getAuctions(/*
+												 * @RequestParam(
+												 * "logged_in_user_email")
+												 * String email
+												 */) {
+		return getAuctionService().getAuctions(/* email */"");
 	}
 
 	private IAuctionService getAuctionService() {

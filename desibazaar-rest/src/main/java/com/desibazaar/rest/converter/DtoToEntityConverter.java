@@ -27,17 +27,23 @@ public class DtoToEntityConverter {
 		eItem.setStartsAt(item.getStartsAt());
 		eItem.setEndsAt(item.getEndsAt());
 
-		ECategory eCategory = new ECategory();
-		eCategory.setName(item.getCategory().getName());
-		eItem.setCategory(eCategory);
+		if (item.getCategory() != null) {
+			ECategory eCategory = new ECategory();
+			eCategory.setName(item.getCategory().getName());
+			eItem.setCategory(eCategory);
+		}
 
-		EUser seller = new EUser();
-		seller.setEmail(item.getSeller().getEmail());
-		eItem.setSeller(seller);
+		if (item.getSeller() != null) {
+			EUser seller = new EUser();
+			seller.setEmail(item.getSeller().getEmail());
+			eItem.setSeller(seller);
+		}
 
-		EUser buyer = new EUser();
-		buyer.setEmail(item.getBuyer().getEmail());
-		eItem.setBuyer(buyer);
+		if (item.getBuyer() != null) {
+			EUser buyer = new EUser();
+			buyer.setEmail(item.getBuyer().getEmail());
+			eItem.setBuyer(buyer);
+		}
 
 		eItem.setRating(item.getRating());
 		eItem.setReview(item.getReview());
@@ -56,6 +62,7 @@ public class DtoToEntityConverter {
 		eUser.setAddress(user.getAddress());
 		eUser.setNumber(user.getNumber());
 		eUser.setPassword(user.getPassword());
+		eUser.setRating(user.getRating());
 		return eUser;
 	}
 

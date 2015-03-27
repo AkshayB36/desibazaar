@@ -22,7 +22,7 @@ public class CategoryController {
 	@Autowired
 	private IAuctionService auctionService;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET, produces = "application/json")
+	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Category> getCategories() {
 		return getAuctionService().getCategories();
 	}

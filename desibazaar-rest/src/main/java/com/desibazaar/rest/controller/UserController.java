@@ -3,6 +3,7 @@ package com.desibazaar.rest.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,13 +22,13 @@ public class UserController {
 	@Autowired
 	private IAccountService accountService;
 
-	@RequestMapping(value = "/", method = RequestMethod.POST, consumes = "application/json")
-	public void createUser(User user) {
+	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
+	public @ResponseBody void createUser(@RequestBody User user) {
 		getAccountService().createUser(user);
 	}
 
-	@RequestMapping(value = "/", method = RequestMethod.PUT, consumes = "application/json")
-	public void updateUser(User user) {
+	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
+	public @ResponseBody void updateUser(@RequestBody User user) {
 		getAccountService().updateUser(user);
 	}
 
