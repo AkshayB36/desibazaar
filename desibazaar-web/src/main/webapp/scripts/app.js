@@ -10,7 +10,11 @@ app.config(function($routeProvider) {
 	}).when('/listAuctions',{
 		controller : 'AuctionController',
 		templateUrl : 'partials/listAuctions.html'
-	}).otherwise({
+	}).when('/auctionDetails/:itemId',
+            {
+        controller: 'AuctionDetailsController',
+        templateUrl: 'partials/auctionDetails.html'
+    }).otherwise({
 		redirectTo : '/review'
 	})
 });

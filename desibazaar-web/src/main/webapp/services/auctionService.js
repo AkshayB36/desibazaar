@@ -1,10 +1,17 @@
 app.service('auctionService', function($http, $q) {
 	return ({
 		getAuctions : getAuctions,
+		getAuction  : getAuction
 	});
 
 	function getAuctions() {
 		return $http.get("http://localhost:8080/desibazaar-rest/auctions")
+				.then(handleSuccess, handleError)
+	}
+
+	function getAuction(auctionId) {
+		return $http.get(
+				"http://localhost:8080/desibazaar-rest/auctions/" + auctionId)
 				.then(handleSuccess, handleError)
 	}
 

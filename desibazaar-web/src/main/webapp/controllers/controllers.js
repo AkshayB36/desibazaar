@@ -23,3 +23,19 @@ app.controller('AuctionController', function($scope, auctionService) {
 		});
 	}
 });
+
+app.controller('AuctionDetailsController', function($scope, $routeParams, auctionService) {
+	$scope.auction = {};
+
+	loadRemoteData();
+	
+	function applyRemoteData(auction) {
+		$scope.auction = auction;
+	}
+
+	function loadRemoteData() {
+		auctionService.getAuction($routeParams.itemId).then(function(auction) {
+			applyRemoteData(auction);
+		});
+	}
+});
