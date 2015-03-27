@@ -1,4 +1,4 @@
-var app = angular.module('reviewApp', [ 'ngRoute' ]);
+var app = angular.module('desiApp', [ 'ngRoute' ]);
 
 app.config(function($routeProvider) {
 	$routeProvider.when('/review', {
@@ -8,7 +8,7 @@ app.config(function($routeProvider) {
 		controller : 'ReviewController',
 		templateUrl : 'partials/addReview.html'
 	}).when('/listAuctions',{
-		controller : 'auctionController',
+		controller : 'AuctionController',
 		templateUrl : 'partials/listAuctions.html'
 	}).otherwise({
 		redirectTo : '/review'

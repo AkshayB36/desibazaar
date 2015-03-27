@@ -7,6 +7,19 @@ app.controller('ReviewController', function($scope, reviewService) {
 		}
 	};
 });
-app.controller('auctionController',function($scope, auctionService){
-	$scope.auctions = auctionService.getAuctions();	
+
+app.controller('AuctionController', function($scope, auctionService) {
+	$scope.auctions = [];
+
+	loadRemoteData();
+
+	function applyRemoteData(auctions) {
+		$scope.auctions = auctions;
+	}
+
+	function loadRemoteData() {
+		auctionService.getAuctions().then(function(auctions) {
+			applyRemoteData(auctions);
+		});
+	}
 });
