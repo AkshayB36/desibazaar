@@ -1,10 +1,15 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
+<div class="container-fluid">
+	<h1>Auctions</h1>
+	<div class="row">
+		<div ng-repeat="auction in auctions">
+			<div class="col-sm -3 col-md-6 col-lg-4">
+				<a href="/auctionDetail.html">{{ auction.name }}</a><br /> <a
+					href="/auctionDetail.html"><img ng-src="{{auction.link}}" /></a><br />
+				Baseprice= {{auction.baseprice}}<br />
+				<button type="submit">Subscribe</button>
+				<br />
+			</div>
+		</div>
+	</div>
 
-</body>
-</html>
+</div>

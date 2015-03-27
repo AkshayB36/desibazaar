@@ -7,6 +7,9 @@ app.config(function($routeProvider) {
 	}).when('/addReview', {
 		controller : 'ReviewController',
 		templateUrl : 'partials/addReview.html'
+	}).when('/listAuctions',{
+		controller : 'auctionController',
+		templateUrl : 'partials/listAuctions.html'
 	}).otherwise({
 		redirectTo : '/review'
 	})

@@ -7,3 +7,6 @@ app.controller('ReviewController', function($scope, reviewService) {
 		}
 	};
 });
+app.controller('auctionController',function($scope, auctionService){
+	$scope.auctions = auctionService.getAuctions();	
+});
