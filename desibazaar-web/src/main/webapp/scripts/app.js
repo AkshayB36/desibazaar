@@ -14,7 +14,13 @@ app.config(function($routeProvider) {
             {
         controller: 'AuctionDetailsController',
         templateUrl: 'partials/auctionDetails.html'
-    }).otherwise({
+	}).when('/login', {
+		controller : 'AccountController',
+		templateUrl : 'partials/login.html'
+	}).when('/addUser', {
+		controller : 'AccountController',
+		templateUrl : 'partials/addUser.html'
+	}).otherwise({
 		redirectTo : '/review'
 	})
 });

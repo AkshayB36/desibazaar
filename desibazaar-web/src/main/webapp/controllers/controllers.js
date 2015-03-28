@@ -39,3 +39,14 @@ app.controller('AuctionDetailsController', function($scope, $routeParams, auctio
 		});
 	}
 });
+
+app.controller('AccountController', function($scope, accountService) {
+	$scope.newUser = {};
+
+	$scope.addUser = function() {
+		accountService.addUser($scope.newUser);
+	}
+
+});
+
+
