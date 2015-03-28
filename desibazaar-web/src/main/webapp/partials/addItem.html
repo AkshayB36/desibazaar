@@ -1,10 +1,106 @@
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="ISO-8859-1">
-<title>Insert title here</title>
-</head>
-<body>
 
-</body>
-</html>
+<form class="form-horizontal" style="width: 1000px""height: 500px">
+	<fieldset>
+		<legend>
+			&nbsp&nbspAdd an Item<br>
+		</legend>
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Name</label>
+			<div class="col-lg-10">
+				<input ng-model="newItem.name" type="text" class="form-control"
+					id="inputEmail" placeholder="Name" style="height: 30px">
+			</div>
+		</div>
+		<div class="form-group">
+			<label for="inputPassword" class="col-lg-2 control-label">Base
+				Price</label>
+			<div class="col-lg-10">
+				<input ng-model="newItem.basePrice" type="" class="form-control"
+					id="inputPassword" placeholder="Base Price in Dollars"
+					style="height: 30px">
+
+			</div>
+		</div>
+		<div class="form-group">
+
+			<label for="textArea" class="col-lg-2 control-label">Description</label>
+			<div class="col-lg-10">
+
+				<textarea ng-model="newItem.description" class="form-control"
+					rows="3" id="textArea"
+					placeholder="Enter the Description for your Item."></textarea>
+				<span class="help-block"></span>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="inputTime" class="col-lg-2 control-label"">Start
+				time</label>
+			<div id="datetimepicker" class="col-lg-10">
+
+				<input ng-model="newItem.startsAt" type="text"
+					placeholder="Start time for auction"> <span class="add-on">
+					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				</span>
+			</div>
+
+			<script type="text/javascript">
+				$('#datetimepicker').datetimepicker({
+					format : 'dd/MM/yyyy hh:mm:ss',
+					language : 'en'
+				});
+			</script>
+		</div>
+
+
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label"
+				style="height: 30px">Duration</label>
+			<div id="datetimepicker" class="col-lg-10">
+
+				<input ng-model="newItem.endsAt" type="text"
+					placeholder="End time for auction"></input> <span class="add-on">
+					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
+				</span>
+			</div>
+
+			<script type="text/javascript">
+				$('#datetimepicker' + i).datetimepicker({
+					format : 'dd/MM/yyyy hh:mm:ss',
+					language : 'en'
+				});
+			</script>
+		</div>
+
+		<div class="form-group">
+			<label for="select" class="col-lg-2 control-label"
+				style="height: 30px">Select Category</label>
+
+			<div class="col-lg-10">
+				<select class="form-control" id="select">
+					<option>Electronics</option>
+					<option>Fashion</option>
+					<option>Home Goods</option>
+					<option>Jewelry</option>
+					<option>Fine Art</option>
+				</select>
+
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="exampleInputFile" class="col-lg-2 control-label">Image</label>
+			<div class="col-lg-10">
+
+				Select images: <input type="file" name="img" multiple>
+			</div>
+			<br> <br /> <br>
+			<div class="form-group">
+				<div class="col-lg-10 col-lg-offset-2">
+					<button type="reset" class="btn btn-default">Cancel</button>
+					&nbsp&nbsp
+					<button ng-click="addItem()" type="submit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+	</fieldset>
+</form>

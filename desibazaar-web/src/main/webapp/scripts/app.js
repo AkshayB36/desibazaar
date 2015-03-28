@@ -7,7 +7,7 @@ app.config(function($routeProvider) {
 	}).when('/addReview', {
 		controller : 'ReviewController',
 		templateUrl : 'partials/addReview.html'
-	}).when('/listAuctions',{
+	}).when('/listAuctions', {
 		controller : 'AuctionController',
 		templateUrl : 'partials/listAuctions.html'
 	}).when('/auctionDetails/:itemId',
@@ -20,6 +20,9 @@ app.config(function($routeProvider) {
 	}).when('/addUser', {
 		controller : 'AccountController',
 		templateUrl : 'partials/addUser.html'
+	}).when('/addItem', {
+		controller : 'AuctionController',
+		templateUrl : 'partials/addItem.html'
 	}).otherwise({
 		redirectTo : '/review'
 	})
