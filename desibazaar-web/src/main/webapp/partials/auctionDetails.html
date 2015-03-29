@@ -1,17 +1,94 @@
+<!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <!-- Brand and toggle get grouped for better mobile display -->
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="#">Desi Bazaar</a>
+            </div>
+            <!-- Collect the nav links, forms, and other content for toggling -->
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#">Auctions</a>
+                    </li>
+                    <li>
+                        <a href="#">Subscriptions</a>
+                    </li>
+                    <li>
+                        <a href="#">Purchases</a>
+                    </li>
+                    <li>
+                        <a href="#">My Items</a>
+                    </li>
+                    <li>
+                    	<a href="#">Register</a>
+                    </li>
+                 </ul>
+            </div>
+            <!-- /.navbar-collapse -->
+        </div>
+        <!-- /.container -->
+    </nav>
 
-	<h1>Auction Details</h1>
-				<p>
-				{{auction.name}}<br/>
-				<img ng-src="data:image/jpeg;base64,{{auction.image}}" /><br/>
-				{{auction.description}}<br/>
-				Baseprice= {{auction.basePrice}}<br/>
-				{{auction.sellingPrice}}<br/>
-				{{auction.startsAt}}<br/>
-				{{auction.endsAt}}<br/>
-				{{auction.category}}<br/>
-				
-				
-				<button type="submit">Subscribe</button>
-				<br>
+    <!-- Page Content -->
+    <div class="container">
 
-		</p>
+        <!-- Portfolio Item Heading -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">{{auction.name}}
+                    
+                </h1>
+            </div>
+        </div>
+        <!-- /.row -->
+
+        <!-- Portfolio Item Row -->
+        <div class="row">
+
+            <div class="col-md-8">
+                <img class="img-responsive" src=ng-src="data:image/jpeg;base64,{{auction.image}}" alt="" width=750px height=500px>
+            </div>
+
+            <div class="col-md-4">
+                <h3>{{auction.name}}</h3>
+                <p>{{auction.description}}<br/>
+                $ {{auction.basePrice}}</p>
+                <h3>Product Details</h3>
+                <p>Category: {{auction.category}}<br/>
+                Status: {{auction.status}}<br/>
+                Starting Time: {{auction.startsAt}}<br/>
+                End Time: {{auction.endsAt}}<br/>
+                Seller Rating: {{auction.rating}}/5<br/>
+                Reviews: <br/>
+                {{auction.review}}<br/>
+                <input type="button" value="Subscribe" onclick="document.value=Unsubscribe">
+                    
+                
+            </div>
+
+        </div>
+
+        
+         <hr>
+
+        <!-- Footer -->
+        <footer>
+            <div class="row" style="text-align:center">
+                <div class="col-lg-12">
+                    <p>Copyright &copy; Your Website 2014</p>
+                </div>
+            </div>
+            <!-- /.row -->
+        </footer>
+
+    </div>
+    
+
+        
