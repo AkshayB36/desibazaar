@@ -1,4 +1,3 @@
-
 <form class="form-horizontal" style="width: 1000px""height: 500px">
 	<fieldset>
 		<legend>
@@ -7,17 +6,17 @@
 		<div class="form-group">
 			<label for="input" class="col-lg-2 control-label">Name</label>
 			<div class="col-lg-10">
-				<input ng-model="newItem.name" type="text" class="form-control"
-					id="inputEmail" placeholder="Name" style="height: 30px">
+				<input ng-model="newItem.name" type="text" class="form-control" id="inputName"
+					placeholder="Name" style="height: 30px" maxlength="40" required>
+
 			</div>
 		</div>
 		<div class="form-group">
-			<label for="input" class="col-lg-2 control-label">Base
+			<label for="inputBaseprice" class="col-lg-2 control-label">Base
 				Price</label>
 			<div class="col-lg-10">
-				<input ng-model="newItem.basePrice" type="" class="form-control"
-					id="inputPassword" placeholder="Base Price in Dollars"
-					style="height: 30px">
+				<input ng-model="newItem.basePrice" type="number" class="form-control" id="inputPassword"
+					placeholder="Base Price in Dollars" style="height: 30px" required>
 
 			</div>
 		</div>
@@ -26,9 +25,8 @@
 			<label for="textArea" class="col-lg-2 control-label">Description</label>
 			<div class="col-lg-10">
 
-				<textarea ng-model="newItem.description" class="form-control"
-					rows="3" id="textArea"
-					placeholder="Enter the Description for your Item."></textarea>
+				<textarea ng-model="newItem.description" class="form-control" rows="3" id="textArea"
+					placeholder="Enter the Description for your Item." required></textarea>
 				<span class="help-block"></span>
 			</div>
 		</div>
@@ -38,10 +36,11 @@
 				time</label>
 			<div id="datetimepicker" class="col-lg-10">
 
-				<input ng-model="newItem.startsAt" type="text"
-					placeholder="Start time for auction"> <span class="add-on">
-					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-				</span>
+				<input ng-model="newItem.startsAt" type="text" placeholder="Start time for auction" required>
+				<span class="add-on"> <i data-time-icon="icon-time"
+					data-date-icon="icon-calendar"></i>
+				</span> &nbsp&nbsp&nbsp <input type="checkbox" name="auction"
+					value="immediate">&nbsp&nbsp&nbspStart Immediately
 			</div>
 
 			<script type="text/javascript">
@@ -56,20 +55,17 @@
 		<div class="form-group">
 			<label for="input" class="col-lg-2 control-label"
 				style="height: 30px">Duration</label>
-			<div id="datetimepicker" class="col-lg-10">
+			<div class="col-lg-10">
 
-				<input ng-model="newItem.endsAt" type="text"
-					placeholder="End time for auction"></input> <span class="add-on">
-					<i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-				</span>
+				<select class="form-control" id="select">
+					<option>2 hours</option>
+					<option>4 hours</option>
+					<option>6 hours</option>
+					<option>8 hours</option>
+					<option>10 hours</option>
+				</select>
+
 			</div>
-
-			<script type="text/javascript">
-				$('#datetimepicker' + i).datetimepicker({
-					format : 'dd/MM/yyyy hh:mm:ss',
-					language : 'en'
-				});
-			</script>
 		</div>
 
 		<div class="form-group">
@@ -93,6 +89,7 @@
 			<div class="col-lg-10">
 
 				Select images: <input type="file" name="img" multiple>
+			
 			</div>
 			<br> <br /> <br>
 			<div class="form-group">
