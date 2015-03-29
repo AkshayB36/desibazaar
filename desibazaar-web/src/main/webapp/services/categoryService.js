@@ -1,9 +1,9 @@
 app.service('categoryService', function($http, $q) {
 	return ({
-		getCategory : getCategory,
+		getCategories : getCategories
 	});
 	
-	function getCategory() {
+	function getCategories() {
 		return $http.get("http://localhost:8080/desibazaar-rest/categories")
 				.then(handleSuccess, handleError)
 	}

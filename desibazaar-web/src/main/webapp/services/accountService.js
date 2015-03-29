@@ -1,6 +1,6 @@
 app.service('accountService', function($http, $q) {
 	return ({
-		addUser : addUser,
+		addUser : addUser
 	});
 
 	function addUser(user) {

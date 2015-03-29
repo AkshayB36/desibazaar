@@ -13,26 +13,26 @@ app.controller('AuctionController', function($scope, auctionService,categoryServ
 
 	loadRemoteData();
 
-	function applyRemoteData(auctions) {
+	function applyAuctions(auctions) {
 		$scope.auctions = auctions;
 	}
-	function applyCategories(categories) {
 
+	function applyCategories(categories) {
 		$scope.categories = categories;
 	}
 
 	$scope.addItem = function() {
 		auctionService.addItem($scope.newItem);
 	}
+
 	function loadRemoteData() {
 		auctionService.getAuctions().then(function(auctions) {
-			applyRemoteData(auctions);
+			applyAuctions(auctions);
 		});
-		categoryService.getCategory().then(function(categories) {
+		categoryService.getCategories().then(function(categories) {
 			applyCategories(categories);
 		});
 	}
-
 });
 
 app.controller('AuctionDetailsController', function($scope, $routeParams, auctionService) {
