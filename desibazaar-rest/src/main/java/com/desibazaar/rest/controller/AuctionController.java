@@ -25,17 +25,17 @@ public class AuctionController {
 	private IAuctionService auctionService;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public void createAuction(@RequestBody Item item) {
+	public @ResponseBody void createAuction(@RequestBody Item item) {
 		getAuctionService().createAuction(item);
 	}
 
 	@RequestMapping(method = RequestMethod.PUT, consumes = "application/json")
-	public void updateAuction(@RequestBody Item item) {
+	public @ResponseBody void updateAuction(@RequestBody Item item) {
 		getAuctionService().updateAuction(item);
 	}
 
 	@RequestMapping(value = "/{item_id}", method = RequestMethod.DELETE)
-	public void deleteAuction(@PathVariable("item_id") Long itemId) {
+	public @ResponseBody void deleteAuction(@PathVariable("item_id") Long itemId) {
 		getAuctionService().deleteAuction(itemId);
 	}
 
