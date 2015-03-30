@@ -1,6 +1,6 @@
 package com.desibazaar.rest.entity;
 
-import java.util.Date;
+import java.sql.Date;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -40,8 +40,8 @@ public class EItem {
 	@Column(name = "selling_price")
 	private Float sellingPrice;
 
-	@Column(name = "image", columnDefinition = "LONGBLOB")
-	private byte[] image;
+	@Column(name = "image")
+	private String image;
 
 	@Column(name = "starts_at")
 	private Date startsAt;
@@ -114,11 +114,11 @@ public class EItem {
 		this.sellingPrice = sellingPrice;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 

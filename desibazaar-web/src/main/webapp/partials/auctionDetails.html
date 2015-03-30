@@ -9,13 +9,14 @@
                 </h1>
             </div>
         </div>
+        <br/>
         <!-- /.row -->
 
         <!-- Portfolio Item Row -->
         <div class="row">
 
             <div class="col-md-8">
-                <img class="img-responsive" src=ng-src="data:image/jpeg;base64,{{auction.image}}" alt="" width=750px height=500px>
+                <img class="img-responsive" src="{{auction.image}}" alt=""  style="width=650px;height=350px">
             </div>
 
             <div class="col-md-4">
@@ -23,14 +24,16 @@
                 <p>{{auction.description}}<br/>
                 $ {{auction.basePrice}}</p>
                 <h3>Product Details</h3>
-                <p>Category: {{auction.category}}<br/>
+                <p>Category: {{auction.category.name}}<br/>
                 Status: {{auction.status}}<br/>
                 Starting Time: {{auction.startsAt}}<br/>
                 End Time: {{auction.endsAt}}<br/>
                 Seller Rating: {{auction.rating}}/5<br/>
                 Reviews: <br/>
                 {{auction.review}}<br/>
-                <input type="button" value="Subscribe" onclick="document.value=Unsubscribe">
+                <div class="button">
+				<button type="submit">Subscribe</button>
+                </div>
                     
                 
             </div>

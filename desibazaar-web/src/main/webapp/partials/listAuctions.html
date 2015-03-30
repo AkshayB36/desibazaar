@@ -10,15 +10,16 @@
                 </h1>
             </div>
         </div>
+        <br/>
         <!-- /.row -->
 
         <!-- Projects Row -->
         
         <div class="row">
 			<div ng-repeat="auction in auctions">
-            <div class="col-sm -3 col-md-6 col-lg-4" style="text-align:center">
+			    <div class="col-sm -3 col-md-6 col-lg-4" style="text-align:center">
                 <a href="#/auctionDetails/{{auction.itemId}}">
-                <img class="img-responsive" src="data:image/jpeg;base64,{{auction.image}}" alt="" style="width:400px;height:200px">
+                <img class="img-responsive" src="{{auction.image}}" alt="" style="width:350px;height:200px">
                 </a>
                 
                 <h3>
@@ -29,13 +30,15 @@
                 <p style="text-align:left">$ {{auction.basePrice}}</p>
 				<p style="text-align:left">{{auction.description}}</p>
 				<hr>
+				<div class="button">
 				<button type="submit">Subscribe</button>
-                
+                </div>
+                <br/>
             </div>
                     <!-- /.row -->
        </div>
        </div>
-      
     
+    </div>
     </div>
     <!-- /.container -->

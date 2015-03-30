@@ -15,9 +15,9 @@ public class Item {
 	private String description;
 	private Float basePrice;
 	private Float sellingPrice;
-	private byte[] image;
-	private Date startsAt;
-	private Date endsAt;
+	private String image;
+	private java.sql.Date startsAt;
+	private java.sql.Date endsAt;
 	private Category category;
 	private User seller;
 	private User buyer;
@@ -66,27 +66,27 @@ public class Item {
 		this.sellingPrice = sellingPrice;
 	}
 
-	public byte[] getImage() {
+	public String getImage() {
 		return image;
 	}
 
-	public void setImage(byte[] image) {
+	public void setImage(String image) {
 		this.image = image;
 	}
 
-	public Date getStartsAt() {
+	public java.sql.Date getStartsAt() {
 		return startsAt;
 	}
 
-	public void setStartsAt(Date startsAt) {
+	public void setStartsAt(java.sql.Date startsAt) {
 		this.startsAt = startsAt;
 	}
 
-	public Date getEndsAt() {
+	public java.sql.Date getEndsAt() {
 		return endsAt;
 	}
 
-	public void setEndsAt(Date endsAt) {
+	public void setEndsAt(java.sql.Date endsAt) {
 		this.endsAt = endsAt;
 	}
 
