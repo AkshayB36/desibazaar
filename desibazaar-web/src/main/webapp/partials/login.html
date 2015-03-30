@@ -1,23 +1,35 @@
+<form class="form-horizontal" style="width: 1000px"
+	style="height: 500px">
+	<fieldset>
+		<legend>
+			&nbsp&nbspLogin<br>
+		</legend>
 
-<form>
-  <div align="center" class="form-group">
-    <label for="exampleInputEmail1">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email" style="width: 300px">
-  </div>
-  
-  <div align="center" class="form-group">
-    <label for="exampleInputPassword1">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password" style="width: 300px">
-  </div>
-  
-  <div align="center" class="checkbox">
-    <label>
-      <input type="checkbox"> Remember login
-    </label>
-  
-  <br><br>
-  <button type="submit" class="btn btn-default">GO</button><br><br>
-  <button type="button" class="btn btn-default">Create new login</button>
-  </div>
-   
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Email</label>
+			<div class="col-lg-10">
+				<input ng-model="newUser.email" type="text" class="form-control"
+					id="name" placeholder="enter email" style="width: 500px"
+					style="height: 30px">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Password</label>
+			<div class="col-lg-10">
+				<input ng-model="newUser.password" type="password"
+					class="form-control" id="name" placeholder="enter password"
+					style="width: 500px" style="height: 30px">
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+				<button type="reset" class="btn btn-default">Cancel</button>
+				&nbsp&nbsp
+				<button type="submit" class="btn btn-primary">Go!</button>
+			</div>
+		</div>
+
+	</fieldset>
 </form>

@@ -8,7 +8,8 @@ app.controller('ReviewController', function($scope, reviewService) {
 	};
 });
 
-app.controller('AuctionController', function($scope, auctionService,categoryService) {
+app.controller('AuctionController', function($scope, auctionService,
+		categoryService) {
 	$scope.auctions = [];
 
 	loadRemoteData();
@@ -35,11 +36,12 @@ app.controller('AuctionController', function($scope, auctionService,categoryServ
 	}
 });
 
-app.controller('AuctionDetailsController', function($scope, $routeParams, auctionService) {
+app.controller('AuctionDetailsController', function($scope, $routeParams,
+		auctionService) {
 	$scope.auction = {};
 
 	loadRemoteData();
-	
+
 	function applyRemoteData(auction) {
 		$scope.auction = auction;
 	}
@@ -57,7 +59,4 @@ app.controller('AccountController', function($scope, accountService) {
 	$scope.addUser = function() {
 		accountService.addUser($scope.newUser);
 	}
-
 });
-
-

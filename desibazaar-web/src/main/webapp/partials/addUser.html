@@ -1,36 +1,84 @@
+<form name="form" class="form-horizontal" style="width: 1000px"
+	style="height: 500px">
+	<fieldset>
+		<legend>
+			&nbsp&nbspRegister<br>
+		</legend>
 
-<form>
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Name</label>
+			<div class="col-lg-10">
+				<input ng-model="newUser.name" type="text" class="form-control"
+					id="name" placeholder="enter name" style="width: 500px"
+					style="height: 30px" required>
+			</div>
+		</div>
 
-	<div id="wrapper" align="center" class="form-group">
-		<label for="exampleFirstName1">First Name</label> <input
-			ng-model="newUser.name" type="text" class="form-control"
-			id="exampleFirstName1" placeholder="Enter First name"
-			style="width: 300px">
-	</div>
+		<div class="form-group">
+			<label for="textArea" class="col-lg-2 control-label">Address</label>
+			<div class="col-lg-10">
+				<textarea ng-model="newUser.address" class="form-control" rows="3"
+					id="textArea" placeholder="enter address" style="width: 500px"
+					style="height: 30px" required></textarea>
+				<span class="help-block"></span>
+			</div>
+		</div>
 
-	<div align="center" class="form-group">
-		<label for="exampleInputEmail1">Email address</label> <input
-			ng-model="newUser.email" type="email" class="form-control"
-			id="exampleInputEmail1" placeholder="Enter email"
-			style="width: 300px">
-	</div>
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Phone
+				number</label>
+			<div class="col-lg-10">
+				<input type="text" ng-model="newUser.number" class="form-control"
+					id="phoneNumber" placeholder="enter phone number"
+					style="width: 500px" style="height: 30px" required>
+			</div>
+		</div>
 
-	<div align="center" class="form-group">
-		<label for="exampleInputPassword1">Password</label> <input
-			ng-model="newUser.password" type="password" class="form-control"
-			id="exampleInputPassword1" placeholder="Password"
-			style="width: 300px">
-	</div>
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Email</label>
+			<div class="col-lg-10">
+				<input ng-model="newUser.email" type="email" class="form-control"
+					id="email" placeholder="email" style="width: 500px"
+					style="height: 30px" required>
+			</div>
+		</div>
 
-	<div align="center" class="form-group">
-		<label for="exampleInputPassword1">Reenter Password</label> <input
-			type="password" class="form-control" id="exampleInputPassword1"
-			placeholder="Password" style="width: 300px">
-	</div>
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Re enter
+				Email</label>
+			<div class="col-lg-10">
+				<input type="email" class="form-control" id="reEnterEmail"
+					placeholder="email" style="width: 500px" style="height: 30px"
+					required>
+			</div>
+		</div>
 
-	<div align="center">
-		<button ng-click="addUser()" class="btn btn-default">Create
-			User</button>
-	</div>
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Password</label>
+			<div class="col-lg-10">
+				<input ng-model="newUser.password" type="password"
+					class="form-control" id="password" placeholder="password"
+					style="width: 500px" style="height: 30px" required>
+			</div>
+		</div>
 
+		<div class="form-group">
+			<label for="input" class="col-lg-2 control-label">Re enter
+				Password</label>
+			<div class="col-lg-10">
+				<input type="password" class="form-control" id="reEnterPassword"
+					placeholder="password" style="width: 500px" style="height: 30px"
+					required>
+			</div>
+		</div>
+
+		<div class="form-group">
+			<div class="col-lg-10 col-lg-offset-2">
+				<button ng-click="addUser()" type="submit" class="btn btn-primary">Register</button>
+				&nbsp&nbsp
+				<button type="reset" class="btn btn-default">Cancel</button>
+			</div>
+		</div>
+
+	</fieldset>
 </form>

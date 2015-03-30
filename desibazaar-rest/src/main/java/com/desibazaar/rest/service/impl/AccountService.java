@@ -25,6 +25,7 @@ public class AccountService implements IAccountService {
 
 	@Override
 	public void createUser(User user) {
+		user.setRating(0F);
 		EUser eUser = DtoToEntityConverter.convertUserToEUser(user, null);
 		getDao().createUser(eUser);
 	}

@@ -10,10 +10,9 @@ app.config(function($routeProvider) {
 	}).when('/listAuctions', {
 		controller : 'AuctionController',
 		templateUrl : 'partials/listAuctions.html'
-	}).when('/auctionDetails/:itemId',
-            {
-        controller: 'AuctionDetailsController',
-        templateUrl: 'partials/auctionDetails.html'
+	}).when('/auctionDetails/:itemId', {
+		controller : 'AuctionDetailsController',
+		templateUrl : 'partials/auctionDetails.html'
 	}).when('/login', {
 		controller : 'AccountController',
 		templateUrl : 'partials/login.html'
