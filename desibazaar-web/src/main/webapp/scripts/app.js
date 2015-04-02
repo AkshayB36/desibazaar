@@ -10,6 +10,9 @@ app.config(function($routeProvider) {
 	}).when('/listAuctions', {
 		controller : 'AuctionController',
 		templateUrl : 'partials/listAuctions.html'
+	}).when('/subscriptions', {
+		controller : 'AuctionController',
+		templateUrl : 'partials/subscriptions.html'
 	}).when('/auctionDetails/:itemId', {
 		controller : 'AuctionDetailsController',
 		templateUrl : 'partials/auctionDetails.html'
@@ -20,7 +23,7 @@ app.config(function($routeProvider) {
 		controller : 'AccountController',
 		templateUrl : 'partials/addUser.html'
 	}).when('/addItem', {
-		controller : 'AuctionController',
+		controller : 'AddItemController',
 		templateUrl : 'partials/addItem.html'
 	}).otherwise({
 		redirectTo : '/review'

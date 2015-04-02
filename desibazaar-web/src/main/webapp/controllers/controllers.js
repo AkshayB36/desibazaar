@@ -18,20 +18,10 @@ app.controller('AuctionController', function($scope, auctionService,
 		$scope.auctions = auctions;
 	}
 
-	function applyCategories(categories) {
-		$scope.categories = categories;
-	}
-
-	$scope.addItem = function() {
-		auctionService.addItem($scope.newItem);
-	}
 
 	function loadRemoteData() {
 		auctionService.getAuctions().then(function(auctions) {
 			applyAuctions(auctions);
-		});
-		categoryService.getCategories().then(function(categories) {
-			applyCategories(categories);
 		});
 	}
 });
@@ -60,3 +50,21 @@ app.controller('AccountController', function($scope, accountService) {
 		accountService.addUser($scope.newUser);
 	}
 });
+
+
+app.controller('AddItemController',function($scope, categoryService, auctionService){
+function applyCategories(categories) {
+		$scope.categories = categories;
+	}
+
+	$scope.addItem = function() {
+		auctionService.addItem($scope.newItem);
+	}
+	function loadRemoteData() {
+	categoryService.getCategories().then(function(categories) {
+		applyCategories(categories);
+	});
+}
+});
+
+app.controller('SubscribeController',function($scope, subscribeService, auctionService){

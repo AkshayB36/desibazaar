@@ -5,8 +5,8 @@
         <!-- Page Header -->
         <div class="row">
             <div class="col-lg-12">
-                <h1 class="page-header">Auctions
-                    <small>Try Your Luck</small>
+                <h1 class="page-header">Subscriptons
+                    <small>start bidding</small>
                 </h1>
             </div>
         </div>
@@ -33,11 +33,11 @@
                 <p style="text-align:left">$ {{auction.basePrice}}</p>
                 </div>
 				<div>
-				<p style="text-align:left">{{auction.description | limitTo : 110}}  <a href="#/auctionDetails/{{auction.itemId}}">Read more</a></p>
+				<p style="text-align:left">{{auction.description | limitTo : 110}} <a href="#/auctionDetails/{{auction.itemId}}">Read more</a></p>
 				</div>
 				<hr>
 				<div class="button">
-				<a href="#/subscriptions/"><button type="submit">Subscribe</button></a>
+				<button type="submit">Unsubscribe</button>
                 </div>
                 <br/>
             </div>
