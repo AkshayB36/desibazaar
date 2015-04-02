@@ -11,7 +11,7 @@ app.config(function($routeProvider) {
 		controller : 'AuctionController',
 		templateUrl : 'partials/listAuctions.html'
 	}).when('/subscriptions', {
-		controller : 'AuctionController',
+		controller : 'SubscribeController',
 		templateUrl : 'partials/subscriptions.html'
 	}).when('/auctionDetails/:itemId', {
 		controller : 'AuctionDetailsController',

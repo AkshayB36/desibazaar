@@ -2,7 +2,8 @@ app.service('auctionService', function($http, $q) {
 	return ({
 		getAuctions : getAuctions,
 		getAuction  : getAuction,
-		addItem : addItem
+		addItem : addItem,
+		getSubscriptions: getSubscriptions
 	});
 
 	function addItem(item) {
@@ -20,7 +21,17 @@ app.service('auctionService', function($http, $q) {
 				"http://localhost:8080/desibazaar-rest/auctions/" + auctionId)
 				.then(handleSuccess, handleError)
 	}
-
+	
+	function getSubscriptions(email) {
+		
+		return $http({
+			"http://localhost:8080/desibazaar-rest/auctions" : user_subscription.itemId,
+			method: "GET",
+			params: {email: user_subscriptions.email}
+		})
+				.then(handleSuccess, handleError)
+	};
+	
 	function handleError(response) {
 		if (!angular.isObject(response.data) || !response.data.message) {
 			return ($q.reject("An unknown error occurred."));

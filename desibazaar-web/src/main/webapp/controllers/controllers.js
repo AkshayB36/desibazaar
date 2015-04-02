@@ -67,4 +67,20 @@ function applyCategories(categories) {
 }
 });
 
-app.controller('SubscribeController',function($scope, subscribeService, auctionService){
+app.controller('SubscribeController',function($scope, auctionService){
+	$scope.subscriptions = {};
+
+	loadRemoteData();
+
+	function applyRemoteData(subscriptions) {
+		$scope.subscriptions = subscriptions;
+	}
+
+	function loadRemoteData() {
+		auctionService.getSubscriptions($routeParams.email).then(function(subscriptions) {
+			applyRemoteData(subscriptions);
+		});
+	}
+});
+	
+
