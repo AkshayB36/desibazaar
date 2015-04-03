@@ -8,21 +8,19 @@ app.controller('ReviewController', function($scope, reviewService) {
 	};
 });
 
-app.controller('AuctionController', function($scope, auctionService,
-		categoryService) {
+app.controller('AuctionController', function($scope, auctionService) {
 	$scope.auctions = [];
 
 	loadRemoteData();
-
-	function applyAuctions(auctions) {
-		$scope.auctions = auctions;
-	}
-
 
 	function loadRemoteData() {
 		auctionService.getAuctions().then(function(auctions) {
 			applyAuctions(auctions);
 		});
+	}
+	
+	function applyAuctions(auctions) {
+		$scope.auctions = auctions;
 	}
 });
 
@@ -51,23 +49,30 @@ app.controller('AccountController', function($scope, accountService) {
 	}
 });
 
+app.controller('AddItemController', function($scope, categoryService,
+		auctionService) {
 
-app.controller('AddItemController',function($scope, categoryService, auctionService){
-function applyCategories(categories) {
-		$scope.categories = categories;
-	}
+	$scope.categories = [];
+
+	loadRemoteData();
 
 	$scope.addItem = function() {
 		auctionService.addItem($scope.newItem);
 	}
+
 	function loadRemoteData() {
-	categoryService.getCategories().then(function(categories) {
-		applyCategories(categories);
-	});
-}
+		categoryService.getCategories().then(function(categories) {
+			applyCategories(categories);
+		});
+	}
+
+	function applyCategories(categories) {
+		$scope.categories = categories;
+	}
+
 });
 
-app.controller('SubscribeController',function($scope, auctionService){
+app.controller('SubscribeController', function($scope, auctionService) {
 	$scope.subscriptions = {};
 
 	loadRemoteData();
@@ -77,10 +82,9 @@ app.controller('SubscribeController',function($scope, auctionService){
 	}
 
 	function loadRemoteData() {
-		auctionService.getSubscriptions($routeParams.email).then(function(subscriptions) {
-			applyRemoteData(subscriptions);
-		});
+		auctionService.getSubscriptions($routeParams.email).then(
+				function(subscriptions) {
+					applyRemoteData(subscriptions);
+				});
 	}
 });
-	
-
