@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.desibazaar.rest.service.IAuctionService;
@@ -45,12 +46,21 @@ public class AuctionController {
 	}
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Item> getAuctions(/*
-												 * @RequestParam(
-												 * "logged_in_user_email")
-												 * String email
-												 */) {
-		return getAuctionService().getAuctions(/* email */"");
+	public @ResponseBody List<Item> getAuctions(
+			@RequestParam("logged_in_user_email") String email) {
+		return getAuctionService().getAuctions(email);
+	}
+
+	@RequestMapping(value = "/{item_id}/subscribe", method = RequestMethod.GET)
+	public @ResponseBody void subscribeAuction(@PathVariable("item_id") Long itemId,
+			@RequestParam("logged_in_user_email") String email) {
+		getAuctionService().subscribeAuction(itemId, email);
+	}
+
+	@RequestMapping(value = "/{item_id}/unsubscribe", method = RequestMethod.GET)
+	public @ResponseBody void unsubscribeAuction(@PathVariable("item_id") Long itemId,
+			@RequestParam("logged_in_user_email") String email) {
+		getAuctionService().unsubscribeAuction(itemId, email);
 	}
 
 	private IAuctionService getAuctionService() {

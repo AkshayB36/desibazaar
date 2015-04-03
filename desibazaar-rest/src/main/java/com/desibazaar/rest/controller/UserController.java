@@ -1,5 +1,7 @@
 package com.desibazaar.rest.controller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -9,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.desibazaar.rest.service.IAccountService;
+import com.desibazaar.rest.vo.Item;
 import com.desibazaar.rest.vo.User;
 
 /**
@@ -37,18 +40,17 @@ public class UserController {
 		return getAccountService().getUser(email);
 	}
 
-	// @RequestMapping(value = "/{item_id}/subscribe", method =
-	// RequestMethod.GET)
-	// public void subscribeAuction(@PathVariable("item_id") Long itemId,
-	// @RequestParam("logged_in_user_email") String email) {
-	// return accountService.subscribeAuction(itemId, email);
-	// }
-	// @RequestMapping(value = "/{item_id}/unsubscribe", method =
-	// RequestMethod.GET)
-	// public void unsubscribeAuction(@PathVariable("item_id") Long itemId,
-	// @RequestParam("logged_in_user_email") String email) {
-	// return accountService.unsubscribeAuction(itemId, email);
-	// }
+	@RequestMapping(value = "/{email}/subscriptions", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Item> getSubscripions(
+			@PathVariable("email") String email) {
+		return getAccountService().getSubscripions(email);
+	}
+
+	@RequestMapping(value = "/{email}/myItems", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Item> getMyItems(
+			@PathVariable("email") String email) {
+		return getAccountService().getMyItems(email);
+	}
 
 	public IAccountService getAccountService() {
 		return accountService;

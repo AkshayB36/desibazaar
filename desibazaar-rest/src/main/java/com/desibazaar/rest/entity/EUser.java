@@ -34,7 +34,7 @@ public class EUser {
 	private String address;
 
 	@ManyToMany
-	@JoinTable(name = "User_Subscription", joinColumns = { @JoinColumn(name = "item_id") }, inverseJoinColumns = { @JoinColumn(name = "email") })
+	@JoinTable(name = "User_Subscription", joinColumns = { @JoinColumn(name = "email") }, inverseJoinColumns = { @JoinColumn(name = "item_id") })
 	private List<EItem> subscriptions;
 
 	@Column(name = "rating")
@@ -96,4 +96,10 @@ public class EUser {
 		this.rating = rating;
 	}
 
+	@Override
+	public boolean equals(Object obj) {
+		if (((EUser) obj).getEmail().equals(this.getEmail()))
+			return true;
+		return false;
+	}
 }

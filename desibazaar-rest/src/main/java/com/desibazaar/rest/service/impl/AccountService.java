@@ -1,5 +1,7 @@
 package com.desibazaar.rest.service.impl;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +12,7 @@ import com.desibazaar.rest.converter.EntityToDtoConverter;
 import com.desibazaar.rest.dao.IUserDao;
 import com.desibazaar.rest.entity.EUser;
 import com.desibazaar.rest.service.IAccountService;
+import com.desibazaar.rest.vo.Item;
 import com.desibazaar.rest.vo.User;
 
 /**
@@ -36,11 +39,25 @@ public class AccountService implements IAccountService {
 		DtoToEntityConverter.convertUserToEUser(user, eUser);
 		getDao().updateUser(eUser);
 	}
-
+	
 	@Override
 	public User getUser(String email) {
 		EUser eUser = getDao().getUser(email);
 		return EntityToDtoConverter.convertEUserToUser(eUser);
+	}
+
+	@Override
+	public List<Item> getSubscripions(String email) {
+		EUser eUser = getDao().getUser(email);
+		return EntityToDtoConverter
+				.convertEItemToItem(eUser.getSubscriptions());
+	}
+	
+	@Override
+	public List<Item> getMyItems(String email) {
+		EUser eUser = getDao().getUser(email);
+		return EntityToDtoConverter
+				.convertEItemToItem(eUser.getSubscriptions());
 	}
 
 	private IUserDao getDao() {

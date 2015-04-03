@@ -1,5 +1,8 @@
 package com.desibazaar.rest.service;
 
+import java.util.List;
+
+import com.desibazaar.rest.vo.Item;
 import com.desibazaar.rest.vo.User;
 
 /**
@@ -12,5 +15,9 @@ public interface IAccountService {
 	public void updateUser(User user);
 
 	public User getUser(String email);
+
+	public List<Item> getSubscripions(String email);
+
+	public List<Item> getMyItems(String email);
 
 }

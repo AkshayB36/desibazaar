@@ -22,6 +22,10 @@ public interface IAuctionService {
 
 	public List<Item> getAuctions(String email);
 
+	public void subscribeAuction(Long itemId, String email);
+
+	public void unsubscribeAuction(Long itemId, String email);
+
 	/* Categories */
 	public List<Category> getCategories();
 

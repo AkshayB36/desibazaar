@@ -10,6 +10,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
@@ -73,6 +75,10 @@ public class EItem {
 	@Enumerated(EnumType.STRING)
 	@Column(name = "status")
 	private Status status;
+
+	@ManyToMany
+	@JoinTable(name = "User_Subscription", joinColumns = { @JoinColumn(name = "item_id") }, inverseJoinColumns = { @JoinColumn(name = "email") })
+	private List<EUser> subscribers;
 
 	public Long getItemId() {
 		return itemId;
@@ -192,6 +198,14 @@ public class EItem {
 
 	public void setStatus(Status status) {
 		this.status = status;
+	}
+
+	public List<EUser> getSubscribers() {
+		return subscribers;
+	}
+
+	public void setSubscribers(List<EUser> subscribers) {
+		this.subscribers = subscribers;
 	}
 
 }

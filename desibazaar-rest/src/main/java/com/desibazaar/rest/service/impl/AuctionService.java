@@ -13,6 +13,7 @@ import com.desibazaar.rest.dao.ICategoryDao;
 import com.desibazaar.rest.dao.IItemDao;
 import com.desibazaar.rest.entity.ECategory;
 import com.desibazaar.rest.entity.EItem;
+import com.desibazaar.rest.entity.EUser;
 import com.desibazaar.rest.service.IAuctionService;
 import com.desibazaar.rest.vo.Category;
 import com.desibazaar.rest.vo.Item;
@@ -66,6 +67,24 @@ public class AuctionService implements IAuctionService {
 	public List<Category> getCategories() {
 		List<ECategory> eCategories = getCategoryDao().getCategories();
 		return EntityToDtoConverter.convertECategoryToCategory(eCategories);
+	}
+
+	@Override
+	public void subscribeAuction(Long itemId, String email) {
+		EItem eItem = getItemDao().getAuction(itemId);
+		EUser eUser = new EUser();
+		eUser.setEmail(email);
+		eItem.getSubscribers().add(eUser);
+		getItemDao().updateAuction(eItem);
+	}
+
+	@Override
+	public void unsubscribeAuction(Long itemId, String email) {
+		EItem eItem = getItemDao().getAuction(itemId);
+		EUser eUser = new EUser();
+		eUser.setEmail(email);
+		eItem.getSubscribers().remove(eUser);
+		getItemDao().updateAuction(eItem);
 	}
 
 	private IItemDao getItemDao() {
