@@ -3,11 +3,14 @@ package com.desibazaar.rest.converter;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.desibazaar.rest.entity.EBid;
 import com.desibazaar.rest.entity.ECategory;
 import com.desibazaar.rest.entity.EItem;
 import com.desibazaar.rest.entity.EUser;
+import com.desibazaar.rest.vo.Bid;
 import com.desibazaar.rest.vo.Category;
 import com.desibazaar.rest.vo.Item;
+import com.desibazaar.rest.vo.Review;
 import com.desibazaar.rest.vo.User;
 
 /**
@@ -44,8 +47,50 @@ public class EntityToDtoConverter {
 		item.setBuyer(convertEUserToUser(eItem.getBuyer()));
 		item.setRating(eItem.getRating());
 		item.setReview(eItem.getReview());
+		item.setBids(convertEBidToBid(eItem.getBids()));
 		item.setStatus(eItem.getStatus());
 		return item;
+	}
+
+	/* Bid Converter */
+	public static List<Bid> convertEBidToBid(List<EBid> eBids) {
+		if (eBids == null)
+			return null;
+		List<Bid> bids = new ArrayList<Bid>();
+		for (EBid eBid : eBids) {
+			bids.add(convertEBidToBid(eBid));
+		}
+		return bids;
+	}
+
+	public static Bid convertEBidToBid(EBid eBid) {
+		if (eBid == null)
+			return null;
+		Bid bid = new Bid();
+		bid.setBid(eBid.getBid());
+		bid.setTime(eBid.getTime());
+		bid.setUser(convertEUserToUser(eBid.getUser()));
+		return bid;
+	}
+
+	/* Review Converter */
+	public static List<Review> convertEReviewToReview(List<EItem> eItems) {
+		if (eItems == null)
+			return null;
+		List<Review> reviews = new ArrayList<Review>();
+		for (EItem eItem : eItems) {
+			reviews.add(convertEReviewToReview(eItem));
+		}
+		return reviews;
+	}
+
+	public static Review convertEReviewToReview(EItem eItem) {
+		if (eItem == null)
+			return null;
+		Review review = new Review();
+		review.setRating(eItem.getRating());
+		review.setReview(eItem.getReview());
+		return review;
 	}
 
 	/* User Converter */

@@ -52,6 +52,18 @@ public class UserController {
 		return getAccountService().getMyItems(email);
 	}
 
+	@RequestMapping(value = "/{email}/myPurchases", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Item> getMyPurchases(
+			@PathVariable("email") String email) {
+		return getAccountService().getMyPurchases(email);
+	}
+
+	@RequestMapping(value = "/{email}/reviews", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Item> getUserReviews(
+			@PathVariable("email") String email) {
+		return getAccountService().getReviews(email);
+	}
+
 	public IAccountService getAccountService() {
 		return accountService;
 	}

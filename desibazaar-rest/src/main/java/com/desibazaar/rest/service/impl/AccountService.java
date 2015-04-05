@@ -39,7 +39,7 @@ public class AccountService implements IAccountService {
 		DtoToEntityConverter.convertUserToEUser(user, eUser);
 		getDao().updateUser(eUser);
 	}
-	
+
 	@Override
 	public User getUser(String email) {
 		EUser eUser = getDao().getUser(email);
@@ -52,12 +52,23 @@ public class AccountService implements IAccountService {
 		return EntityToDtoConverter
 				.convertEItemToItem(eUser.getSubscriptions());
 	}
-	
+
 	@Override
 	public List<Item> getMyItems(String email) {
 		EUser eUser = getDao().getUser(email);
-		return EntityToDtoConverter
-				.convertEItemToItem(eUser.getSubscriptions());
+		return EntityToDtoConverter.convertEItemToItem(eUser.getMyItems());
+	}
+
+	@Override
+	public List<Item> getMyPurchases(String email) {
+		EUser eUser = getDao().getUser(email);
+		return EntityToDtoConverter.convertEItemToItem(eUser.getMyPurchases());
+	}
+
+	@Override
+	public List<Item> getReviews(String email) {
+		EUser eUser = getDao().getUser(email);
+		return EntityToDtoConverter.convertEItemToItem(eUser.getMyItems());
 	}
 
 	private IUserDao getDao() {

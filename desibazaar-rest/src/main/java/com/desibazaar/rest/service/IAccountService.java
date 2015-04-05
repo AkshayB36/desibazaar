@@ -20,4 +20,8 @@ public interface IAccountService {
 
 	public List<Item> getMyItems(String email);
 
+	public List<Item> getMyPurchases(String email);
+
+	public List<Item> getReviews(String email);
+
 }

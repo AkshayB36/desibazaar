@@ -1,6 +1,6 @@
 package com.desibazaar.rest.vo;
 
-import java.sql.Date;
+import java.util.Date;
 import java.util.List;
 
 import com.desibazaar.rest.enums.Status;

@@ -5,9 +5,8 @@ import java.util.List;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 /**
@@ -33,12 +32,17 @@ public class EUser {
 	@Column(name = "address")
 	private String address;
 
-	@ManyToMany
-	@JoinTable(name = "User_Subscription", joinColumns = { @JoinColumn(name = "email") }, inverseJoinColumns = { @JoinColumn(name = "item_id") })
+	@ManyToMany(mappedBy = "subscribers")
 	private List<EItem> subscriptions;
 
 	@Column(name = "rating")
 	private Float rating;
+
+	@OneToMany(mappedBy = "seller")
+	private List<EItem> myItems;
+
+	@OneToMany(mappedBy = "buyer")
+	private List<EItem> myPurchases;
 
 	public String getEmail() {
 		return email;
@@ -94,6 +98,22 @@ public class EUser {
 
 	public void setRating(Float rating) {
 		this.rating = rating;
+	}
+
+	public List<EItem> getMyItems() {
+		return myItems;
+	}
+
+	public void setMyItems(List<EItem> myItems) {
+		this.myItems = myItems;
+	}
+
+	public List<EItem> getMyPurchases() {
+		return myPurchases;
+	}
+
+	public void setMyPurchases(List<EItem> myPurchases) {
+		this.myPurchases = myPurchases;
 	}
 
 	@Override
