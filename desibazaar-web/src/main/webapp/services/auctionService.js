@@ -1,12 +1,12 @@
-app
-		.service(
-				'auctionService',
+app.service('auctionService',
 				function($http, $q) {
 					return ({
 						getAuctions : getAuctions,
 						getAuction : getAuction,
 						addItem : addItem,
-						getSubscriptions : getSubscriptions
+						getSubscriptions : getSubscriptions,
+						subscribe : subscribe,
+						unsubscribe : unsubscribe
 					});
 
 					function addItem(item) {
@@ -16,11 +16,15 @@ app
 										item).then(handleSuccess, handleError)
 					}
 
-					function getAuctions() {
-						return $http
-								.get(
-										"http://localhost:8080/desibazaar-rest/auctions")
-								.then(handleSuccess, handleError)
+					function getAuctions(email) {
+						return $http(
+								{
+									url: "http://localhost:8080/desibazaar-rest/auctions",
+									method : "GET",
+									params : {
+										logged_in_user_email : email
+									}
+								}).then(handleSuccess, handleError)
 					}
 
 					function getAuction(auctionId) {
@@ -30,13 +34,32 @@ app
 								handleError)
 					}
 
-					function getSubscriptions(email) {
+					function subscribe(email,auctionId) {
 						return $http(
 								{
-									"http://localhost:8080/desibazaar-rest/auctions" : user_subscription.itemId,
+									url: "http://localhost:8080/desibazaar-rest/auctions/" + auctionId + "/subscribe",
 									method : "GET",
 									params : {
-										email : user_subscriptions.email
+										logged_in_user_email : email
+									}
+								}).then(handleSuccess, handleError)
+					}
+					
+					function getSubscriptions(email) {
+						return $http.get(
+								"http://localhost:8080/desibazaar-rest/users/"
+										+ email + "/subscriptions").then(handleSuccess,
+								handleError)
+					}
+					
+					
+					function unsubscribe(email,auctionId) {
+						return $http(
+								{
+									url: "http://localhost:8080/desibazaar-rest/auctions/" + auctionId +"/unsubscribe",
+									method : "GET",
+									params : {
+										logged_in_user_email : email
 									}
 								}).then(handleSuccess, handleError)
 					}

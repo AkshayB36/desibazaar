@@ -47,7 +47,7 @@ public class AuctionController {
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Item> getAuctions(
-			@RequestParam("logged_in_user_email") String email) {
+  			@RequestParam("logged_in_user_email") String email) {
 		return getAuctionService().getAuctions(email);
 	}
 

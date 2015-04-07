@@ -29,10 +29,19 @@
                 Starting Time: {{auction.startsAt | date:'yyyy-MM-dd HH:mm:ss'}}<br/>
                 End Time: {{auction.endsAt | date:'yyyy-MM-dd HH:mm:ss'}}<br/>
                 Seller Rating: {{auction.rating}}/5<br/>
-                Reviews: <br/>
-                {{auction.review}}<br/>
+                <div class="button" ng-controller="ViewReviewController">
+                <button ng-click="getReviews()">View Reviews</button>
+                <p ng-show="visible"> {{auction.review}} </p>
+                </div>
                 <div class="button">
-				<button type="submit">Subscribe</button>
+				<button class="btn btn-primary subscribe-btn" ng-controller="ViewReviewController" ng-click="toggleReview()" >
+                {{reviewButton}}</button>
+                </div>
+                 <br/>
+                <br/>
+                <div class="button">
+				<button ng-controller="ButtonController" ng-click="toggleUnsubscribe()">
+				{{subscribeButton}}</button>
                 </div>
                     
                 

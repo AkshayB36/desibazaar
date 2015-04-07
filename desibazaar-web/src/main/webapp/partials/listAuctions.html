@@ -16,7 +16,7 @@
         <!-- Projects Row -->
         
         <div class="row">
-			<div ng-repeat="auction in auctions">
+			<div ng-repeat="auction in auctions | orderBy:'startsAt':false">
 			    <div class="col-sm -3 col-md-6 col-lg-4" style="text-align:center">
                 <div><a href="#/auctionDetails/{{auction.itemId}}">
                 <img class="img-responsive" src="{{auction.image}}" alt="" style="width:350px;height:200px">
@@ -35,9 +35,11 @@
 				<div>
 				<p style="text-align:left">{{auction.description | limitTo : 110}}  <a href="#/auctionDetails/{{auction.itemId}}">Read more</a></p>
 				</div>
+				Status: {{auction.status}}<br/>
 				<hr>
 				<div class="button">
-				<a href="#/subscriptions/"><button type="submit">Subscribe</button></a>
+				<button class="btn btn-primary subscribe-btn" ng-controller="ButtonController" ng-click="toggleSubscribe()" >
+                {{subscribeButton}}</button>
                 </div>
                 <br/>
             </div>

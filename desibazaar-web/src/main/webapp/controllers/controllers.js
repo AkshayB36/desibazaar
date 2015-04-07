@@ -6,6 +6,7 @@ app.controller('ReviewController', function($scope, reviewService) {
 			$scope.newReview.desc = '';
 		}
 	};
+
 });
 
 app.controller('AuctionController', function($scope, auctionService) {
@@ -14,11 +15,11 @@ app.controller('AuctionController', function($scope, auctionService) {
 	loadRemoteData();
 
 	function loadRemoteData() {
-		auctionService.getAuctions().then(function(auctions) {
+		auctionService.getAuctions("ss8990@gmail.com").then(function(auctions) {
 			applyAuctions(auctions);
 		});
 	}
-	
+
 	function applyAuctions(auctions) {
 		$scope.auctions = auctions;
 	}
@@ -73,7 +74,7 @@ app.controller('AddItemController', function($scope, categoryService,
 });
 
 app.controller('SubscribeController', function($scope, auctionService) {
-	$scope.subscriptions = {};
+	$scope.subscriptions = [];
 
 	loadRemoteData();
 
@@ -82,9 +83,43 @@ app.controller('SubscribeController', function($scope, auctionService) {
 	}
 
 	function loadRemoteData() {
-		auctionService.getSubscriptions($routeParams.email).then(
+		auctionService.getSubscriptions("ss8990@gmail.com").then(
 				function(subscriptions) {
 					applyRemoteData(subscriptions);
 				});
 	}
 });
+
+app.controller('ButtonController', function($scope, auctionService) {
+	$scope.subscribed = false;
+	$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe' : 'Subscribe';
+	$scope.toggleSubscribe = function() {
+		if ($scope.subscribed == false) {
+			auctionService.subscribe("ss8990@gmail.com", 2);
+		} else {
+			auctionService.unsubscribe("ss8990@gmail.com", 2);
+		}
+		$scope.subscribed = !$scope.subscribed; // Handle subscription...
+		$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe'
+				: 'Subscribe';
+	};
+});
+
+app.controller('ViewReviewController',
+		function($scope, viewReviewService) {
+			$scope.reviewed = false;
+			$scope.reviewButton = $scope.reviewed ? 'View Reviews'
+					: 'Hide Reviews';
+			$scope.toggle
+			Review = function() {
+
+				if ($scope.subscribed == false) {
+					alert("Review is Done");
+				} else {
+					alert("Hide is Done");
+				}
+				$scope.reviewed = !$scope.reviewed; // Handle subscription...
+				$scope.reviewButton = $scope.reviewed ? 'View Reviews'
+						: 'Hide Reviews';
+			};
+		});

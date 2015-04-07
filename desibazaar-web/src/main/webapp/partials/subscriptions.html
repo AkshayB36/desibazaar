@@ -16,7 +16,7 @@
         <!-- Projects Row -->
         
         <div class="row">
-			<div ng-repeat="auction in auctions">
+			<div ng-repeat="auction in subscriptions">
 			    <div class="col-sm -3 col-md-6 col-lg-4" style="text-align:center">
                 <div><a href="#/auctionDetails/{{auction.itemId}}">
                 <img class="img-responsive" src="{{auction.image}}" alt="" style="width:350px;height:200px">
@@ -37,7 +37,8 @@
 				</div>
 				<hr>
 				<div class="button">
-				<button type="submit">Unsubscribe</button>
+				<button ng-controller="ButtonController" ng-click="toggleUnsubscribe()">
+				{{subscribeButton}}</button>
                 </div>
                 <br/>
             </div>
