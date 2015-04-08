@@ -1,55 +1,61 @@
-    <!-- Page Content -->
-    <div class="container">
 
-        <!-- Portfolio Item Heading -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">{{auction.name}}
-                    
-                </h1>
-            </div>
-        </div>
-        <br/>
-        <!-- /.row -->
+<!-- Page Content -->
+<div class="container">
 
-        <!-- Portfolio Item Row -->
-        <div class="row">
+	<!-- Portfolio Item Heading -->
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">{{auction.name}}</h1>
+		</div>
+	</div>
+	<br />
+	<!-- /.row -->
 
-            <div class="col-md-8">
-                <img class="img-responsive" src="{{auction.image}}" alt=""  style="width=650px;height=350px">
-            </div>
+	<!-- Portfolio Item Row -->
+	<div class="row">
 
-            <div class="col-md-4">
-                <h3>{{auction.name}}</h3>
-                <p>{{auction.description}}<br/>
-                $ {{auction.basePrice}}</p>
-                <h3>Product Details</h3>
-                <p>Category: {{auction.category.name}}<br/>
-                Status: {{auction.status}}<br/>
-                Starting Time: {{auction.startsAt | date:'yyyy-MM-dd HH:mm:ss'}}<br/>
-                End Time: {{auction.endsAt | date:'yyyy-MM-dd HH:mm:ss'}}<br/>
-                Seller Rating: {{auction.rating}}/5<br/>
-                <div class="button" ng-controller="ViewReviewController">
-                <button ng-click="getReviews()">View Reviews</button>
-                <p ng-show="visible"> {{auction.review}} </p>
+		<div class="col-md-8">
+			<img class="img-responsive" src="{{auction.image}}" alt="" style="">
+		</div>
+
+		<div class="col-md-4">
+			<h3>{{auction.name}}</h3>
+			<p>
+				{{auction.description}}<br /> $ {{auction.basePrice}}
+			</p>
+			<h3>Product Details</h3>
+			<p>
+				Category: {{auction.category.name}}<br /> Status:
+				{{auction.status}}<br /> Starting Time: {{auction.startsAt |
+				date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
+				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Seller Rating:
+				{{auction.rating}}/5<br />
+			<div ng-controller="ViewReviewController">
+				<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
+				<table ng-show="reviewed" class="table">
+					<tr>
+					<th> Product </th>
+					<th> Rating </th>
+					<th> Review </th> 
+					</tr>
+					<tr ng-repeat="sellerItem in sellerItems">
+						<td>{{sellerItem.name}}</td>
+						<td>{{sellerItem.rating}}/5</td>
+						<td>{{sellerItem.review}}</td>
+					</tr>
+				</table>
+			</div>
+			<br />
+			<div class="button">
+				<button class="btn btn-primary subscribe-btn" ng-controller="ButtonController" ng-click="toggleSubscribe()" >
+                {{subscribeButton}}</button>
                 </div>
-                <div class="button">
-				<button class="btn btn-primary subscribe-btn" ng-controller="ViewReviewController" ng-click="toggleReview()" >
-                {{reviewButton}}</button>
-                </div>
-                 <br/>
-                <br/>
-                <div class="button">
-				<button ng-controller="ButtonController" ng-click="toggleUnsubscribe()">
-				{{subscribeButton}}</button>
-                </div>
-                    
-                
-            </div>
 
-        </div>
 
-    </div>
-    
+		</div>
 
-        
+	</div>
+
+</div>
+
+

@@ -13,6 +13,9 @@ app.config(function($routeProvider) {
 	}).when('/subscriptions', {
 		controller : 'SubscribeController',
 		templateUrl : 'partials/subscriptions.html'
+	}).when('/subscriptionDetails/:itemId', {
+		controller : 'AuctionDetailsController',
+		templateUrl : 'partials/subscriptionDetails.html'
 	}).when('/auctionDetails/:itemId', {
 		controller : 'AuctionDetailsController',
 		templateUrl : 'partials/auctionDetails.html'

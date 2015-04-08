@@ -95,31 +95,84 @@ app.controller('ButtonController', function($scope, auctionService) {
 	$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe' : 'Subscribe';
 	$scope.toggleSubscribe = function() {
 		if ($scope.subscribed == false) {
-			auctionService.subscribe("ss8990@gmail.com", 2);
+			auctionService.subscribe("ss8990@gmail.com", $scope.auction.itemId)
+					.then(function() {
+						toggle();
+					});
 		} else {
-			auctionService.unsubscribe("ss8990@gmail.com", 2);
+			auctionService.unsubscribe("ss8990@gmail.com",
+					$scope.auction.itemId).then(function() {
+				toggle();
+			});
 		}
-		$scope.subscribed = !$scope.subscribed; // Handle subscription...
-		$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe'
-				: 'Subscribe';
+		function toggle() {
+			$scope.subscribed = !$scope.subscribed; // Handle subscription...
+			$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe'
+					: 'Subscribe';
+		}
 	};
+});
+
+app.controller('ButtonUnsubscribeController', function($scope, auctionService) {
+	$scope.subscribe = true;
+	$scope.subscribeButton = $scope.subscribe ? 'Unsubscribe' : 'Subscribe';
+	$scope.toggleUnsubscribe = function() {
+		if ($scope.subscribe == true) {
+
+			auctionService.unsubscribe("ss8990@gmail.com",
+					$scope.auction.itemId).then(function() {
+				toggle();
+			});
+		}
+		function toggle() {
+			$scope.subscribe = !$scope.subscribe; // Handle subscription...
+			$scope.subscribeButton = $scope.subscribe ? 'Unsubscribe'
+					: 'Subscribe';
+		}
+	};
+
 });
 
 app.controller('ViewReviewController',
 		function($scope, viewReviewService) {
-			$scope.reviewed = false;
-			$scope.reviewButton = $scope.reviewed ? 'View Reviews'
-					: 'Hide Reviews';
-			$scope.toggle
-			Review = function() {
+			$scope.reviews = [];
+			function applyRemoteData(reviews) {
+				$scope.sellerItems = reviews;
+			}
 
-				if ($scope.subscribed == false) {
-					alert("Review is Done");
+			$scope.reviewed = false;
+			$scope.reviewButton = $scope.reviewed ? 'Hide Reviews'
+					: 'View Reviews';
+			$scope.toggleReview = function() {
+
+				if ($scope.reviewed == false) {
+					viewReviewService.getReviews("cooldude_sarath@yahoo.co.in")
+							.then(function(reviews) {
+								applyRemoteData(reviews);
+							});
 				} else {
-					alert("Hide is Done");
+
 				}
 				$scope.reviewed = !$scope.reviewed; // Handle subscription...
-				$scope.reviewButton = $scope.reviewed ? 'View Reviews'
-						: 'Hide Reviews';
+				$scope.reviewButton = $scope.reviewed ? 'Hide Reviews'
+						: 'View Reviews';
 			};
 		});
+
+app.controller('BidController', function($scope) {
+
+	$scope.reviewed = false;
+	$scope.bidButton = $scope.reviewed ? 'Hide Bidding History'
+			: 'View Bidding History';
+	$scope.toggleReview = function() {
+
+		if ($scope.reviewed == false) {
+
+		} else {
+
+		}
+		$scope.reviewed = !$scope.reviewed; // Handle subscription...
+		$scope.bidButton = $scope.reviewed ? 'Hide Bidding History'
+				: 'View Bidding History';
+	};
+});
