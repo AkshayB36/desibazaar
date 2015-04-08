@@ -28,6 +28,15 @@ app.config(function($routeProvider) {
 	}).when('/addItem', {
 		controller : 'AddItemController',
 		templateUrl : 'partials/addItem.html'
+	}).when('/listMyItems', {
+		controller : 'MyAuctionsController',
+		templateUrl : 'partials/listMyItems.html'
+	}).when('/myAuctionDetails/:itemId', {
+		controller : 'AuctionDetailsController',
+		templateUrl : 'partials/myAuctionDetails.html'
+	}).when('/editMyItems/:itemId', {
+		controller : 'EditItemsController',
+		templateUrl : 'partials/editMyItems.html'
 	}).otherwise({
 		redirectTo : '/review'
 	})

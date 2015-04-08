@@ -1,0 +1,59 @@
+    
+    <!-- Page Content -->
+    <div class="container">
+
+        <!-- Page Header -->
+        <div class="row">
+            <div class="col-lg-12">
+                <h1 class="page-header">View Items
+                    <small>Items you have posted</small>
+                </h1>
+            </div>
+        </div>
+        <br/>
+        <!-- /.row -->
+
+<div>
+
+<a href="http://localhost:8080/desibazaar-web/#/addItem">
+   <button type="button" class="btn btn-default" aria-label="Left Align">
+   <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+   </button>
+</a>
+</div>
+        <!-- Projects Row -->
+        
+        <div class="row">
+			<div ng-repeat="auction in auctions">
+			    <div class="col-sm -3 col-md-6 col-lg-4" style="text-align:center">
+                <div><a href="#/myAuctionDetails/{{auction.itemId}}">
+                <img class="img-responsive" src="{{auction.image}}" alt="" style="width:350px;height:200px">
+                </a>
+                </div>
+                <div>
+                <h3>
+                <a href="#/myAuctionDetails/{{auction.itemId}}">{{ auction.name }}</a>
+				
+                </h3>
+                </div>
+                <hr>
+                <div>
+                <p style="text-align:left">$ {{auction.basePrice}}</p>
+                </div>
+				<div>
+				<p style="text-align:left">{{auction.description | limitTo : 110}}  <a href="#/myAuctionDetails/{{auction.itemId}}">Read more</a></p>
+				</div>
+				<hr>
+				<div class="button">
+				<a href="#/editMyItems"><button type="submit">Edit</button></a>
+				<a href=""><button type="submit">Delete</button></a>
+                </div>
+                <br/>
+            </div>
+                    <!-- /.row -->
+       </div>
+       </div>
+    
+    </div>
+    </div>
+    <!-- /.container -->

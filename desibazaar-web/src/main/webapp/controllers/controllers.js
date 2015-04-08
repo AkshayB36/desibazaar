@@ -23,6 +23,42 @@ app.controller('AuctionController', function($scope, auctionService) {
 	function applyAuctions(auctions) {
 		$scope.auctions = auctions;
 	}
+
+});
+
+app.controller('MyAuctionsController', function($scope, auctionService) {
+	$scope.auctions = [];
+
+	loadRemoteData();
+
+	function loadRemoteData() {
+		auctionService.getMyAuctions('abc@gmail.com').then(function(auctions) {
+			getMyAuctions(auctions);
+		});
+	}
+
+	function getMyAuctions(auctions) {
+		$scope.auctions = auctions;
+	}
+
+});
+
+app.controller('EditItemsController', function($scope, $routeParams,
+		auctionService) {
+	$scope.auction = {};
+
+	loadRemoteData();
+
+	function loadRemoteData() {
+		auctionService.getAuction($routeParams.itemId).then(function(auction) {
+			$scope.auction = auction;
+		});
+	}
+	$scope.editItem = function() {
+		auctionService.updateAuction($scope.auction).then(function() {
+		});
+	}
+
 });
 
 app.controller('AuctionDetailsController', function($scope, $routeParams,
