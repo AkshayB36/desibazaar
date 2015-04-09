@@ -32,7 +32,7 @@ app.controller('MyAuctionsController', function($scope, auctionService) {
 	loadRemoteData();
 
 	function loadRemoteData() {
-		auctionService.getMyAuctions('abc@gmail.com').then(function(auctions) {
+		auctionService.getMyAuctions('xyz@gmail.com').then(function(auctions) {
 			getMyAuctions(auctions);
 		});
 	}
@@ -43,7 +43,7 @@ app.controller('MyAuctionsController', function($scope, auctionService) {
 
 });
 
-app.controller('EditItemsController', function($scope, $routeParams,
+app.controller('EditItemsController', function($scope, $routeParams, $location,$window,
 		auctionService) {
 	$scope.auction = {};
 
@@ -55,10 +55,13 @@ app.controller('EditItemsController', function($scope, $routeParams,
 		});
 	}
 	$scope.editItem = function() {
-		auctionService.updateAuction($scope.auction).then(function() {
-		});
-	}
 
+		auctionService.updateAuction($scope.auction).then(function() {
+			$location.path("/myAuctionDetails/" + $scope.auction.itemId);
+			$window.alert("Your item has been modified!");
+		});
+
+	}
 });
 
 app.controller('AuctionDetailsController', function($scope, $routeParams,
@@ -67,16 +70,26 @@ app.controller('AuctionDetailsController', function($scope, $routeParams,
 
 	loadRemoteData();
 
-	function applyRemoteData(auction) {
-		$scope.auction = auction;
-	}
-
 	function loadRemoteData() {
 		auctionService.getAuction($routeParams.itemId).then(function(auction) {
-			applyRemoteData(auction);
+			$scope.auction = auction;
+		});
+	}
+	
+});
+
+app.controller('DeleteItemController', function($scope, $location,
+		auctionService) {
+	
+
+	
+	$scope.deleteItem = function() {
+		auctionService.deleteAuction($scope.auction.itemId).then(function() {
+			$location.path("/listMyItems/");
 		});
 	}
 });
+
 
 app.controller('AccountController', function($scope, accountService) {
 	$scope.newUser = {};
