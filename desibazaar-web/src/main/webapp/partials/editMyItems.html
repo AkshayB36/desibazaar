@@ -17,9 +17,9 @@
 			<div class="form-group">
 				<label for="input" class="col-lg-2 control-label">Name</label>
 				<div class="col-lg-10">
-					<input ng-model="auction.name" value="{{auction.name}}" type="text" class="form-control"
-						id="inputName" placeholder="Name" style="height: 30px"
-						maxlength="40" required>
+					<input ng-model="auction.name" value="{{auction.name}}" type="text"
+						class="form-control" id="inputName" placeholder="Name"
+						style="height: 30px" maxlength="40" required>
 
 				</div>
 			</div>
@@ -28,37 +28,43 @@
 				<label for="inputBaseprice" class="col-lg-2 control-label">Base
 					Price</label>
 				<div class="col-lg-10">
-					<input ng-model="auction.basePrice" value="{{auction.basePrice}}" type="number"
-						class="form-control" id="inputPassword"
+					<input ng-model="auction.basePrice" value="{{auction.basePrice}}"
+						type="number" class="form-control" id="inputPassword"
 						placeholder="Base Price in Dollars" style="height: 30px" required>
 
 				</div>
 			</div>
 			<div class="form-group">
 
-			<label for="textArea" class="col-lg-2 control-label">Description</label>
-			<div class="col-lg-10">
+				<label for="textArea" class="col-lg-2 control-label">Description</label>
+				<div class="col-lg-10">
 
-				<textarea ng-model="auction.description" class="form-control" rows="3" id="textArea"
-					placeholder="Enter the Description for your Item." required>"{{auction.description}}"</textarea>
-				<span class="help-block"></span>
+					<textarea ng-model="auction.description" class="form-control"
+						rows="3" id="textArea"
+						placeholder="Enter the Description for your Item." required>"{{auction.description}}"</textarea>
+					<span class="help-block"></span>
+				</div>
 			</div>
-		</div>
-
-	
-            <div class="form-group">
-                <label for ="inputStartTime" class="col-lg-2 control-label">Start time</label>
-                <div class="controls input-append date form_datetime" data-date="2015-04-12T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                    <input ng-model="auction.startsAt" value="{{auction.startAt}}" size="16" type="text" value="" readonly required>
-                    <span class="add-on"><i class="icon-remove"></i></span>
-					<span class="add-on"><i class="icon-th"></i></span>
-                </div>
-				<input type="hidden" id="dtp_input1" value="" /><br/>
-            </div>
 
 
-		
-			
+			<div class="form-group">
+				<label for="inputStartTime" class="col-lg-2 control-label">Start
+					time</label>
+				<div class="controls input-append date form_datetime"
+					data-date="2015-04-12T05:25:07Z"
+					data-date-format="dd MM yyyy - HH:ii p"
+					data-link-field="dtp_input1">
+					<input ng-model="auction.startsAt" value="{{auction.startAt}}"
+						size="16" type="text" value="" readonly required> <span
+						class="add-on"><i class="icon-remove"></i></span> <span
+						class="add-on"><i class="icon-th"></i></span>
+				</div>
+				<input type="hidden" id="dtp_input1" value="" /><br />
+			</div>
+
+
+
+
 
 			<div class="form-group">
 				<label for="input" class="col-lg-2 control-label"
@@ -101,46 +107,59 @@
 			<br>
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-2">
-					<button ng-click="editItem()" type="submit" class="btn btn-primary subscribe-btn">Save</button>
+					<button ng-click="editItem()" type="submit"
+						class="btn btn-primary subscribe-btn" >Save</button>
 					&nbsp&nbsp
-					<button type="reset" class="button">Cancel</button>
+					
+
+
 				</div>
 			</div>
 
-	</fieldset>
-</form>
-
-<script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
-	$('.form_date').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
-	$('.form_time').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 1,
-		minView: 0,
-		maxView: 1,
-		forceParse: 0
-    });
+		</fieldset>
+	</form>
+<!-- 
+<script>
+function myFunction() {
+	
+    alert("Your item has been modified!");
+    
+    window.location.href = "#/listMyItems/";
+    editItem();
+}
 </script>
 
+ -->
+	<script type="text/javascript">
+		$('.form_datetime').datetimepicker({
+			//language:  'fr',
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			forceParse : 0,
+			showMeridian : 1
+		});
+		$('.form_date').datetimepicker({
+			language : 'fr',
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 2,
+			minView : 2,
+			forceParse : 0
+		});
+		$('.form_time').datetimepicker({
+			language : 'fr',
+			weekStart : 1,
+			todayBtn : 1,
+			autoclose : 1,
+			todayHighlight : 1,
+			startView : 1,
+			minView : 0,
+			maxView : 1,
+			forceParse : 0
+		});
+	</script>

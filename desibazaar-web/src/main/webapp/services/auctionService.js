@@ -7,7 +7,8 @@ app.service('auctionService', function($http, $q) {
 		subscribe : subscribe,
 		unsubscribe : unsubscribe,
 		getMyAuctions : getMyAuctions,
-		updateAuction : updateAuction
+		updateAuction : updateAuction,
+		deleteAuction : deleteAuction
 	});
 
 	function addItem(item) {
@@ -32,10 +33,16 @@ app.service('auctionService', function($http, $q) {
 	}
 
 	function updateAuction(auction) {
-		return $http.put(
-				"http://localhost:8080/desibazaar-rest/auctions/", auction)
+		return $http.put("http://localhost:8080/desibazaar-rest/auctions/",
+				auction).then(handleSuccess, handleError)
+	}
+
+	function deleteAuction(auctionId) {
+		return $http.delete(
+				"http://localhost:8080/desibazaar-rest/auctions/" + auctionId)
 				.then(handleSuccess, handleError)
 	}
+
 	function subscribe(email, auctionId) {
 		return $http(
 				{
