@@ -1,4 +1,3 @@
-
 <!-- Page Content -->
 <div class="container">
 
@@ -12,7 +11,7 @@
 	</div>
 	<br />
 
-	<form class="form-horizontal" style="width: 1000px""height: 500px">
+	<form class="form-horizontal" style="width: 1000px; height: 500px">
 		<fieldset>
 			<div class="form-group">
 				<label for="input" class="col-lg-2 control-label">Name</label>
@@ -36,30 +35,44 @@
 			</div>
 			<div class="form-group">
 
-			<label for="textArea" class="col-lg-2 control-label">Description</label>
-			<div class="col-lg-10">
+				<label for="textArea" class="col-lg-2 control-label">Description</label>
+				<div class="col-lg-10">
 
-				<textarea ng-model="newItem.description" class="form-control" rows="3" id="textArea"
-					placeholder="Enter the Description for your Item." required></textarea>
-				<span class="help-block"></span>
+					<textarea ng-model="newItem.description" class="form-control"
+						rows="3" id="textArea"
+						placeholder="Enter the Description for your Item." required></textarea>
+					<span class="help-block"></span>
+				</div>
 			</div>
-		</div>
-
-	
-            <div class="form-group">
-                <label for ="inputStartTime" class="col-lg-2 control-label">Start time</label>
-                <div class="controls input-append date form_datetime" data-date="2015-04-12T05:25:07Z" data-date-format="dd MM yyyy - HH:ii p" data-link-field="dtp_input1">
-                    <input ng-model="newItem.startAt" size="16" type="text" value="" readonly required>
-                    <span class="add-on"><i class="icon-remove"></i></span>
-					<span class="add-on"><i class="icon-th"></i></span>
-                </div>
-				<input type="hidden" id="dtp_input1" value="" /><br/>
-            </div>
 
 
-		
-			
-
+			<div class="form-group">
+				<label for="inputStartTime" class="col-lg-2 control-label">Start
+					time</label>
+				<div class="controls input-append date form_datetime"
+					data-date="2015-04-12T05:25:07Z"
+					data-date-format="dd MM yyyy - HH:ii p"
+					data-link-field="dtp_input1">
+					<input size="16" type="text" value="" readonly required> <span
+						class="add-on"><i class="icon-remove"></i></span> <span
+						class="add-on"><i class="icon-th"></i></span>
+				</div>
+				<input type="hidden" id="dtp_input1" value="" /><br />
+			</div>
+			<div class="form-group">
+				<label for="inputStartTime" class="col-lg-2 control-label">Start
+					time</label>
+				<div class="controls input-append date form_datetime"
+					data-date="2015-04-12T05:25:07Z"
+					data-date-format="dd MM yyyy - HH:ii p"
+					data-link-field="dtp_input1">
+					<input ng-model="newItem.startAt" size="16" type="text" value=""
+						readonly required> <span class="add-on"><i
+						class="icon-remove"></i></span> <span class="add-on"><i
+						class="icon-th"></i></span>
+				</div>
+				<input type="hidden" id="dtp_input1" value="" /><br />
+			</div>
 			<div class="form-group">
 				<label for="input" class="col-lg-2 control-label"
 					style="height: 30px">Duration</label>
@@ -107,40 +120,39 @@
 				</div>
 			</div>
 
-	</fieldset>
-</form>
-
+		</fieldset>
+	</form>
+</div>
 <script type="text/javascript">
-    $('.form_datetime').datetimepicker({
-        //language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		forceParse: 0,
-        showMeridian: 1
-    });
+	$('.form_datetime').datetimepicker({
+		//language:  'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		forceParse : 0,
+		showMeridian : 1
+	});
 	$('.form_date').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 2,
-		minView: 2,
-		forceParse: 0
-    });
+		language : 'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0
+	});
 	$('.form_time').datetimepicker({
-        language:  'fr',
-        weekStart: 1,
-        todayBtn:  1,
-		autoclose: 1,
-		todayHighlight: 1,
-		startView: 1,
-		minView: 0,
-		maxView: 1,
-		forceParse: 0
-    });
+		language : 'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 1,
+		minView : 0,
+		maxView : 1,
+		forceParse : 0
+	});
 </script>
-

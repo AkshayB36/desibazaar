@@ -1,49 +1,46 @@
+<!-- Page Content -->
+<div class="container">
 
-
-    <!-- Page Content -->
-    <div class="container">
-
-        <!-- Page Header -->
-        <div class="row">
-            <div class="col-lg-12">
-                <h1 class="page-header">Login
-                    <small>to get started</small>
-                </h1>
-            </div>
-        </div>
-        <br/>
-
-
-
-<form class="form-horizontal" style="width: 1000px"
-	style="height: 500px">
-	<fieldset>
-		
-
-		<div class="form-group">
-			<label for="input" class="col-lg-2 control-label">Email</label>
-			<div class="col-lg-10">
-				<input ng-model="newUser.email" type="text" class="form-control"
-					id="name" placeholder="enter email" style="width: 500px"
-					style="height: 30px">
-			</div>
+	<!-- Page Header -->
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">
+				Login <small>to get started</small>
+			</h1>
 		</div>
+	</div>
+	<br />
 
-		<div class="form-group">
-			<label for="input" class="col-lg-2 control-label">Password</label>
-			<div class="col-lg-10">
-				<input ng-model="newUser.password" type="password"
-					class="form-control" id="name" placeholder="enter password"
-					style="width: 500px" style="height: 30px">
+	<div ng-show="error" class="alert alert-danger">{{error}}</div>
+	<form class="form-horizontal" style="width: 1000px; height: 500px">
+		<fieldset>
+
+			<div class="form-group">
+				<label for="input" class="col-lg-2 control-label">Email</label>
+				<div class="col-lg-10">
+					<input ng-model="username" type="text" class="form-control"
+						id="name" placeholder="enter email"
+						style="width: 500px; height: 30px">
+				</div>
 			</div>
-		</div>
 
-		<div class="form-group">
-			<div class="col-lg-10 col-lg-offset-2">
-				<button type="submit" class="button">Go</button>&nbsp&nbsp
-				<button type="reset" class="button">Cancel</button>
+			<div class="form-group">
+				<label for="input" class="col-lg-2 control-label">Password</label>
+				<div class="col-lg-10">
+					<input ng-model="password" type="password"
+						class="form-control" id="name" placeholder="enter password"
+						style="width: 500px; height: 30px">
+				</div>
 			</div>
-		</div>
 
-	</fieldset>
-</form>
+			<div class="form-group">
+				<div class="col-lg-10 col-lg-offset-2">
+					<button type="submit" ng-click="login()" class="button">Go</button>
+					&nbsp&nbsp
+					<button type="reset" class="button">Cancel</button>
+				</div>
+			</div>
+
+		</fieldset>
+	</form>
+</div>

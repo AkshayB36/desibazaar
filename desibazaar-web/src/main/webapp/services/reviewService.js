@@ -1,13 +1,12 @@
-app.service('viewReviewService',
+app.service('reviewService',
 				function($http, $q) {
 					return ({
 						getReviews : getReviews
 					});
 
-					function getReviews(email) {
+					function getReviews() {
 						return $http.get(
-								"http://localhost:8080/desibazaar-rest/users/"
-										+ email + "/reviews").then(handleSuccess,
+								"http://localhost:8080/desibazaar-rest/users/reviews").then(handleSuccess,
 								handleError)
 					}
 

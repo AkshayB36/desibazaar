@@ -25,10 +25,11 @@
 			</p>
 			<h3>Product Details</h3>
 			<p>
-				Category: {{auction.category.name}}<br /> Status: {{auction.status}}<br />
-				Starting Time: {{auction.startsAt | date:'yyyy-MM-dd HH:mm:ss'}}<br />
-				End Time: {{auction.endsAt | date:'yyyy-MM-dd HH:mm:ss'}}<br />
-				Rating: {{auction.rating}}/5<br /><!-- Don't show rating if -1 -->
+				Category: {{auction.category.name}}<br /> Status:
+				{{auction.status}}<br /> Starting Time: {{auction.startsAt |
+				date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
+				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Rating: {{auction.rating}}/5<br />
+				<!-- Don't show rating if -1 -->
 				Review: {{auction.review}}
 				<!-- show bidding history here -->
 			</p>
@@ -36,19 +37,12 @@
 		<div class="button">
 			<a href="#/editMyItems/{{auction.itemId}}"><button type="submit"
 					class="btn btn-primary subscribe-btn">Edit</button></a>
-				
-					
-			<button ng-controller="DeleteItemController" confirmed-click="deleteItem()" class="btn btn-primary subscribe-btn" ng-confirm-click="Do you want to delete?">Delete</button>
+			<button ng-controller="DeleteItemController"
+				confirmed-click="deleteItem()" class="btn btn-primary subscribe-btn"
+				ng-confirm-click="Do you want to delete?">Delete</button>
 
 		</div>
 		<br /> <br />
 		<div class="button"></div>
-
-
 	</div>
-
 </div>
-
-</div>
-
-

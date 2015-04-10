@@ -24,4 +24,6 @@ public interface IAccountService {
 
 	public List<Item> getReviews(String email);
 
+	public boolean authenticate(User user);
+
 }

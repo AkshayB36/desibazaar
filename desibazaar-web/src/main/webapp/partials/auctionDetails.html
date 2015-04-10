@@ -34,9 +34,9 @@
 				<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
 				<table ng-show="reviewed" class="table">
 					<tr>
-					<th> Product </th>
-					<th> Rating </th>
-					<th> Review </th> 
+						<th>Product</th>
+						<th>Rating</th>
+						<th>Review</th>
 					</tr>
 					<tr ng-repeat="sellerItem in sellerItems">
 						<td>{{sellerItem.name}}</td>
@@ -47,9 +47,10 @@
 			</div>
 			<br />
 			<div class="button">
-				<button class="btn btn-primary subscribe-btn" ng-controller="ButtonController" ng-click="toggleSubscribe()" >
-                {{subscribeButton}}</button>
-                </div>
+				<button class="btn btn-primary subscribe-btn"
+					ng-controller="ButtonController" ng-click="toggleSubscribe()">
+					{{subscribeButton}}</button>
+			</div>
 
 
 		</div>

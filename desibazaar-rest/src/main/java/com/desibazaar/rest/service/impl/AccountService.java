@@ -71,6 +71,17 @@ public class AccountService implements IAccountService {
 		return EntityToDtoConverter.convertEItemToItem(eUser.getMyItems());
 	}
 
+	@Override
+	public boolean authenticate(User user) {
+		EUser eUser;
+		if ((eUser = getDao().getUser(user.getEmail())) != null) {
+			if (eUser.getPassword().equals(user.getPassword())) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private IUserDao getDao() {
 		return userDao;
 	}

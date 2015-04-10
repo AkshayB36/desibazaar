@@ -16,14 +16,8 @@ app.service('auctionService', function($http, $q) {
 				item).then(handleSuccess, handleError)
 	}
 
-	function getAuctions(email) {
-		return $http({
-			url : "http://localhost:8080/desibazaar-rest/auctions",
-			method : "GET",
-			params : {
-				logged_in_user_email : email
-			}
-		}).then(handleSuccess, handleError)
+	function getAuctions() {
+		return $http.get("http://localhost:8080/desibazaar-rest/auctions").then(handleSuccess, handleError)
 	}
 
 	function getAuction(auctionId) {
@@ -43,40 +37,24 @@ app.service('auctionService', function($http, $q) {
 				.then(handleSuccess, handleError)
 	}
 
-	function subscribe(email, auctionId) {
-		return $http(
-				{
-					url : "http://localhost:8080/desibazaar-rest/auctions/"
-							+ auctionId + "/subscribe",
-					method : "GET",
-					params : {
-						logged_in_user_email : email
-					}
-				}).then(handleSuccess, handleError)
+	function subscribe(auctionId) {
+		return $http.get("http://localhost:8080/desibazaar-rest/auctions/"
+							+ auctionId + "/subscribe").then(handleSuccess, handleError)
 	}
 
-	function getMyAuctions(email) {
+	function getMyAuctions() {
 		return $http.get(
-				"http://localhost:8080/desibazaar-rest/users/" + email
-						+ "/myItems").then(handleSuccess, handleError)
+				"http://localhost:8080/desibazaar-rest/users/myItems").then(handleSuccess, handleError)
 	}
 
-	function getSubscriptions(email) {
+	function getSubscriptions() {
 		return $http.get(
-				"http://localhost:8080/desibazaar-rest/users/" + email
-						+ "/subscriptions").then(handleSuccess, handleError)
+				"http://localhost:8080/desibazaar-rest/users/subscriptions").then(handleSuccess, handleError)
 	}
 
-	function unsubscribe(email, auctionId) {
-		return $http(
-				{
-					url : "http://localhost:8080/desibazaar-rest/auctions/"
-							+ auctionId + "/unsubscribe",
-					method : "GET",
-					params : {
-						logged_in_user_email : email
-					}
-				}).then(handleSuccess, handleError)
+	function unsubscribe(auctionId) {
+		return $http.get("http://localhost:8080/desibazaar-rest/auctions/"
+							+ auctionId + "/unsubscribe").then(handleSuccess, handleError)
 	}
 
 	function handleError(response) {

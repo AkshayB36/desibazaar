@@ -1,12 +1,16 @@
-app.controller('ReviewController', function($scope, reviewService) {
-	$scope.reviews = reviewService.getReviews();
-	$scope.addReview = function() {
-		if ($scope.newReview.desc != '') {
-			reviewService.createReview($scope.newReview.desc, new Date());
-			$scope.newReview.desc = '';
-		}
-	};
+app.controller('LoginController', function($scope, $location, accountService) {
+	accountService.clearCredentials();
 
+	$scope.login = function() {
+		accountService.login($scope.username, $scope.password).then(function() {
+			accountService.setCredentials($scope.username, $scope.password);
+			$location.path('/');
+		}, function() {
+			$scope.error = "Username or Password do not match";
+		});
+	};
+	// var source = new EventSource('/stats');
+	// source.addEventListener('message', handleCallback, false);
 });
 
 app.controller('AuctionController', function($scope, auctionService) {
@@ -15,7 +19,7 @@ app.controller('AuctionController', function($scope, auctionService) {
 	loadRemoteData();
 
 	function loadRemoteData() {
-		auctionService.getAuctions("ss8990@gmail.com").then(function(auctions) {
+		auctionService.getAuctions().then(function(auctions) {
 			applyAuctions(auctions);
 		});
 	}
@@ -32,7 +36,7 @@ app.controller('MyAuctionsController', function($scope, auctionService) {
 	loadRemoteData();
 
 	function loadRemoteData() {
-		auctionService.getMyAuctions('xyz@gmail.com').then(function(auctions) {
+		auctionService.getMyAuctions().then(function(auctions) {
 			getMyAuctions(auctions);
 		});
 	}
@@ -43,8 +47,8 @@ app.controller('MyAuctionsController', function($scope, auctionService) {
 
 });
 
-app.controller('EditItemsController', function($scope, $routeParams, $location,$window,
-		auctionService) {
+app.controller('EditItemsController', function($scope, $routeParams, $location,
+		$window, auctionService) {
 	$scope.auction = {};
 
 	loadRemoteData();
@@ -75,21 +79,18 @@ app.controller('AuctionDetailsController', function($scope, $routeParams,
 			$scope.auction = auction;
 		});
 	}
-	
+
 });
 
 app.controller('DeleteItemController', function($scope, $location,
 		auctionService) {
-	
 
-	
 	$scope.deleteItem = function() {
 		auctionService.deleteAuction($scope.auction.itemId).then(function() {
 			$location.path("/listMyItems/");
 		});
 	}
 });
-
 
 app.controller('AccountController', function($scope, accountService) {
 	$scope.newUser = {};
@@ -132,10 +133,9 @@ app.controller('SubscribeController', function($scope, auctionService) {
 	}
 
 	function loadRemoteData() {
-		auctionService.getSubscriptions("ss8990@gmail.com").then(
-				function(subscriptions) {
-					applyRemoteData(subscriptions);
-				});
+		auctionService.getSubscriptions().then(function(subscriptions) {
+			applyRemoteData(subscriptions);
+		});
 	}
 });
 
@@ -144,18 +144,16 @@ app.controller('ButtonController', function($scope, auctionService) {
 	$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe' : 'Subscribe';
 	$scope.toggleSubscribe = function() {
 		if ($scope.subscribed == false) {
-			auctionService.subscribe("ss8990@gmail.com", $scope.auction.itemId)
-					.then(function() {
-						toggle();
-					});
+			auctionService.subscribe($scope.auction.itemId).then(function() {
+				toggle();
+			});
 		} else {
-			auctionService.unsubscribe("ss8990@gmail.com",
-					$scope.auction.itemId).then(function() {
+			auctionService.unsubscribe($scope.auction.itemId).then(function() {
 				toggle();
 			});
 		}
 		function toggle() {
-			$scope.subscribed = !$scope.subscribed; // Handle subscription...
+			$scope.subscribed = !$scope.subscribed;
 			$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe'
 					: 'Subscribe';
 		}
@@ -167,14 +165,12 @@ app.controller('ButtonUnsubscribeController', function($scope, auctionService) {
 	$scope.subscribeButton = $scope.subscribe ? 'Unsubscribe' : 'Subscribe';
 	$scope.toggleUnsubscribe = function() {
 		if ($scope.subscribe == true) {
-
-			auctionService.unsubscribe("ss8990@gmail.com",
-					$scope.auction.itemId).then(function() {
+			auctionService.unsubscribe($scope.auction.itemId).then(function() {
 				toggle();
 			});
 		}
 		function toggle() {
-			$scope.subscribe = !$scope.subscribe; // Handle subscription...
+			$scope.subscribe = !$scope.subscribe;
 			$scope.subscribeButton = $scope.subscribe ? 'Unsubscribe'
 					: 'Subscribe';
 		}
@@ -183,7 +179,7 @@ app.controller('ButtonUnsubscribeController', function($scope, auctionService) {
 });
 
 app.controller('ViewReviewController',
-		function($scope, viewReviewService) {
+		function($scope, reviewService) {
 			$scope.reviews = [];
 			function applyRemoteData(reviews) {
 				$scope.sellerItems = reviews;
@@ -195,14 +191,13 @@ app.controller('ViewReviewController',
 			$scope.toggleReview = function() {
 
 				if ($scope.reviewed == false) {
-					viewReviewService.getReviews("cooldude_sarath@yahoo.co.in")
-							.then(function(reviews) {
-								applyRemoteData(reviews);
-							});
+					reviewService.getReviews().then(function(reviews) {
+						applyRemoteData(reviews);
+					});
 				} else {
 
 				}
-				$scope.reviewed = !$scope.reviewed; // Handle subscription...
+				$scope.reviewed = !$scope.reviewed;
 				$scope.reviewButton = $scope.reviewed ? 'Hide Reviews'
 						: 'View Reviews';
 			};
@@ -220,7 +215,7 @@ app.controller('BidController', function($scope) {
 		} else {
 
 		}
-		$scope.reviewed = !$scope.reviewed; // Handle subscription...
+		$scope.reviewed = !$scope.reviewed;
 		$scope.bidButton = $scope.reviewed ? 'Hide Bidding History'
 				: 'View Bidding History';
 	};

@@ -12,7 +12,7 @@
 	</div>
 	<br />
 
-	<form class="form-horizontal" style="width: 1000px""height: 500px">
+	<form class="form-horizontal" style="width: 1000px; height: 500px">
 		<fieldset>
 			<div class="form-group">
 				<label for="input" class="col-lg-2 control-label">Name</label>
@@ -46,7 +46,6 @@
 				</div>
 			</div>
 
-
 			<div class="form-group">
 				<label for="inputStartTime" class="col-lg-2 control-label">Start
 					time</label>
@@ -61,10 +60,6 @@
 				</div>
 				<input type="hidden" id="dtp_input1" value="" /><br />
 			</div>
-
-
-
-
 
 			<div class="form-group">
 				<label for="input" class="col-lg-2 control-label"
@@ -108,16 +103,14 @@
 			<div class="form-group">
 				<div class="col-lg-10 col-lg-offset-2">
 					<button ng-click="editItem()" type="submit"
-						class="btn btn-primary subscribe-btn" >Save</button>
+						class="btn btn-primary subscribe-btn">Save</button>
 					&nbsp&nbsp
-					
-
-
 				</div>
 			</div>
 
 		</fieldset>
 	</form>
+</div>
 <!-- 
 <script>
 function myFunction() {
@@ -128,38 +121,37 @@ function myFunction() {
     editItem();
 }
 </script>
-
- -->
-	<script type="text/javascript">
-		$('.form_datetime').datetimepicker({
-			//language:  'fr',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			forceParse : 0,
-			showMeridian : 1
-		});
-		$('.form_date').datetimepicker({
-			language : 'fr',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 2,
-			minView : 2,
-			forceParse : 0
-		});
-		$('.form_time').datetimepicker({
-			language : 'fr',
-			weekStart : 1,
-			todayBtn : 1,
-			autoclose : 1,
-			todayHighlight : 1,
-			startView : 1,
-			minView : 0,
-			maxView : 1,
-			forceParse : 0
-		});
-	</script>
+-->
+<script type="text/javascript">
+	$('.form_datetime').datetimepicker({
+		//language:  'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		forceParse : 0,
+		showMeridian : 1
+	});
+	$('.form_date').datetimepicker({
+		language : 'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 2,
+		minView : 2,
+		forceParse : 0
+	});
+	$('.form_time').datetimepicker({
+		language : 'fr',
+		weekStart : 1,
+		todayBtn : 1,
+		autoclose : 1,
+		todayHighlight : 1,
+		startView : 1,
+		minView : 0,
+		maxView : 1,
+		forceParse : 0
+	});
+</script>
