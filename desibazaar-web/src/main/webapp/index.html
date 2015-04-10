@@ -22,6 +22,7 @@
 <script src="services/categoryService.js"></script>
 <script src="services/reviewService.js"></script>
 <script src="scripts/ng-flow-standalone.min.js"></script>
+
 </head>
 
 <body ng-app="desiApp">
@@ -35,16 +36,16 @@
 						class="icon-bar"></span> <span class="icon-bar"></span> <span
 						class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="#/listAuctions">Desi Bazaar</a>
+				<a class="navbar-brand" href="#/auctions">Desi Bazaar</a>
 			</div>
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div class="collapse navbar-collapse"
 				id="bs-example-navbar-collapse-1">
 				<ul class="nav navbar-nav">
 					<li><a ng-show="globals.currentUser"
-						href="#/listSubscriptions">Subscriptions</a></li>
+						href="#/subscriptions">Subscriptions</a></li>
 					<li><a ng-show="globals.currentUser" href="#/purchases">Purchases</a></li>
-					<li><a ng-show="globals.currentUser" href="#/listMyItems">My
+					<li><a ng-show="globals.currentUser" href="#/myItems">My
 							Items</a></li>
 					<li><a ng-show="!globals.currentUser" href="#/login">Login</a></li>
 					<li><a ng-show="!globals.currentUser" href="#/register">Register</a></li>

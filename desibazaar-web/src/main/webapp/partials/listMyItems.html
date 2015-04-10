@@ -9,7 +9,7 @@
 <br />
 <!-- /.row -->
 
-<a href="http://localhost:8080/desibazaar-web/#/addItem">
+<a href="#/addItem">
 	<button type="button" class="btn btn-default" aria-label=" Align"
 		style="float: right;">
 		<span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
@@ -21,14 +21,14 @@
 	<div ng-repeat="auction in auctions">
 		<div class="col-sm -3 col-md-6 col-lg-4" style="text-align: center">
 			<div>
-				<a href="#/myAuctionDetails/{{auction.itemId}}"> <img
+				<a href="#/myItemDetails/{{auction.itemId}}"> <img
 					class="img-responsive" src="{{auction.image}}" alt=""
 					style="width: 350px; height: 200px">
 				</a>
 			</div>
 			<div>
 				<h3>
-					<a href="#/myAuctionDetails/{{auction.itemId}}">{{ auction.name
+					<a href="#/myItemDetails/{{auction.itemId}}">{{ auction.name
 						}}</a>
 
 				</h3>
@@ -40,11 +40,11 @@
 			<div>
 				<p style="text-align: left">
 					{{auction.description | limitTo : 110}} <a
-						href="#/myAuctionDetails/{{auction.itemId}}">Read more</a>
+						href="#/myItemDetails/{{auction.itemId}}">Read more</a>
 				</p>
 			</div>
 			<hr>
-			<a href="#/editMyItems/{{auction.itemId}}"><button
+			<a href="#/editItem/{{auction.itemId}}"><button
 					class="btn btn-primary subscribe-btn" type="submit">Edit</button></a>
 
 			<button ng-controller="DeleteItemController"

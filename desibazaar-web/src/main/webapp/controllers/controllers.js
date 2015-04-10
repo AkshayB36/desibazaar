@@ -9,8 +9,18 @@ app.controller('LoginController', function($scope, $location, accountService) {
 			$scope.error = "Username or Password do not match";
 		});
 	};
-	// var source = new EventSource('/stats');
+	// var source = new EventSource(
+	// 'http://localhost:8080/desibazaar-rest/stats');
 	// source.addEventListener('message', handleCallback, false);
+	//
+	// $scope.msg = {};
+	//
+	// // handles the callback from the received event
+	// var handleCallback = function(msg) {
+	// $scope.$apply(function() {
+	// $scope.msg = JSON.parse(msg.data)
+	// });
+	// }
 });
 
 app.controller('AuctionController', function($scope, auctionService) {
@@ -61,7 +71,7 @@ app.controller('EditItemsController', function($scope, $routeParams, $location,
 	$scope.editItem = function() {
 
 		auctionService.updateAuction($scope.auction).then(function() {
-			$location.path("/myAuctionDetails/" + $scope.auction.itemId);
+			$location.path("/myItemDetails/" + $scope.auction.itemId);
 			$window.alert("Your item has been modified!");
 		});
 
@@ -87,7 +97,7 @@ app.controller('DeleteItemController', function($scope, $location,
 
 	$scope.deleteItem = function() {
 		auctionService.deleteAuction($scope.auction.itemId).then(function() {
-			$location.path("/listMyItems/");
+			$location.path("/myItems/");
 		});
 	}
 });

@@ -1,18 +1,24 @@
 var app = angular.module('desiApp', [ 'ngRoute', 'ngCookies' ]);
 app
 		.config(function($routeProvider) {
-			$routeProvider.when('/listAuctions', {
+			$routeProvider.when('/auctions', {
 				controller : 'AuctionController',
 				templateUrl : 'partials/listAuctions.html'
 			}).when('/auctionDetails/:itemId', {
 				controller : 'AuctionDetailsController',
 				templateUrl : 'partials/auctionDetails.html'
-			}).when('/listSubscriptions', {
+			}).when('/subscriptions', {
 				controller : 'SubscribeController',
 				templateUrl : 'partials/subscriptions.html'
 			}).when('/subscriptionDetails/:itemId', {
 				controller : 'AuctionDetailsController',
 				templateUrl : 'partials/subscriptionDetails.html'
+			}).when('/myItems', {
+				controller : 'MyAuctionsController',
+				templateUrl : 'partials/listMyItems.html'
+			}).when('/myItemDetails/:itemId', {
+				controller : 'AuctionDetailsController',
+				templateUrl : 'partials/myAuctionDetails.html'
 			}).when('/login', {
 				controller : 'LoginController',
 				templateUrl : 'partials/login.html'
@@ -22,17 +28,11 @@ app
 			}).when('/addItem', {
 				controller : 'AddItemController',
 				templateUrl : 'partials/addItem.html'
-			}).when('/editMyItems/:itemId', {
+			}).when('/editItem/:itemId', {
 				controller : 'EditItemsController',
 				templateUrl : 'partials/editMyItems.html'
-			}).when('/listMyItems', {
-				controller : 'MyAuctionsController',
-				templateUrl : 'partials/listMyItems.html'
-			}).when('/myAuctionDetails/:itemId', {
-				controller : 'AuctionDetailsController',
-				templateUrl : 'partials/myAuctionDetails.html'
 			}).otherwise({
-				redirectTo : '/listAuctions'
+				redirectTo : '/auctions'
 			})
 		})
 		.directive('ngConfirmClick', [ function() {
@@ -70,7 +70,7 @@ app
 														&& $location.path()
 																.substring(0,
 																		16) !== '/auctionDetails/'
-														&& $location.path() !== '/listAuctions'
+														&& $location.path() !== '/auctions'
 														&& $location.path() !== '/login'
 														&& !$rootScope.globals.currentUser) {
 													$location.path('/login');
