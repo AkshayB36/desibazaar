@@ -124,4 +124,9 @@ public class HomeController {
 			e.printStackTrace();
 		}
 	}
+
+	@RequestMapping(value = "/stats", method = RequestMethod.GET)
+	public @ResponseBody String stats() {
+		return "{time:" + System.currentTimeMillis() + "}";
+	}
 }
