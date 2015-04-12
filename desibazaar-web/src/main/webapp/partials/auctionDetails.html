@@ -32,31 +32,40 @@
 				{{auction.rating}}/5<br />
 			<div ng-controller="ViewReviewController">
 				<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
-				<table ng-show="reviewed" class="table">
+				<div ng-repeat="sellerItem in reviews" ng-show="reviewed">
+					<table class="table" ng-if="reviews.length > 0">
+						<tr>
+							<br />
+							<th>Product</th>
+							<th>Rating</th>
+							<th>Review</th>
+						</tr>
+						<tr>
+							<td>{{sellerItem.name}}</td>
+							<td>{{sellerItem.rating}}/5</td>
+							<td>{{sellerItem.review}}</td>
+						</tr>
+					</table>
+				</div>
+				<table ng-if="reviews.length==0" ng-show="reviewed">
 					<tr>
-						<th>Product</th>
-						<th>Rating</th>
-						<th>Review</th>
-					</tr>
-					<tr ng-repeat="sellerItem in sellerItems">
-						<td>{{sellerItem.name}}</td>
-						<td>{{sellerItem.rating}}/5</td>
-						<td>{{sellerItem.review}}</td>
+						<td><br />
+							<p>There are no reviews</p></td>
 					</tr>
 				</table>
 			</div>
 			<br />
-			<div class="button">
-				<button class="btn btn-primary subscribe-btn"
-					ng-controller="ButtonController" ng-click="toggleSubscribe()">
-					{{subscribeButton}}</button>
-			</div>
+			<div>
+				<br />
+				<div ng-show=loggedIn class="button">
+					<button class="btn btn-primary subscribe-btn"
+						ng-controller="ButtonController" ng-click="toggleSubscribe()">
+						{{subscribeButton}}</button>
+				</div>
 
+
+			</div>
 
 		</div>
 
 	</div>
-
-</div>
-
-

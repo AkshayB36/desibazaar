@@ -27,46 +27,70 @@
 
 			<input type="text" name="bid">
 			<button class="button" type="submit">Bid</button>
-
+			<br /> <br />
 
 			<div ng-controller="BidController">
 				<button class="button" ng-click="toggleReview()">{{bidButton}}</button>
-				<table ng-show="reviewed" class="table">
+				<br />
+				<div ng-repeat="bid in auction.bids" ng-show="reviewed">
+					<table class="table" ng-if="auction.bids.length > 0">
+						<tr>
+							<br />
+							<th>User</th>
+							<th>Bid</th>
+							<th>Time</th>
+						</tr>
+						<tr>
+							<td>{{bid.user.email}}</td>
+							<td>{{bid.bid}}</td>
+							<td>{{bid.time}}</td>
+						</tr>
+					</table>
+				</div>
+				<br />
+				<table ng-if="auction.bids.length==0" ng-show="reviewed">
 					<tr>
-						<th>User</th>
-						<th>Bid</th>
-						<th>Time</th>
-					</tr>
-					<tr ng-repeat="bid in auction.bids">
-						<td>{{bid.user.email}}</td>
-						<td>{{bid.bid}}</td>
-						<td>{{bid.time}}</td>
+						<td>
+							<p>There are no bids</p>
+						</td>
 					</tr>
 				</table>
+
 				<br> Category: {{auction.category.name}}<br /> Status:
 				{{auction.status}}<br /> Starting Time: {{auction.startsAt |
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Seller Rating:
-				{{auction.rating}}/5<br />
+				{{auction.rating}}/5 <br />
+				<br />
 				<div ng-controller="ViewReviewController">
 					<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
-					<table ng-show="reviewed" class="table">
+					<div ng-repeat="sellerItem in reviews" ng-show="reviewed">
+						<table class="table" ng-if="reviews.length > 0">
+							<tr>
+								<br />
+								<th>Product</th>
+								<th>Rating</th>
+								<th>Review</th>
+							</tr>
+							<tr>
+								<td>{{sellerItem.name}}</td>
+								<td>{{sellerItem.rating}}/5</td>
+								<td>{{sellerItem.review}}</td>
+							</tr>
+						</table>
+					</div>
+					<table ng-if="reviews.length==0" ng-show="reviewed">
 						<tr>
-							<th>Product</th>
-							<th>Rating</th>
-							<th>Review</th>
-						</tr>
-						<tr ng-repeat="sellerItem in sellerItems">
-							<td>{{sellerItem.name}}</td>
-							<td>{{sellerItem.rating}}/5</td>
-							<td>{{sellerItem.review}}</td>
+							<td><br />
+							<p>There are no reviews</p></td>
 						</tr>
 					</table>
 				</div>
 				<br />
 				<div>
 					<button class="btn btn-primary subscribe-btn"
-						ng-controller="ButtonController" ng-click="toggleUnsubscribe()">{{subscribeButton}}</button>
+						ng-controller="ButtonUnsubscribeController"
+						ng-click="toggleUnsubscribe()">{{subscribeButton}}</button>
 				</div>
 			</div>
 		</div>

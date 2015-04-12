@@ -16,7 +16,7 @@
 	<!-- Projects Row -->
 
 	<div class="row">
-		<div ng-repeat="auction in subscriptions">
+		<div ng-repeat="auction in subscriptions" ng-if="subscriptions.length > 0">
 			<div class="col-sm -3 col-md-6 col-lg-4" style="text-align: center">
 				<div>
 					<a href="#/subscriptionDetails/{{auction.itemId}}"> <img
@@ -43,6 +43,8 @@
 							href="#/subscriptionDetails/{{auction.itemId}}">Read more</a>
 					</p>
 				</div>
+				<p style="text-align: left">Status: {{auction.status}}</p>
+				
 				<hr>
 				<div class="button">
 					<button ng-controller="ButtonUnsubscribeController"
@@ -52,6 +54,8 @@
 			</div>
 			<!-- /.row -->
 		</div>
+		<div ng-if="subscriptions.length == 0">
+		<h2>There are no subscriptions</h2></div>
 	</div>
 
 </div>

@@ -1,4 +1,4 @@
-app.service('accountService', function($http, $q, $rootScope, $cookieStore) {
+app.service('accountService', function($http, $q, $rootScope,$window, $cookieStore) {
 	return ({
 		addUser : addUser,
 		setCredentials : setCredentials,
@@ -33,6 +33,7 @@ app.service('accountService', function($http, $q, $rootScope, $cookieStore) {
 	function clearCredentials() {
 		$rootScope.globals = {};
 		$cookieStore.remove('globals');
+		$window.sessionStorage.setItem( 'loggedIn', "false" );
 		return $http.get("http://localhost:8080/desibazaar-rest/users/logout")
 				.then(handleSuccess, handleError)
 	}

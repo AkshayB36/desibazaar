@@ -1,4 +1,4 @@
-app.service('auctionService', function($http, $q) {
+app.service('auctionService',function($http, $q) {
 	return ({
 		getAuctions : getAuctions,
 		getAuction : getAuction,

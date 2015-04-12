@@ -41,12 +41,15 @@
 							href="#/auctionDetails/{{auction.itemId}}">Read more</a>
 					</p>
 				</div>
-				Status: {{auction.status}}<br />
+				<p style="text-align: left">Status: {{auction.status}}</p>
+				<br />
 				<hr>
-				<div class="button">
+				
+				<div  class="button" ng-if="loggedIn.loginCheck === 'true'">
 					<button class="btn btn-primary subscribe-btn"
 						ng-controller="ButtonController" ng-click="toggleSubscribe()">
-						{{subscribeButton}}</button>
+						{{subscribeButton}}
+						</button>
 				</div>
 				<br />
 			</div>

@@ -1,9 +1,10 @@
-app.controller('LoginController', function($scope, $location, accountService) {
+app.controller('LoginController', function($scope, $window, $location, accountService) {
 	accountService.clearCredentials();
 
 	$scope.login = function() {
 		accountService.login($scope.username, $scope.password).then(function() {
 			accountService.setCredentials($scope.username, $scope.password);
+			$window.sessionStorage.setItem( 'loggedIn', "true" );
 			$location.path('/');
 		}, function() {
 			$scope.error = "Username or Password do not match";
@@ -23,7 +24,7 @@ app.controller('LoginController', function($scope, $location, accountService) {
 	// }
 });
 
-app.controller('AuctionController', function($scope, auctionService) {
+app.controller('AuctionController', function($scope,$window,auctionService) {
 	$scope.auctions = [];
 
 	loadRemoteData();
@@ -35,6 +36,9 @@ app.controller('AuctionController', function($scope, auctionService) {
 	}
 
 	function applyAuctions(auctions) {
+		$scope.loggedIn  = {
+			loginCheck : $window.sessionStorage.getItem('loggedIn')
+		}; 	
 		$scope.auctions = auctions;
 	}
 
@@ -87,6 +91,7 @@ app.controller('AuctionDetailsController', function($scope, $routeParams,
 	function loadRemoteData() {
 		auctionService.getAuction($routeParams.itemId).then(function(auction) {
 			$scope.auction = auction;
+			
 		});
 	}
 
@@ -184,14 +189,16 @@ app.controller('ButtonController', function($scope, auctionService) {
 	};
 });
 
-app.controller('ButtonUnsubscribeController', function($scope, auctionService) {
+app.controller('ButtonUnsubscribeController', function($scope, $interval, auctionService) {
 	$scope.subscribe = true;
 	$scope.subscribeButton = $scope.subscribe ? 'Unsubscribe' : 'Subscribe';
 	$scope.toggleUnsubscribe = function() {
 		if ($scope.subscribe == true) {
 			auctionService.unsubscribe($scope.auction.itemId).then(function() {
 				toggle();
+				location.reload();
 			});
+			
 		}
 		function toggle() {
 			$scope.subscribe = !$scope.subscribe;
@@ -206,7 +213,7 @@ app.controller('ViewReviewController',
 		function($scope, reviewService) {
 			$scope.reviews = [];
 			function applyRemoteData(reviews) {
-				$scope.sellerItems = reviews;
+				$scope.reviews = reviews;
 			}
 
 			$scope.reviewed = false;
