@@ -1,4 +1,4 @@
-var app = angular.module('desiApp', [ 'ngRoute', 'ngCookies' ]);
+var app = angular.module('desiApp', [ 'ngRoute', 'ngCookies', 'flow' ]);
 app
 		.config(function($routeProvider) {
 			$routeProvider.when('/auctions', {

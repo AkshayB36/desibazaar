@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.desibazaar.rest.service.IAuctionService;
 import com.desibazaar.rest.util.Util;
 import com.desibazaar.rest.vo.Item;
+import com.desibazaar.rest.vo.User;
 
 /**
  * @author Varda Laud
@@ -28,7 +29,11 @@ public class AuctionController {
 	private IAuctionService auctionService;
 
 	@RequestMapping(method = RequestMethod.POST, consumes = "application/json")
-	public @ResponseBody void createAuction(@RequestBody Item item) {
+	public @ResponseBody void createAuction(@RequestBody Item item,
+			HttpServletRequest request) {
+		User user = new User();
+		user.setEmail(Util.getLoggedInUser(request));
+		item.setSeller(user);
 		getAuctionService().createAuction(item);
 	}
 
@@ -55,14 +60,15 @@ public class AuctionController {
 	@RequestMapping(value = "/{item_id}/subscribe", method = RequestMethod.GET)
 	public @ResponseBody void subscribeAuction(
 			@PathVariable("item_id") Long itemId, HttpServletRequest request) {
-		getAuctionService().subscribeAuction(itemId, Util.getLoggedInUser(request));
+		getAuctionService().subscribeAuction(itemId,
+				Util.getLoggedInUser(request));
 	}
 
 	@RequestMapping(value = "/{item_id}/unsubscribe", method = RequestMethod.GET)
 	public @ResponseBody void unsubscribeAuction(
 			@PathVariable("item_id") Long itemId, HttpServletRequest request) {
-		getAuctionService()
-				.unsubscribeAuction(itemId, Util.getLoggedInUser(request));
+		getAuctionService().unsubscribeAuction(itemId,
+				Util.getLoggedInUser(request));
 	}
 
 	private IAuctionService getAuctionService() {

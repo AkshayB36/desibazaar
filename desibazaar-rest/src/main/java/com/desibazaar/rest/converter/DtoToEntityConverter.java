@@ -25,6 +25,7 @@ public class DtoToEntityConverter {
 		eItem.setBasePrice(item.getBasePrice());
 		eItem.setSellingPrice(item.getSellingPrice());
 		eItem.setStartsAt(item.getStartsAt());
+		eItem.setImage(item.getImage());
 		eItem.setEndsAt(item.getEndsAt());
 
 		if (item.getCategory() != null) {

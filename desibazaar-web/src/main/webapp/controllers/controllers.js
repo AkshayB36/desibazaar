@@ -110,15 +110,29 @@ app.controller('AccountController', function($scope, accountService) {
 	}
 });
 
+app.controller('ImageUpload', function($scope, $rootScope, categoryService,
+		auctionService) {
+	$scope.$on('flow::fileSuccess', function(file, message, chunk) {
+		$scope.newItem.image = "img/" + chunk.uniqueIdentifier;
+		auctionService.addItem($scope.newItem);
+	});
+	$scope.$on('flow::fileAdded', function(event, $flow, flowFile) {
+		$scope.uploaded = true;
+	});
+});
+
 app.controller('AddItemController', function($scope, categoryService,
 		auctionService) {
 
+	$scope.newItem = {};
+	$scope.flow = {};
 	$scope.categories = [];
+	$scope.uploaded = false;
 
 	loadRemoteData();
 
 	$scope.addItem = function() {
-		auctionService.addItem($scope.newItem);
+		$scope.flow.images.upload();
 	}
 
 	function loadRemoteData() {

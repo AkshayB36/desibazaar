@@ -4,5 +4,12 @@
 
 <web-app>
 	<display-name>Archetype Created Web Application</display-name>
-
+	<servlet>
+		<servlet-name>UploadServlet</servlet-name>
+		<servlet-class>com.desibazaar.upload.UploadServlet</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>UploadServlet</servlet-name>
+		<url-pattern>/upload</url-pattern>
+	</servlet-mapping>
 </web-app>
