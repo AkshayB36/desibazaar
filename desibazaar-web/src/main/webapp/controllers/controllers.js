@@ -23,7 +23,17 @@ app.controller('LoginController', function($scope, $location, accountService) {
 	// }
 });
 
-app.controller('AuctionController', function($scope,auctionService) {
+app.controller('RatingController', function($scope, ratingService) {
+	$scope.ratings = ratingService.getRatings();
+	$scope.addRating = function() {
+		if ($scope.newRating.desc != '') {
+			ratingService.createRating($scope.newRating.desc, new Date());
+		}
+	};
+
+});
+
+app.controller('AuctionController', function($scope, auctionService) {
 	$scope.auctions = [];
 
 	loadRemoteData();
@@ -334,4 +344,35 @@ app.controller('BidController', function($scope) {
 		$scope.bidButton = $scope.reviewed ? 'Hide Bidding History'
 				: 'View Bidding History';
 	};
+});
+
+
+app.controller('PurchaseController', function($scope, purchaseService) {
+	$scope.purchases = [];
+
+	loadRemoteData();
+
+	function applyRemoteData(purchases) {
+		$scope.purchases = purchases;
+	}
+
+	function loadRemoteData() {
+		purchaseService.getPurchases().then(function(purchases) {
+			applyRemoteData(purchases);
+		});
+	}
+});
+
+app.controller('PurchaseDetailsController', function($scope, $routeParams,
+		purchaseService) {
+	$scope.purchase = {};
+
+	loadRemoteData();
+
+	function loadRemoteData() {
+		purchaseService.getPurchase($routeParams.itemId).then(function(purchase) {
+			$scope.purchase = purchase;
+		});
+	}
+
 });

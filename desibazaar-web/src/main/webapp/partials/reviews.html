@@ -1,0 +1,24 @@
+<input ng-model="newReview.desc">
+<button ng-click="addReview()">Post Review</button>
+<ul>
+	<li ng-repeat="review in reviews">{{review.desc + '-' +
+		review.time}}</li>
+</ul>
+<!-- <a href="#/addReview">Add Review</a> -->
+
+<strong>Rate the product:</strong> <br/>
+<input ng-model="newRating.desc" type="radio" name="rating" value="fiveStar">
+ Perfect! *****
+<br />
+<input ng-model="newRating.desc" type="radio" name="rating" value="fourStar">
+Very good. ****
+<br />
+<input ng-model="newRating.desc" type="radio" name="rating" value="threeStar">
+Not bad at all! ***
+<br />
+<input ng-model="newRating.desc" type="radio" name="rating" value="twoStar">
+Ok-ok! **
+<br />
+<input ng-model="newRating.desc" type="radio" name="rating" value="oneStar">
+Leave it! *
+<br />

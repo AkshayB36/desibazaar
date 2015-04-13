@@ -33,6 +33,12 @@ app
 			}).when('/editItem/:itemId', {
 				controller : 'EditItemsController',
 				templateUrl : 'partials/editMyItems.html'
+			}).when('/purchases', {
+				controller : 'PurchaseController',
+				templateUrl : 'partials/purchase.html'
+			}).when('/purchaseDetails/:itemId', {
+				controller : 'PurchaseDetailsController',
+				templateUrl : 'partials/purchaseDetails.html'
 			}).otherwise({
 				redirectTo : '/auctions'
 			})
