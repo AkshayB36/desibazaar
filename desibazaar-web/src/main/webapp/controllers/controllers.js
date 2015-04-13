@@ -112,10 +112,14 @@ app.controller('AccountController', function($scope, accountService) {
 });
 
 app.controller('ImageUpload', function($scope, $rootScope, categoryService,
-		auctionService) {
+		$location, $window, auctionService) {
 	$scope.$on('flow::fileSuccess', function(file, message, chunk) {
 		$scope.newItem.image = "img/" + chunk.uniqueIdentifier;
-		auctionService.addItem($scope.newItem);
+		auctionService.addItem($scope.newItem).then(function() {
+			$location.path("/myItems/");
+			$window.alert("Your item has been added!");
+		});
+
 	});
 	$scope.$on('flow::fileAdded', function(event, $flow, flowFile) {
 		$scope.uploaded = true;
@@ -126,14 +130,25 @@ app.controller('AddItemController', function($scope, categoryService,
 		auctionService) {
 
 	$scope.newItem = {};
+	//$scope.newItem.endsAt={};
 	$scope.flow = {};
 	$scope.categories = [];
 	$scope.uploaded = false;
-
+	$scope.v1=new Date();
+	$scope.v2=new Date();
 	loadRemoteData();
 
 	$scope.addItem = function() {
+		$scope.newItem.startsAt.setHours($scope.v2.getHours());
+		$scope.newItem.startsAt.setMinutes($scope.v2.getMinutes());
+		$scope.newItem.startsAt.setSeconds(00);
+		$scope.newItem.endsAt= $scope.newItem.startsAt;
+		//$scope.newItem.endsAt.setDate(00);
+		//var d3=$scope.newItem.startsAt.getTime + $scope.newItem.endsAt.getTime;
+		//$scope.newItem.endsAt.setTime(d3);
+		//$scope.newItem.endsAt.setSeconds(00);
 		$scope.flow.images.upload();
+
 	}
 
 	function loadRemoteData() {
@@ -230,6 +245,79 @@ app.controller('ViewReviewController',
 			};
 		});
 
+app
+		.controller('DatepickerDemoCtrl',
+				function($scope) {
+
+					$scope.today = function() {
+						$scope.dt = new Date();
+					};
+					$scope.today();
+
+					$scope.clear = function() {
+						$scope.dt = null;
+					};
+
+					// Disable weekend selection
+					$scope.disabled = function(date, mode) {
+						return (mode === 'day' && (date.getDay() === 0 || date
+								.getDay() === 6));
+					};
+
+					$scope.toggleMin = function() {
+						$scope.minDate = $scope.minDate ? null : new Date();
+					};
+					$scope.toggleMin();
+
+					$scope.open = function($event) {
+						$event.preventDefault();
+						$event.stopPropagation();
+
+						$scope.opened = true;
+					};
+
+					$scope.dateOptions = {
+						formatYear : 'yy',
+						startingDay : 1
+					};
+
+					$scope.formats = [ 'dd-MMMM-yyyy', 'yyyy/MM/dd',
+							'dd.MM.yyyy', 'shortDate' ];
+					$scope.format = $scope.formats[0];
+
+				});
+
+app.controller('TimepickerDemoCtrl', function($scope, $log) {
+	$scope.mytime = new Date();
+
+	$scope.hstep = 1;
+	$scope.mstep = 15;
+
+	$scope.options = {
+		hstep : [ 1, 2, 3 ],
+		mstep : [ 1, 5, 10, 15, 25, 30 ]
+	};
+
+	$scope.ismeridian = true;
+	$scope.toggleMode = function() {
+		$scope.ismeridian = !$scope.ismeridian;
+	};
+
+	$scope.update = function() {
+		var d = new Date();
+		d.setHours(14);
+		d.setMinutes(0);
+		$scope.mytime = d;
+	};
+
+	$scope.changed = function() {
+		$log.log('Time changed to: ' + $scope.mytime);
+	};
+
+	$scope.clear = function() {
+		$scope.mytime = null;
+	};
+});
 app.controller('BidController', function($scope) {
 
 	$scope.reviewed = false;

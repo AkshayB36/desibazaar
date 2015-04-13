@@ -46,64 +46,63 @@
 			</div>
 
 
-			<div class="form-group">
-				<label for="inputStartTime" class="col-lg-2 control-label">Start
-					time</label>
-				<div class="controls input-append date form_datetime"
-					data-date="2015-04-12T05:25:07Z"
-					data-date-format="dd MM yyyy - HH:ii p"
-					data-link-field="dtp_input1">
-					<input size="16" type="text" value="" readonly required> <span
-						class="add-on"><i class="icon-remove"></i></span> <span
-						class="add-on"><i class="icon-th"></i></span>
-				</div>
-				<input type="hidden" id="dtp_input1" value="" /><br />
-			</div>
-			<div class="form-group">
-				<label for="inputStartTime" class="col-lg-2 control-label">Start
-					time</label>
-				<div class="controls input-append date form_datetime"
-					data-date="2015-04-12T05:25:07Z"
-					data-date-format="dd MM yyyy - HH:ii p"
-					data-link-field="dtp_input1">
-					<input ng-model="newItem.startAt" size="16" type="text" value=""
-						readonly required> <span class="add-on"><i
-						class="icon-remove"></i></span> <span class="add-on"><i
-						class="icon-th"></i></span>
-				</div>
-				<input type="hidden" id="dtp_input1" value="" /><br />
-			</div>
-			<div class="form-group">
-				<label for="input" class="col-lg-2 control-label"
-					style="height: 30px">Duration</label>
-				<div class="col-lg-10">
 
-					<select class="form-control" id="select">
-						<option>2 hours</option>
-						<option>4 hours</option>
-						<option>6 hours</option>
-						<option>8 hours</option>
-						<option>10 hours</option>
-					</select>
+			<div ng-controller="DatepickerDemoCtrl" class="form-group">
+				<label for="StartDate" class="col-lg-2 control-label">Start
+					Date</label>
+				<div class="row">
+					<div class="col-md-6">
+						<p class="input-group">
+							<input type="text" class="form-control"
+								datepicker-popup="{{format}}" ng-model="newItem.startsAt"
+								is-open="opened" min-date="minDate" max-date="'2015-06-22'"
+								datepicker-options="dateOptions"
+								date-disabled="disabled(date, mode)" ng-required="true"
+								close-text="Close" /> <span class="input-group-btn">
+								<button type="button" class="btn btn-default"
+									ng-click="open($event)">
+									<i class="glyphicon glyphicon-calendar"></i>
+								</button>
+							</span>
+						</p>
+					</div>
+				</div>
+
+				<div ng-controller="TimepickerDemoCtrl">
+					<label for="StartTime" class="col-lg-2 control-label">Start
+						Time</label>
+					<timepicker ng-model="v2" ng-change="changed()" hour-step="hstep"
+						minute-step="mstep" show-meridian="ismeridian"></timepicker>
 
 				</div>
-			</div>
+				<br>
 
-			<div class="form-group">
-				<label for="select" class="col-lg-2 control-label"
-					style="height: 30px">Select Category</label>
-
-				<div class="col-lg-10">
-					<select class="form-control" id="select">
-						<option>Electronics</option>
-						<option>Fashion</option>
-						<option>Home Goods</option>
-						<option>Jewelry</option>
-						<option>Fine Art</option>
-					</select>
+				<div ng-controller="TimepickerDemoCtrl">
+					<label for="Duration" class="col-lg-2 control-label">Duration</label>
+					<timepicker ng-model="v1" ng-change="changed()" hour-step="hstep"
+						minute-step="mstep" show-meridian="false"></timepicker>
 
 				</div>
+
+
+
+				<div class="form-group">
+					<label for="select" class="col-lg-2 control-label"
+						style="height: 30px">Select Category</label>
+
+					<div class="col-lg-10">
+						<select class="form-control" id="select">
+							<option>Electronics</option>
+							<option>Fashion</option>
+							<option>Home Goods</option>
+							<option>Jewelry</option>
+							<option>Fine Art</option>
+						</select>
+
+					</div>
+				</div>
 			</div>
+
 			<div class="form-group">
 				<label for="exampleInputFile" class="col-lg-2 control-label">Image</label>
 				<div class="col-lg-10">
@@ -111,19 +110,20 @@
 						flow-init="{target: '/desibazaar-rest/upload', testChunks:false, singleFile:true}"
 						flow-name="flow.images" ng-controller="ImageUpload">
 						<input type="file" flow-btn /> <br> <img ng-show="uploaded"
-							style="width: 80px; height: 80px" flow-img="$flow.files[0]" />
+							style="width: 250px; height: 250px" flow-img="$flow.files[0]" />
+						<br>
 					</div>
 				</div>
-			</div>
-			<br>
-			<div class="form-group">
-				<div class="col-lg-10 col-lg-offset-2">
-					<button ng-click="addItem()" type="submit" class="button">Submit</button>
-					&nbsp&nbsp
-					<button type="reset" class="button">Cancel</button>
-				</div>
-			</div>
 
+
+				<br>
+				<div class="form-group">
+					<div class="col-lg-10 col-lg-offset-2">
+						<button ng-click="addItem()" type="submit" class="button">Submit</button>
+						&nbsp&nbsp
+						<button type="reset" class="button">Cancel</button>
+					</div>
+				</div>
 		</fieldset>
 	</form>
 </div>

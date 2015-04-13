@@ -2,7 +2,7 @@
 <div class="row">
 	<div class="col-lg-12">
 		<h1 class="page-header">
-			View Items <small>Items you have posted</small>
+			My Items <small>Items you have posted</small>
 		</h1>
 	</div>
 </div>
@@ -44,12 +44,14 @@
 				</p>
 			</div>
 			<hr>
+			<div class="button">
 			<a href="#/editItem/{{auction.itemId}}"><button
 					class="btn btn-primary subscribe-btn" type="submit">Edit</button></a>
 
 			<button ng-controller="DeleteItemController"
 				confirmed-click="deleteItem()" class="btn btn-primary subscribe-btn"
 				ng-confirm-click="Do you want to delete?">Delete</button>
+				</div>
 			<br />
 		</div>
 		<!-- /.row -->

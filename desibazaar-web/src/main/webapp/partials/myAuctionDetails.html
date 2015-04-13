@@ -28,10 +28,25 @@
 				Category: {{auction.category.name}}<br /> Status:
 				{{auction.status}}<br /> Starting Time: {{auction.startsAt |
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
-				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Rating: {{auction.rating}}/5<br />
-				<!-- Don't show rating if -1 -->
-				Review: {{auction.review}}
-				<!-- show bidding history here -->
+				date:'yyyy-MM-dd HH:mm:ss'}}<br /> 
+				Rating: {{auction.rating}}/5<br /> 
+				
+				Review: {{auction.review}}<br>
+				Bidding History:<br>
+				<div ng-controller="BidController">
+				
+				<table class="table">
+					<tr>
+						<th>User</th>
+						<th>Bid</th>
+						<th>Time</th>
+					</tr>
+					<tr ng-repeat="bid in auction.bids">
+						<td>{{bid.user.email}}</td>
+						<td>{{bid.bid}}</td>
+						<td>{{bid.time}}</td>
+					</tr>
+				</table><br><br>
 			</p>
 		</div>
 		<div class="button">
