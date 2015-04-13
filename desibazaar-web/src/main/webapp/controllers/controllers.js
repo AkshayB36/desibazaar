@@ -130,7 +130,7 @@ app.controller('AddItemController', function($scope, categoryService,
 		auctionService) {
 
 	$scope.newItem = {};
-	//$scope.newItem.endsAt={};
+	$scope.newItem.endsAt={};
 	$scope.flow = {};
 	$scope.categories = [];
 	$scope.uploaded = false;
@@ -142,11 +142,11 @@ app.controller('AddItemController', function($scope, categoryService,
 		$scope.newItem.startsAt.setHours($scope.v2.getHours());
 		$scope.newItem.startsAt.setMinutes($scope.v2.getMinutes());
 		$scope.newItem.startsAt.setSeconds(00);
-		$scope.newItem.endsAt= $scope.newItem.startsAt;
+		//$scope.newItem.endsAt= $scope.newItem.startsAt;
 		//$scope.newItem.endsAt.setDate(00);
 		//var d3=$scope.newItem.startsAt.getTime + $scope.newItem.endsAt.getTime;
-		//$scope.newItem.endsAt.setTime(d3);
-		//$scope.newItem.endsAt.setSeconds(00);
+		//$scope.newItem.endsAt.setTime(($scope.newItem.endsAt.getHours()*60+$scope.newItem.endsAt.getMinutes())*60*1000   + $scope.newItem.startsAt.getTime);
+		
 		$scope.flow.images.upload();
 
 	}
