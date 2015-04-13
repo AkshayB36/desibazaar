@@ -23,16 +23,6 @@ app.controller('LoginController', function($scope, $location, accountService) {
 	// }
 });
 
-app.controller('RatingController', function($scope, ratingService) {
-	$scope.ratings = ratingService.getRatings();
-	$scope.addRating = function() {
-		if ($scope.newRating.desc != '') {
-			ratingService.createRating($scope.newRating.desc, new Date());
-		}
-	};
-
-});
-
 app.controller('AuctionController', function($scope, auctionService) {
 	$scope.auctions = [];
 
@@ -97,7 +87,7 @@ app.controller('AuctionDetailsController', function($scope, $routeParams,
 	function loadRemoteData() {
 		auctionService.getAuction($routeParams.itemId).then(function(auction) {
 			$scope.auction = auction;
-			
+
 		});
 	}
 
@@ -140,25 +130,22 @@ app.controller('AddItemController', function($scope, categoryService,
 		auctionService) {
 
 	$scope.newItem = {};
-	$scope.newItem.endsAt={};
+	$scope.newItem.endsAt = new Date();
 	$scope.flow = {};
 	$scope.categories = [];
 	$scope.uploaded = false;
-	$scope.v1=new Date();
-	$scope.v2=new Date();
+	$scope.startTime = new Date();
+	$scope.duration = new Date();
 	loadRemoteData();
 
 	$scope.addItem = function() {
-		$scope.newItem.startsAt.setHours($scope.v2.getHours());
-		$scope.newItem.startsAt.setMinutes($scope.v2.getMinutes());
+		$scope.newItem.startsAt.setHours($scope.startTime.getHours());
+		$scope.newItem.startsAt.setMinutes($scope.startTime.getMinutes());
 		$scope.newItem.startsAt.setSeconds(00);
-		//$scope.newItem.endsAt= $scope.newItem.startsAt;
-		//$scope.newItem.endsAt.setDate(00);
-		//var d3=$scope.newItem.startsAt.getTime + $scope.newItem.endsAt.getTime;
-		//$scope.newItem.endsAt.setTime(($scope.newItem.endsAt.getHours()*60+$scope.newItem.endsAt.getMinutes())*60*1000   + $scope.newItem.startsAt.getTime);
-		
+		$scope.newItem.endsAt.setTime($scope.newItem.startsAt.getTime()
+				+ ($scope.duration.getHours() * 60 + $scope.duration
+						.getMinutes()) * 60 * 1000);
 		$scope.flow.images.upload();
-
 	}
 
 	function loadRemoteData() {
@@ -210,7 +197,8 @@ app.controller('ButtonController', function($scope, auctionService) {
 	};
 });
 
-app.controller('ButtonUnsubscribeController', function($scope, $interval, auctionService) {
+app.controller('ButtonUnsubscribeController', function($scope, $interval,
+		auctionService) {
 	$scope.subscribe = true;
 	$scope.subscribeButton = $scope.subscribe ? 'Unsubscribe' : 'Subscribe';
 	$scope.toggleUnsubscribe = function() {
@@ -219,7 +207,7 @@ app.controller('ButtonUnsubscribeController', function($scope, $interval, auctio
 				toggle();
 				location.reload();
 			});
-			
+
 		}
 		function toggle() {
 			$scope.subscribe = !$scope.subscribe;
@@ -243,9 +231,10 @@ app.controller('ViewReviewController',
 			$scope.toggleReview = function() {
 
 				if ($scope.reviewed == false) {
-					reviewService.getReviews().then(function(reviews) {
-						applyRemoteData(reviews);
-					});
+					reviewService.getReviews($scope.auction.seller.email).then(
+							function(reviews) {
+								applyRemoteData(reviews);
+							});
 				} else {
 
 				}
@@ -346,7 +335,6 @@ app.controller('BidController', function($scope) {
 	};
 });
 
-
 app.controller('PurchaseController', function($scope, purchaseService) {
 	$scope.purchases = [];
 
@@ -370,9 +358,20 @@ app.controller('PurchaseDetailsController', function($scope, $routeParams,
 	loadRemoteData();
 
 	function loadRemoteData() {
-		purchaseService.getPurchase($routeParams.itemId).then(function(purchase) {
-			$scope.purchase = purchase;
-		});
+		purchaseService.getPurchase($routeParams.itemId).then(
+				function(purchase) {
+					$scope.purchase = purchase;
+				});
 	}
+
+});
+
+app.controller('RatingController', function($scope, ratingService) {
+	$scope.ratings = ratingService.getRatings();
+	$scope.addRating = function() {
+		if ($scope.newRating.desc != '') {
+			ratingService.createRating($scope.newRating.desc, new Date());
+		}
+	};
 
 });

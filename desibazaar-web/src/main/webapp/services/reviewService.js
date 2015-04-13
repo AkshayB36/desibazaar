@@ -4,9 +4,9 @@ app.service('reviewService',
 						getReviews : getReviews
 					});
 
-					function getReviews() {
+					function getReviews(email) {
 						return $http.get(
-								"http://localhost:8080/desibazaar-rest/users/reviews").then(handleSuccess,
+								"http://localhost:8080/desibazaar-rest/users/"+email+"/reviews").then(handleSuccess,
 								handleError)
 					}
 

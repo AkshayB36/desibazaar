@@ -77,9 +77,9 @@ public class UserController {
 				.getMyPurchases(Util.getLoggedInUser(request));
 	}
 
-	@RequestMapping(value = "/reviews", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Item> getUserReviews(HttpServletRequest request) {
-		return getAccountService().getReviews(Util.getLoggedInUser(request));
+	@RequestMapping(value = "{email}/reviews", method = RequestMethod.GET, produces = "application/json")
+	public @ResponseBody List<Item> getUserReviews(@PathVariable("email") String email) {
+		return getAccountService().getReviews(email);
 	}
 
 	public IAccountService getAccountService() {
