@@ -29,11 +29,13 @@
 				{{auction.status}}<br /> Starting Time: {{auction.startsAt |
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Seller Rating:
-				{{auction.rating}}/5<br />
+				{{auction.rating}}/5
+				<br />
+			
 			<div ng-controller="ViewReviewController">
 				<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
 				<div ng-repeat="sellerItem in reviews" ng-show="reviewed">
-					<table class="table" ng-if="reviews.length > 0">
+					<table class="table" style="font-size : 14px" ng-if="reviews.length > 0">
 						<tr>
 							<br />
 							<th>Product</th>
@@ -57,7 +59,7 @@
 			<br />
 			<div>
 				<br />
-				<div ng-show=loggedIn class="button">
+				<div ng-show="globals.currentUser">
 					<button class="btn btn-primary subscribe-btn"
 						ng-controller="ButtonController" ng-click="toggleSubscribe()">
 						{{subscribeButton}}</button>

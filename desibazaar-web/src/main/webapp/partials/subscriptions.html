@@ -16,7 +16,7 @@
 	<!-- Projects Row -->
 
 	<div class="row">
-		<div ng-repeat="auction in subscriptions" ng-if="subscriptions.length > 0">
+		<div ng-repeat="auction in subscriptions | orderBy:'startsAt':false" ng-if="subscriptions.length > 0">
 			<div class="col-sm -3 col-md-6 col-lg-4" style="text-align: center">
 				<div>
 					<a href="#/subscriptionDetails/{{auction.itemId}}"> <img
@@ -44,10 +44,9 @@
 					</p>
 				</div>
 				<p style="text-align: left">Status: {{auction.status}}</p>
-				
 				<hr>
-				<div class="button">
-					<button ng-controller="ButtonUnsubscribeController"
+				<div>
+					<button class="btn btn-primary subscribe-btn" ng-controller="ButtonUnsubscribeController"
 						ng-click="toggleUnsubscribe()">{{subscribeButton}}</button>
 				</div>
 				<br />

@@ -45,7 +45,7 @@
 				<br />
 				<hr>
 				
-				<div  class="button" ng-if="loggedIn.loginCheck === 'true'">
+				<div  class="button" ng-show="globals.currentUser">
 					<button class="btn btn-primary subscribe-btn"
 						ng-controller="ButtonController" ng-click="toggleSubscribe()">
 						{{subscribeButton}}

@@ -1,10 +1,9 @@
-app.controller('LoginController', function($scope, $window, $location, accountService) {
+app.controller('LoginController', function($scope, $location, accountService) {
 	accountService.clearCredentials();
 
 	$scope.login = function() {
 		accountService.login($scope.username, $scope.password).then(function() {
 			accountService.setCredentials($scope.username, $scope.password);
-			$window.sessionStorage.setItem( 'loggedIn', "true" );
 			$location.path('/');
 		}, function() {
 			$scope.error = "Username or Password do not match";
@@ -24,7 +23,7 @@ app.controller('LoginController', function($scope, $window, $location, accountSe
 	// }
 });
 
-app.controller('AuctionController', function($scope,$window,auctionService) {
+app.controller('AuctionController', function($scope,auctionService) {
 	$scope.auctions = [];
 
 	loadRemoteData();
@@ -36,9 +35,6 @@ app.controller('AuctionController', function($scope,$window,auctionService) {
 	}
 
 	function applyAuctions(auctions) {
-		$scope.loggedIn  = {
-			loginCheck : $window.sessionStorage.getItem('loggedIn')
-		}; 	
 		$scope.auctions = auctions;
 	}
 

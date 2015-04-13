@@ -33,7 +33,7 @@
 				<button class="button" ng-click="toggleReview()">{{bidButton}}</button>
 				<br />
 				<div ng-repeat="bid in auction.bids" ng-show="reviewed">
-					<table class="table" ng-if="auction.bids.length > 0">
+					<table class="table" style="font-size : 14px" ng-if="auction.bids.length > 0">
 						<tr>
 							<br />
 							<th>User</th>
@@ -48,7 +48,7 @@
 					</table>
 				</div>
 				<br />
-				<table ng-if="auction.bids.length==0" ng-show="reviewed">
+				<table style="font-size : 14px" ng-if="auction.bids.length==0" ng-show="reviewed">
 					<tr>
 						<td>
 							<p>There are no bids</p>
@@ -65,7 +65,7 @@
 				<div ng-controller="ViewReviewController">
 					<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
 					<div ng-repeat="sellerItem in reviews" ng-show="reviewed">
-						<table class="table" ng-if="reviews.length > 0">
+						<table class="table" style="font-size : 14px" ng-if="reviews.length > 0">
 							<tr>
 								<br />
 								<th>Product</th>
@@ -79,7 +79,7 @@
 							</tr>
 						</table>
 					</div>
-					<table ng-if="reviews.length==0" ng-show="reviewed">
+					<table style="font-size : 14px" ng-if="reviews.length==0" ng-show="reviewed">
 						<tr>
 							<td><br />
 							<p>There are no reviews</p></td>
