@@ -31,18 +31,18 @@
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Seller Rating:
 				{{auction.seller.rating}}/5
 				<br />
-			
 			<div ng-controller="ViewReviewController">
 				<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
-				<div ng-repeat="sellerItem in reviews" ng-show="reviewed">
-					<table class="table" style="font-size : 14px" ng-if="reviews.length > 0">
+				<div ng-show="reviewed">
+					<table class="table" style="font-size: 14px"
+						ng-if="reviews.length > 0">
 						<tr>
 							<br />
 							<th>Product</th>
 							<th>Rating</th>
 							<th>Review</th>
 						</tr>
-						<tr>
+						<tr ng-repeat="sellerItem in reviews">
 							<td>{{sellerItem.name}}</td>
 							<td>{{sellerItem.rating}}/5</td>
 							<td>{{sellerItem.review}}</td>

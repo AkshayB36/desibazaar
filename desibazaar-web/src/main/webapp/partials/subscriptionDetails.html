@@ -31,15 +31,16 @@
 
 			<div ng-controller="BidController">
 				<button class="button" ng-click="toggleReview()">{{bidButton}}</button>
-				<div ng-repeat="bid in auction.bids" ng-show="reviewed">
+				<div ng-show="reviewed">
 					<table class="table" style="font-size: 14px"
 						ng-if="auction.bids.length > 0">
+				<br />
 						<tr>
 							<th>User</th>
 							<th>Bid</th>
 							<th>Time</th>
 						</tr>
-						<tr>
+						<tr ng-repeat="bid in auction.bids">
 							<td>{{bid.user.email}}</td>
 							<td>{{bid.bid}}</td>
 							<td>{{bid.time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
@@ -60,18 +61,17 @@
 				{{auction.status}}<br /> Starting Time: {{auction.startsAt |
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
 				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Seller Rating:
-				{{auction.seller.rating}}/5 <br /> <br />
+				{{auction.seller.rating}}/5 <br />
 				<div ng-controller="ViewReviewController">
 					<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
-					<div ng-repeat="sellerItem in reviews" ng-show="reviewed">
-						<table class="table" style="font-size: 14px"
-							ng-if="reviews.length > 0">
+					<div ng-show="reviewed">
+						<table class="table" style="font-size : 14px" ng-if="reviews.length > 0">
 							<tr>
 								<th>Product</th>
 								<th>Rating</th>
 								<th>Review</th>
 							</tr>
-							<tr>
+							<tr  ng-repeat="sellerItem in reviews">
 								<td>{{sellerItem.name}}</td>
 								<td>{{sellerItem.rating}}/5</td>
 								<td>{{sellerItem.review}}</td>
