@@ -1,4 +1,5 @@
-package com.desibazaar.rest.controller;
+package com.desibazaar.rest.imageupload;
+
 public class HttpUtils {
 
 	public static boolean isEmpty(String value) {

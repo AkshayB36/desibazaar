@@ -2,6 +2,7 @@ package com.desibazaar.rest.dao;
 
 import java.util.List;
 
+import com.desibazaar.rest.entity.EBid;
 import com.desibazaar.rest.entity.EItem;
 
 /**
@@ -19,4 +20,6 @@ public interface IItemDao {
 	public EItem getAuction(Long itemId);
 
 	public List<EItem> getAuctions();
+
+	public void createBid(EBid eBid);
 }

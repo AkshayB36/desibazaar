@@ -78,7 +78,8 @@ public class UserController {
 	}
 
 	@RequestMapping(value = "{email}/reviews", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody List<Item> getUserReviews(@PathVariable("email") String email) {
+	public @ResponseBody List<Item> getUserReviews(
+			@PathVariable("email") String email) {
 		return getAccountService().getReviews(email);
 	}
 

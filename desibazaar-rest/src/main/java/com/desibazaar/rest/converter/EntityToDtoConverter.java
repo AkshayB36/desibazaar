@@ -10,7 +10,6 @@ import com.desibazaar.rest.entity.EUser;
 import com.desibazaar.rest.vo.Bid;
 import com.desibazaar.rest.vo.Category;
 import com.desibazaar.rest.vo.Item;
-import com.desibazaar.rest.vo.Review;
 import com.desibazaar.rest.vo.User;
 
 /**
@@ -71,26 +70,6 @@ public class EntityToDtoConverter {
 		bid.setTime(eBid.getTime());
 		bid.setUser(convertEUserToUser(eBid.getUser()));
 		return bid;
-	}
-
-	/* Review Converter */
-	public static List<Review> convertEReviewToReview(List<EItem> eItems) {
-		if (eItems == null)
-			return null;
-		List<Review> reviews = new ArrayList<Review>();
-		for (EItem eItem : eItems) {
-			reviews.add(convertEReviewToReview(eItem));
-		}
-		return reviews;
-	}
-
-	public static Review convertEReviewToReview(EItem eItem) {
-		if (eItem == null)
-			return null;
-		Review review = new Review();
-		review.setRating(eItem.getRating());
-		review.setReview(eItem.getReview());
-		return review;
 	}
 
 	/* User Converter */

@@ -2,6 +2,7 @@ package com.desibazaar.rest.service;
 
 import java.util.List;
 
+import com.desibazaar.rest.vo.Bid;
 import com.desibazaar.rest.vo.Category;
 import com.desibazaar.rest.vo.Item;
 
@@ -28,5 +29,10 @@ public interface IAuctionService {
 
 	/* Categories */
 	public List<Category> getCategories();
+
+	/* Bids */
+	public void createBid(Long itemId, String email, Float bidAmount);
+
+	public List<Bid> getBids(Long itemId);
 
 }

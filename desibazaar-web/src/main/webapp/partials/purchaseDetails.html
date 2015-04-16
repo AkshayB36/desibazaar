@@ -24,7 +24,7 @@
 				{{purchase.description}}<br /> $ {{purchase.sellingPrice}}
 			</p>
 
-			<input ng-model="newReview.desc" ng-controller="ReviewController">
+			<input ng-model="newReview.desc">
 			<button ng-click="addReview()">Post Review</button>
 			<ul>
 				<li ng-repeat="review in reviews">{{review.desc + '-' +

@@ -1,5 +1,6 @@
 package com.desibazaar.rest.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -12,11 +13,15 @@ import com.desibazaar.rest.converter.EntityToDtoConverter;
 import com.desibazaar.rest.dao.ICategoryDao;
 import com.desibazaar.rest.dao.IItemDao;
 import com.desibazaar.rest.dao.IUserDao;
+import com.desibazaar.rest.entity.EBid;
 import com.desibazaar.rest.entity.ECategory;
 import com.desibazaar.rest.entity.EItem;
 import com.desibazaar.rest.entity.EUser;
 import com.desibazaar.rest.enums.Status;
 import com.desibazaar.rest.service.IAuctionService;
+import com.desibazaar.rest.service.IBiddingService;
+import com.desibazaar.rest.service.ISchedulingService;
+import com.desibazaar.rest.vo.Bid;
 import com.desibazaar.rest.vo.Category;
 import com.desibazaar.rest.vo.Item;
 
@@ -27,7 +32,10 @@ import com.desibazaar.rest.vo.Item;
 @Service
 @Transactional
 public class AuctionService implements IAuctionService {
-
+	@Autowired
+	private ISchedulingService schedulingService;
+	@Autowired
+	private IBiddingService biddingService;
 	@Autowired
 	private IItemDao itemDao;
 	@Autowired
@@ -42,6 +50,8 @@ public class AuctionService implements IAuctionService {
 		eItem.setRating(-1);
 		eItem.setSellingPrice(0F);
 		getItemDao().createAuction(eItem);
+		getSchedulingService().addAuctionJob(eItem.getItemId(),
+				eItem.getStartsAt(), eItem.getEndsAt());
 	}
 
 	@Override
@@ -64,6 +74,7 @@ public class AuctionService implements IAuctionService {
 				}
 			}
 			eUser.setRating((float) sum / n);
+			getUserDao().updateUser(eUser);
 		}
 	}
 
@@ -110,6 +121,31 @@ public class AuctionService implements IAuctionService {
 		getItemDao().updateAuction(eItem);
 	}
 
+	@Override
+	public synchronized void createBid(Long itemId, String email,
+			Float bidAmount) {
+		EBid eBid = new EBid();
+		eBid.setTime(new Date());
+		eBid.setBid(bidAmount);
+
+		EUser user = new EUser();
+		user.setEmail(email);
+		eBid.setUser(user);
+
+		EItem eItem = getItemDao().getAuction(itemId);
+		if (eBid.getBid() > eItem.getBasePrice()
+				&& getBiddingService().addBid(itemId,
+						EntityToDtoConverter.convertEBidToBid(eBid))) {
+			eBid.setItem(eItem);
+			getItemDao().createBid(eBid);
+		}
+	}
+
+	@Override
+	public List<Bid> getBids(Long itemId) {
+		return getBiddingService().getBids(itemId);
+	}
+
 	private IItemDao getItemDao() {
 		return itemDao;
 	}
@@ -120,6 +156,14 @@ public class AuctionService implements IAuctionService {
 
 	private IUserDao getUserDao() {
 		return userDao;
+	}
+
+	private ISchedulingService getSchedulingService() {
+		return schedulingService;
+	}
+
+	private IBiddingService getBiddingService() {
+		return biddingService;
 	}
 
 }

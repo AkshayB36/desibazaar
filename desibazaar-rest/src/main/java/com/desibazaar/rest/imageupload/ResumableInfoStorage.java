@@ -1,4 +1,5 @@
-package com.desibazaar.rest.controller;
+package com.desibazaar.rest.imageupload;
+
 import java.util.HashMap;
 
 public class ResumableInfoStorage {

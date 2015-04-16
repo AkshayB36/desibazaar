@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 
 import com.desibazaar.rest.dao.AbstractDao;
 import com.desibazaar.rest.dao.IItemDao;
+import com.desibazaar.rest.entity.EBid;
 import com.desibazaar.rest.entity.EItem;
 
 /**
@@ -22,7 +23,7 @@ public class ItemDao extends AbstractDao implements IItemDao {
 
 	@Override
 	public void updateAuction(EItem eItem) {
-		save(eItem);
+		update(eItem);
 	}
 
 	@Override
@@ -38,6 +39,11 @@ public class ItemDao extends AbstractDao implements IItemDao {
 	@Override
 	public List<EItem> getAuctions() {
 		return getAll(EItem.class);
+	}
+
+	@Override
+	public void createBid(EBid eBid) {
+		save(eBid);
 	}
 
 }

@@ -5,5 +5,5 @@ package com.desibazaar.rest.enums;
  *
  */
 public enum Status {
-	ToStart, Active, Sold;
+	ToStart, Active, Sold, UnSold;
 }

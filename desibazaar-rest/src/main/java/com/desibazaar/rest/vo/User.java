@@ -14,7 +14,6 @@ public class User {
 	private String address;
 	private List<Item> subscriptions;
 	private Float rating;
-	private List<Review> reviews;
 
 	public String getName() {
 		return name;
@@ -70,14 +69,6 @@ public class User {
 
 	public void setRating(Float rating) {
 		this.rating = rating;
-	}
-
-	public List<Review> getReviews() {
-		return reviews;
-	}
-
-	public void setReviews(List<Review> reviews) {
-		this.reviews = reviews;
 	}
 
 }

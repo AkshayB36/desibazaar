@@ -16,7 +16,11 @@ public abstract class AbstractDao {
 	private SessionFactory sessionFactory;
 
 	public void save(Object entity) {
-		getSession().merge(entity);
+		getSession().save(entity);
+	}
+
+	public void update(Object entity) {
+		getSession().update(entity);
 	}
 
 	public <U, T> void delete(U id, Class<T> objectClass) {

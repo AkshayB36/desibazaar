@@ -10,10 +10,12 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.desibazaar.rest.service.IAuctionService;
 import com.desibazaar.rest.util.Util;
+import com.desibazaar.rest.vo.Bid;
 import com.desibazaar.rest.vo.Item;
 import com.desibazaar.rest.vo.User;
 
@@ -69,6 +71,17 @@ public class AuctionController {
 			@PathVariable("item_id") Long itemId, HttpServletRequest request) {
 		getAuctionService().unsubscribeAuction(itemId,
 				Util.getLoggedInUser(request));
+	}
+
+	@RequestMapping(value = "/{item_id}/bids", method = RequestMethod.GET)
+	public @ResponseBody List<Bid> getBids(@PathVariable("item_id") Long itemId) {
+		return getAuctionService().getBids(itemId);
+	}
+
+	@RequestMapping(value = "/{item_id}/bids", method = RequestMethod.POST)
+	public @ResponseBody void createBid(@PathVariable("item_id") Long itemId,
+			@RequestParam("bid") Float bid, HttpServletRequest request) {
+		auctionService.createBid(itemId, Util.getLoggedInUser(request), bid);
 	}
 
 	private IAuctionService getAuctionService() {

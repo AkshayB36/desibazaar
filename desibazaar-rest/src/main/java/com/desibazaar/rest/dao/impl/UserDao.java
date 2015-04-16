@@ -19,7 +19,7 @@ public class UserDao extends AbstractDao implements IUserDao {
 
 	@Override
 	public void updateUser(EUser entity) {
-		save(entity);
+		update(entity);
 	}
 
 	@Override
