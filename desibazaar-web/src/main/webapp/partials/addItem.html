@@ -71,19 +71,21 @@
 				<div ng-controller="TimepickerDemoCtrl">
 					<label for="StartTime" class="col-lg-2 control-label">Start
 						Time</label>
-					<timepicker ng-model="startTime" ng-change="changed()" hour-step="hstep"
+					<timepicker ng-model="newItem.startTime" ng-change="changed()" hour-step="hstep"
 						minute-step="mstep" show-meridian="ismeridian"></timepicker>
 
 				</div>
 				<br>
 
-				<div ng-controller="TimepickerDemoCtrl">
-					<label for="Duration" class="col-lg-2 control-label">Duration</label>
-					<timepicker ng-model="duration" ng-change="changed()" hour-step="hstep"
-						minute-step="mstep" show-meridian="false"></timepicker>
+				<div class="form-group">
+				<label for="input" class="col-lg-2 control-label">Duration</label>
+				<div class="col-lg-10">
+					<input ng-model="duration" type="number" class="form-control"
+						id="inputDuration" placeholder="Enter Time duration between 5-60 minutes" 
+						maxlength="40" required>minutes
 
 				</div>
-
+			</div>
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label"
 						style="height: 30px">Select Category</label>
@@ -99,8 +101,10 @@
 
 					</div>
 				</div>
-			</div>
+			
+		
 
+			</div>
 			<div class="form-group">
 				<label for="exampleInputFile" class="col-lg-2 control-label">Image</label>
 				<div class="col-lg-10">

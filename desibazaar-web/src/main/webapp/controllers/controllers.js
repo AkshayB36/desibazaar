@@ -134,17 +134,14 @@ app.controller('AddItemController', function($scope, categoryService,
 	$scope.flow = {};
 	$scope.categories = [];
 	$scope.uploaded = false;
-	$scope.startTime = new Date();
-	$scope.duration = new Date();
 	loadRemoteData();
 
 	$scope.addItem = function() {
-		$scope.newItem.startsAt.setHours($scope.startTime.getHours());
-		$scope.newItem.startsAt.setMinutes($scope.startTime.getMinutes());
+		var d1=+document.getElementById("inputDuration").value;
+		$scope.newItem.startsAt.setHours($scope.newItem.startTime.getHours());
+		$scope.newItem.startsAt.setMinutes($scope.newItem.startTime.getMinutes());
 		$scope.newItem.startsAt.setSeconds(00);
-		$scope.newItem.endsAt.setTime($scope.newItem.startsAt.getTime()
-				+ ($scope.duration.getHours() * 60 + $scope.duration
-						.getMinutes()) * 60 * 1000);
+		$scope.newItem.endsAt.setTime($scope.newItem.startsAt.getTime() + (d1*60000));
 		$scope.flow.images.upload();
 	}
 
@@ -243,6 +240,7 @@ app.controller('ViewReviewController',
 						: 'View Reviews';
 			};
 		});
+
 
 app
 		.controller('DatepickerDemoCtrl',
