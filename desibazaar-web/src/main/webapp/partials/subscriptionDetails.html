@@ -23,77 +23,72 @@
 			<p>
 				{{auction.description}}<br /> $ {{auction.basePrice}}
 			</p>
-			<h3>Product Details</h3>
-
-			<input type="text" name="bid">
-			<button class="button" type="submit">Bid</button>
-			<br /> <br />
-
-			<div ng-controller="BidController">
-				<button class="button" ng-click="toggleReview()">{{bidButton}}</button>
-				<div ng-show="reviewed">
-					<table class="table" style="font-size: 14px"
-						ng-if="auction.bids.length > 0">
+			<div ng-controller="BidController" ng-if="auction.status=='Active'">
+				<h3>Enter your bid</h3>
+				<input type="text" name="bid" ng-model="bidValue">
+				<button class="button" type="submit" ng-click="createBid()">Bid</button>
 				<br />
-						<tr>
-							<th>User</th>
-							<th>Bid</th>
-							<th>Time</th>
-						</tr>
-						<tr ng-repeat="bid in auction.bids">
-							<td>{{bid.user.email}}</td>
-							<td>{{bid.bid}}</td>
-							<td>{{bid.time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-						</tr>
-					</table>
-				</div>
-				<br />
-				<table style="font-size: 14px" ng-if="auction.bids.length==0"
-					ng-show="reviewed">
+				<h3>Bidding History</h3>
+				<table class="table" style="font-size: 14px" ng-if="auction.bids.length > 0">
+					<br />
+					<tr>
+						<th>User</th>
+						<th>Bid</th>
+						<th>Time</th>
+					</tr>
+					<tr ng-repeat="bid in auction.bids |orderBy: 'time' : 'false'">
+						<td>{{bid.user.email}}</td>
+						<td>{{bid.bid}}</td>
+						<td>{{bid.time | date:'yyyy-MM-dd HH:mm:ss'}}</td>
+					</tr>
+				</table>
+				<table style="font-size: 14px" ng-if="auction.bids.length==0">
 					<tr>
 						<td>
 							<p>There are no bids</p>
 						</td>
 					</tr>
 				</table>
-
-				<br> Category: {{auction.category.name}}<br /> Status:
-				{{auction.status}}<br /> Starting Time: {{auction.startsAt |
-				date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
-				date:'yyyy-MM-dd HH:mm:ss'}}<br /> Seller Rating:
-				{{auction.seller.rating}}/5 <br /><br>
-				<div ng-controller="ViewReviewController">
-					<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
-					<div ng-show="reviewed">
-					<br>
-						<table class="table" style="font-size : 14px" ng-if="reviews.length > 0">
-							<tr>
-								<th>Product</th>
-								<th>Rating</th>
-								<th>Review</th>
-							</tr>
-							<tr  ng-repeat="sellerItem in reviews">
-								<td>{{sellerItem.name}}</td>
-								<td>{{sellerItem.rating}}/5</td>
-								<td>{{sellerItem.review}}</td>
-							</tr>
-						</table>
-					</div>
-					<table style="font-size: 14px" ng-if="reviews.length==0"
-						ng-show="reviewed">
+			</div>
+			<h3>Product Details</h3>
+			<br> Category: {{auction.category.name}}<br /> Status:
+			{{auction.status}}<br /> Starting Time: {{auction.startsAt |
+			date:'yyyy-MM-dd HH:mm:ss'}}<br /> End Time: {{auction.endsAt |
+			date:'yyyy-MM-dd HH:mm:ss'}}<br /> Seller Rating:
+			{{auction.seller.rating}}/5 <br />
+			<br />
+			<div ng-controller="ViewReviewController">
+				<button class="button" ng-click="toggleReview()">{{reviewButton}}</button>
+				<div ng-show="reviewed">
+					<table class="table" style="font-size: 14px"
+						ng-if="reviews.length > 0">
 						<tr>
-							<td><br />
-								<p>There are no reviews</p></td>
+							<th>Product</th>
+							<th>Rating</th>
+							<th>Review</th>
+						</tr>
+						<tr ng-repeat="sellerItem in reviews">
+							<td>{{sellerItem.name}}</td>
+							<td>{{sellerItem.rating}}/5</td>
+							<td>{{sellerItem.review}}</td>
 						</tr>
 					</table>
 				</div>
-				<br />
-				<div>
-					<button class="btn btn-primary subscribe-btn"
-						ng-controller="ButtonUnsubscribeController"
-						ng-click="toggleUnsubscribe()">{{subscribeButton}}</button>
-				</div>
+				<table style="font-size: 14px" ng-if="reviews.length==0"
+					ng-show="reviewed">
+					<tr>
+						<td><br />
+							<p>There are no reviews</p></td>
+					</tr>
+				</table>
+			</div>
+			<br />
+			<div>
+				<button class="btn btn-primary subscribe-btn"
+					ng-controller="ButtonUnsubscribeController"
+					ng-click="toggleUnsubscribe()">{{subscribeButton}}</button>
 			</div>
 		</div>
 	</div>
+</div>
 </div>

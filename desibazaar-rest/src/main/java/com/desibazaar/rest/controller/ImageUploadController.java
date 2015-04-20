@@ -28,7 +28,7 @@ import com.desibazaar.rest.imageupload.ResumableInfoStorage;
 @Controller
 public class ImageUploadController {
 
-	public static final String UPLOAD_DIR = "C:\\Users\\Varda\\college-workspace\\desibazaar\\desibazaar-web\\src\\main\\webapp\\img\\";
+	public static final String UPLOAD_DIR = "C:\\Users\\saisarath\\desibazaar\\desibazaar-web\\src\\main\\webapp\\img\\";
 
 	@RequestMapping(value = "/upload", method = RequestMethod.POST)
 	public @ResponseBody void uploadImage(HttpServletRequest request,

@@ -81,7 +81,6 @@ app.controller('EditItemsController', function($scope, $routeParams, $location,
 app.controller('AuctionDetailsController', function($scope, $routeParams,
 		auctionService) {
 	$scope.auction = {};
-
 	loadRemoteData();
 
 	function loadRemoteData() {
@@ -315,22 +314,33 @@ app.controller('TimepickerDemoCtrl', function($scope, $log) {
 		$scope.mytime = null;
 	};
 });
-app.controller('BidController', function($scope) {
+app.controller('BidController', function($scope, $routeParams, $timeout,
+		bidService) {
+	$scope.bids = [];
+	$scope.data = [];
+	loadRemoteData();
 
-	$scope.reviewed = false;
-	$scope.bidButton = $scope.reviewed ? 'Hide Bidding History'
-			: 'View Bidding History';
-	$scope.toggleReview = function() {
+	function applyRemoteData(bids) {
+		$scope.bids = bids;
+	}
+	(function tick() {
 
-		if ($scope.reviewed == false) {
+		$scope.data = bidService.getBids($routeParams.itemId).then(function() {
+			$timeout(tick, 1000);
+		});
+	})();
+	
+	function loadRemoteData() {
+		bidService.getBids($routeParams.itemId).then(function(bids) {
+			applyRemoteData(bids);
 
-		} else {
+		});
+	}
 
-		}
-		$scope.reviewed = !$scope.reviewed;
-		$scope.bidButton = $scope.reviewed ? 'Hide Bidding History'
-				: 'View Bidding History';
-	};
+	$scope.createBid = function() {
+		bidService.createBid($routeParams.itemId, $scope.bidValue);
+	}
+
 });
 
 app.controller('PurchaseController', function($scope, purchaseService) {
@@ -373,3 +383,32 @@ app.controller('RatingController', function($scope, ratingService) {
 	};
 
 });
+
+
+app.controller("counterCtrl",['$scope','$timeout', function($scope,$timeout){
+
+	 //Adding initial value for counter
+	 //counter modelimiz için ilk değer atamasını yaptık.   
+	$scope.counter = auction.endsAt-now();
+	var stopped;
+
+	//timeout function
+	//1000 milliseconds = 1 second
+	//Every second counts
+	//Cancels a task associated with the promise. As a result of this, the //promise will be resolved with a rejection.  
+	$scope.countdown = function() {
+	    stopped = $timeout(function() {
+	       console.log($scope.counter);
+	     $scope.counter--;   
+	     $scope.countdown();   
+	    }, auction.endsAt-now());
+	  };
+	   
+	    
+	$scope.stop = function(){
+	   $timeout.cancel(stopped);
+	    
+	    } 
+
+
+	}]);
