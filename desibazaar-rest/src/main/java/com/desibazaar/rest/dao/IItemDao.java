@@ -19,7 +19,7 @@ public interface IItemDao {
 
 	public EItem getAuction(Long itemId);
 
-	public List<EItem> getAuctions();
+	public List<EItem> getAuctions(String email);
 
 	public void createBid(EBid eBid);
 }

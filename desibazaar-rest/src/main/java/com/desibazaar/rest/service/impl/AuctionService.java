@@ -91,9 +91,7 @@ public class AuctionService implements IAuctionService {
 
 	@Override
 	public List<Item> getAuctions(String email) {
-		// return items for which user is not the seller
-		// and status is to start or ongoing
-		List<EItem> eItems = getItemDao().getAuctions();
+		List<EItem> eItems = getItemDao().getAuctions(email);
 		return EntityToDtoConverter.convertEItemToItem(eItems);
 	}
 

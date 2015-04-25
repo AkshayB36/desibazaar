@@ -19,6 +19,7 @@ import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.springframework.mock.web.MockHttpSession;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
@@ -64,18 +65,21 @@ public class AuctionControllerTest {
 		second.setItemId(2L);
 		second.setName("Micromax Canvas");
 
-		when(auctionService.getAuctions("")).thenReturn(
+		when(auctionService.getAuctions(null)).thenReturn(
 				Arrays.asList(first, second));
 
-		mockMvc.perform(get("/auctions")).andExpect(status().isOk())
+		MockHttpSession session = new MockHttpSession();
+		session.setAttribute("username", "varda@gmail.com");
+
+		mockMvc.perform(get("/auctions").session(session))
+				.andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
 				.andExpect(jsonPath("$", hasSize(2)))
 				.andExpect(jsonPath("$[0].itemId", is(1)))
 				.andExpect(jsonPath("$[0].name", is("Samsung Galaxy")))
 				.andExpect(jsonPath("$[1].itemId", is(2)))
 				.andExpect(jsonPath("$[1].name", is("Micromax Canvas")));
-
-		verify(auctionService, times(1)).getAuctions("");
+		verify(auctionService, times(1)).getAuctions(null);
 		verifyNoMoreInteractions(auctionService);
 	}
 
@@ -96,21 +100,21 @@ public class AuctionControllerTest {
 		verifyNoMoreInteractions(auctionService);
 	}
 
-//	@Test
-//	public void createAuction() throws Exception {
-//		Item first = new Item();
-//		first.setItemId(1L);
-//		first.setName("Samsung Galaxy");
-//
-//		when(auctionService.createAuction(first)).thenReturn(first);
-//
-//		mockMvc.perform(get("/auctions/1")).andExpect(status().isOk())
-//				.andExpect(content().contentType("application/json"))
-//				.andExpect(jsonPath("$itemId", is(1)))
-//				.andExpect(jsonPath("$name", is("Samsung Galaxy")));
-//
-//		verify(auctionService, times(1)).getAuction(1L);
-//		verifyNoMoreInteractions(auctionService);
-//	}
+	// @Test
+	// public void createAuction() throws Exception {
+	// Item first = new Item();
+	// first.setItemId(1L);
+	// first.setName("Samsung Galaxy");
+	//
+	// when(auctionService.createAuction(first)).thenReturn(first);
+	//
+	// mockMvc.perform(get("/auctions/1")).andExpect(status().isOk())
+	// .andExpect(content().contentType("application/json"))
+	// .andExpect(jsonPath("$itemId", is(1)))
+	// .andExpect(jsonPath("$name", is("Samsung Galaxy")));
+	//
+	// verify(auctionService, times(1)).getAuction(1L);
+	// verifyNoMoreInteractions(auctionService);
+	// }
 
 }
