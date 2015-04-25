@@ -30,13 +30,9 @@
 							auction.name }}</a>
 
 					</h3>
+				
 				</div>
-				<input type="text" name="bid">
-				<button class="button" type="submit">Bid</button>
-				<hr>
-				<div>
-					<p style="text-align: left">$ {{auction.basePrice}}</p>
-				</div>
+				<p style="text-align: left">$ {{auction.basePrice}}</p>
 				<div>
 					<p style="text-align: left">
 						{{auction.description | limitTo : 110}} <a

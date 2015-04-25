@@ -136,14 +136,15 @@ app.controller('AddItemController', function($scope, categoryService,
 	loadRemoteData();
 
 	$scope.addItem = function() {
-		var d1=+document.getElementById("inputDuration").value;
+		var d1 = +document.getElementById("inputDuration").value;
 		$scope.newItem.startsAt.setHours($scope.newItem.startTime.getHours());
-		$scope.newItem.startsAt.setMinutes($scope.newItem.startTime.getMinutes());
+		$scope.newItem.startsAt.setMinutes($scope.newItem.startTime
+				.getMinutes());
 		$scope.newItem.startsAt.setSeconds(00);
-		$scope.newItem.endsAt.setTime($scope.newItem.startsAt.getTime() + (d1*60000));
+		$scope.newItem.endsAt.setTime($scope.newItem.startsAt.getTime()
+				+ (d1 * 60000));
 		$scope.flow.images.upload();
 	}
-
 	function loadRemoteData() {
 		categoryService.getCategories().then(function(categories) {
 			applyCategories(categories);
@@ -240,7 +241,6 @@ app.controller('ViewReviewController',
 			};
 		});
 
-
 app
 		.controller('DatepickerDemoCtrl',
 				function($scope) {
@@ -316,31 +316,24 @@ app.controller('TimepickerDemoCtrl', function($scope, $log) {
 });
 app.controller('BidController', function($scope, $routeParams, $timeout,
 		bidService) {
-	$scope.bids = [];
-	$scope.data = [];
-	loadRemoteData();
 
 	function applyRemoteData(bids) {
-		$scope.bids = bids;
+		$scope.auction.bids = bids;
 	}
 	(function tick() {
 
-		$scope.data = bidService.getBids($routeParams.itemId).then(function() {
+		bidService.getBids($routeParams.itemId).then(function(bids) {
+			applyRemoteData(bids);
 			$timeout(tick, 1000);
 		});
 	})();
-	
-	function loadRemoteData() {
-		bidService.getBids($routeParams.itemId).then(function(bids) {
-			applyRemoteData(bids);
-
-		});
-	}
 
 	$scope.createBid = function() {
-		bidService.createBid($routeParams.itemId, $scope.bidValue);
+		bidService.createBid($routeParams.itemId, $scope.bidValue).then(
+				function() {
+					$scope.bidValue = "";
+				});
 	}
-
 });
 
 app.controller('PurchaseController', function($scope, purchaseService) {
@@ -384,31 +377,15 @@ app.controller('RatingController', function($scope, ratingService) {
 
 });
 
+app.controller('CountDownController', function($scope) {
 
-app.controller("counterCtrl",['$scope','$timeout', function($scope,$timeout){
+	$scope.date = new Date();
 
-	 //Adding initial value for counter
-	 //counter modelimiz için ilk değer atamasını yaptık.   
-	$scope.counter = auction.endsAt-now();
-	var stopped;
-
-	//timeout function
-	//1000 milliseconds = 1 second
-	//Every second counts
-	//Cancels a task associated with the promise. As a result of this, the //promise will be resolved with a rejection.  
-	$scope.countdown = function() {
-	    stopped = $timeout(function() {
-	       console.log($scope.counter);
-	     $scope.counter--;   
-	     $scope.countdown();   
-	    }, auction.endsAt-now());
-	  };
-	   
-	    
-	$scope.stop = function(){
-	   $timeout.cancel(stopped);
-	    
-	    } 
-
-
-	}]);
+	$scope.countDown = $scope.someData;
+	
+	$scope.countDown1 = $scope.dataTime;
+	/*
+	 * var timer = setInterval(function() { $scope.countDown--; $scope.$apply();
+	 * console.log($scope.countDown); }, 1000);
+	 */
+});

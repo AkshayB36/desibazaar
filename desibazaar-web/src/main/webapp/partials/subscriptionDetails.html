@@ -23,11 +23,13 @@
 			<p>
 				{{auction.description}}<br /> $ {{auction.basePrice}}
 			</p>
+			<br /> 
 			<div ng-controller="BidController" ng-if="auction.status=='Active'">
 				<h3>Enter your bid</h3>
 				<input type="text" name="bid" ng-model="bidValue">
 				<button class="button" type="submit" ng-click="createBid()">Bid</button>
 				<br />
+				</div>
 				<h3>Bidding History</h3>
 				<table class="table" style="font-size: 14px" ng-if="auction.bids.length > 0">
 					<br />
@@ -49,7 +51,6 @@
 						</td>
 					</tr>
 				</table>
-			</div>
 			<h3>Product Details</h3>
 			<br> Category: {{auction.category.name}}<br /> Status:
 			{{auction.status}}<br /> Starting Time: {{auction.startsAt |
