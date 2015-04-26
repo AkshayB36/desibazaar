@@ -60,16 +60,40 @@ public class UserControllerTest {
 	}
 
 	@Test
-	public void createUser() throws Exception {
+	public void authenticateFalse() throws Exception {
 		ObjectMapper mapper = new ObjectMapper();
 		String json = mapper.writeValueAsString(new User());
 
-		mockMvc.perform(
-				post("/users").content(json).contentType("application/json"))
-				.andExpect(status().isOk());
+		when(userService.authenticate(any(User.class))).thenReturn(false);
 
-		verify(userService, times(1)).createUser(any(User.class));
+		mockMvc.perform(
+				post("/users/authenticate").content(json).contentType(
+						"application/json")).andExpect(status().isBadRequest());
+
+		verify(userService, times(1)).authenticate(any(User.class));
 		verifyNoMoreInteractions(userService);
+	}
+
+	@Test
+	public void authenticateTrue() throws Exception {
+		ObjectMapper mapper = new ObjectMapper();
+		String json = mapper.writeValueAsString(new User());
+
+		when(userService.authenticate(any(User.class))).thenReturn(true);
+
+		mockMvc.perform(
+				post("/users/authenticate").content(json).contentType(
+						"application/json")).andExpect(status().isOk());
+
+		verify(userService, times(1)).authenticate(any(User.class));
+		verifyNoMoreInteractions(userService);
+	}
+
+	@Test
+	public void logout() throws Exception {
+		mockMvc.perform(
+				get("/users/logout").sessionAttr("username", "varda@gmail.com"))
+				.andExpect(status().isOk());
 	}
 
 	@Test
@@ -93,8 +117,7 @@ public class UserControllerTest {
 
 		when(userService.getUser("varda@gmail")).thenReturn(first);
 
-		mockMvc.perform(get("/users/varda@gmail"))
-				.andExpect(status().isOk())
+		mockMvc.perform(get("/users/varda@gmail")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
 				.andExpect(jsonPath("$email", is("varda@gmail")))
 				.andExpect(jsonPath("$name", is("Varda")));

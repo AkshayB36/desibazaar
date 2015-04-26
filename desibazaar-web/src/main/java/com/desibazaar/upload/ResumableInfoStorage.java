@@ -1,4 +1,5 @@
 package com.desibazaar.upload;
+
 import java.util.HashMap;
 
 public class ResumableInfoStorage {

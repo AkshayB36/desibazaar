@@ -109,7 +109,7 @@
 				<label for="exampleInputFile" class="col-lg-2 control-label">Image</label>
 				<div class="col-lg-10">
 					<div
-						flow-init="{target: '/desibazaar-rest/upload', testChunks:false, singleFile:true}"
+						flow-init="{target: '/desibazaar-web/upload', testChunks:false, singleFile:true}"
 						flow-name="flow.images" ng-controller="ImageUpload">
 						<input type="file" flow-btn /> <br> <img ng-show="uploaded"
 							style="width: 250px; height: 250px" flow-img="$flow.files[0]" />

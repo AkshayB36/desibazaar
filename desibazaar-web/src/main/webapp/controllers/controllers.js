@@ -9,18 +9,6 @@ app.controller('LoginController', function($scope, $location, accountService) {
 			$scope.error = "Username or Password do not match";
 		});
 	};
-	// var source = new EventSource(
-	// 'http://localhost:8080/desibazaar-rest/stats');
-	// source.addEventListener('message', handleCallback, false);
-	//
-	// $scope.msg = {};
-	//
-	// // handles the callback from the received event
-	// var handleCallback = function(msg) {
-	// $scope.$apply(function() {
-	// $scope.msg = JSON.parse(msg.data)
-	// });
-	// }
 });
 
 app.controller('AuctionController', function($scope, auctionService) {
