@@ -73,7 +73,7 @@ public class AuctionController {
 				Util.getLoggedInUser(request));
 	}
 
-	@RequestMapping(value = "/{item_id}/bids", method = RequestMethod.GET)
+	@RequestMapping(value = "/{item_id}/bids", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Bid> getBids(@PathVariable("item_id") Long itemId) {
 		return getAuctionService().getBids(itemId);
 	}
@@ -81,7 +81,8 @@ public class AuctionController {
 	@RequestMapping(value = "/{item_id}/bids", method = RequestMethod.POST)
 	public @ResponseBody void createBid(@PathVariable("item_id") Long itemId,
 			@RequestParam("bid") Float bid, HttpServletRequest request) {
-		auctionService.createBid(itemId, Util.getLoggedInUser(request), bid);
+		getAuctionService().createBid(itemId, Util.getLoggedInUser(request),
+				bid);
 	}
 
 	private IAuctionService getAuctionService() {
