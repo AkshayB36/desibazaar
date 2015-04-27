@@ -47,7 +47,7 @@ public class AccountService implements IAccountService {
 	}
 
 	@Override
-	public List<Item> getSubscripions(String email) {
+	public List<Item> getSubscriptions(String email) {
 		EUser eUser = getDao().getUser(email);
 		return EntityToDtoConverter
 				.convertEItemToItem(eUser.getSubscriptions());

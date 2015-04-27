@@ -1,6 +1,7 @@
-package com.desibazaar.rest;
+package com.desibazaar.rest.test.dao;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotEquals;
 
 import java.sql.Date;
 import java.sql.Timestamp;
@@ -14,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
-
-
 
 import com.desibazaar.rest.dao.IItemDao;
 import com.desibazaar.rest.entity.EBid;
@@ -31,7 +30,8 @@ import com.desibazaar.rest.enums.Status;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
+@ContextConfiguration(locations = {
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
 		"file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 @WebAppConfiguration
 public class ItemDaoTest {
@@ -47,14 +47,17 @@ public class ItemDaoTest {
 		assertEquals(4, auctions.size());
 		EItem eitem1 = auctions.get(2);
 		assertEquals("Abacus Toy", eitem1.getName());
-		assertEquals("Recommended age: 2 to 4 years Standard Abacus 1 to 10", eitem1.getDescription());
+		assertEquals("Recommended age: 2 to 4 years Standard Abacus 1 to 10",
+				eitem1.getDescription());
 		assertEquals(767f, eitem1.getBasePrice(), 0);
 		assertEquals("Toy", eitem1.getCategory().getName());
-		assertEquals(new Timestamp(115,03,30,18,30,30,0),eitem1.getEndsAt());
+		assertEquals(new Timestamp(115, 03, 30, 18, 30, 30, 0),
+				eitem1.getEndsAt());
 		assertEquals("img/abacus.jpg", eitem1.getImage());
 		assertEquals(4, eitem1.getRating(), 0);
 		assertEquals("Worth every dollar", eitem1.getReview());
-		assertEquals(new Timestamp(115,03,27,13,30,30,0),eitem1.getStartsAt());
+		assertEquals(new Timestamp(115, 03, 27, 13, 30, 30, 0),
+				eitem1.getStartsAt());
 		assertEquals(Status.ToStart, eitem1.getStatus());
 	}
 
@@ -78,36 +81,36 @@ public class ItemDaoTest {
 		eitem2.setCategory(ecat);
 		eitem2.setSeller(user);
 		itemDao.createAuction(eitem2);
-		assertNotEquals(eitem2.getItemId(),null);
+		assertNotEquals(eitem2.getItemId(), null);
 	}
 
 	@Test
 	public void updateAuction() {
-		EItem eitem3=new EItem();
-		eitem3=itemDao.getAuction(1L);
+		EItem eitem3 = new EItem();
+		eitem3 = itemDao.getAuction(1L);
 		eitem3.setName("Apple");
 		itemDao.updateAuction(eitem3);
-		assertEquals("Apple" ,eitem3.getName());
+		assertEquals("Apple", eitem3.getName());
 	}
-	
+
 	@Test
 	public void deleteAuction() {
 		itemDao.deleteAuction(1L);
-		assertEquals(null,itemDao.getAuction(1L));
+		assertEquals(null, itemDao.getAuction(1L));
 	}
-	
+
 	@Test
 	public void getAuction() {
-		EItem eitem4=itemDao.getAuction(1L);
-		assertEquals("Prestige Cooker",eitem4.getName());
-		assertEquals(100f,eitem4.getBasePrice(),0);
-		}
+		EItem eitem4 = itemDao.getAuction(1L);
+		assertEquals("Prestige Cooker", eitem4.getName());
+		assertEquals(100f, eitem4.getBasePrice(), 0);
+	}
 
 	@Test
 	public void createBid() {
-		EBid ebid=new EBid();
-		EItem eitem5=new EItem();
-		EUser user=new EUser();
+		EBid ebid = new EBid();
+		EItem eitem5 = new EItem();
+		EUser user = new EUser();
 		ebid.setBid(150f);
 		ebid.setItem(eitem5);
 		ebid.setTime(new Date(0));

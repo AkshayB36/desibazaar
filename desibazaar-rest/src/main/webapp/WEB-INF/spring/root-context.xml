@@ -31,7 +31,7 @@
 
 		<property name="packagesToScan">
 			<list>
-				<value>com.desibazaar.rest.entity</value>
+				<value>com.desibazaar.rest.test.service.entity</value>
 			</list>
 		</property>
 		<property name="hibernateProperties">
@@ -49,6 +49,6 @@
 	</bean>
 
 	<tx:annotation-driven transaction-manager="transactionManager" />
-	<context:component-scan base-package="com.desibazaar.rest" />
+	<context:component-scan base-package="com.desibazaar.rest.test.service" />
 
 </beans>

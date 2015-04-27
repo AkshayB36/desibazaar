@@ -62,7 +62,7 @@ public class UserController {
 
 	@RequestMapping(value = "/subscriptions", method = RequestMethod.GET, produces = "application/json")
 	public @ResponseBody List<Item> getSubscripions(HttpServletRequest request) {
-		return getAccountService().getSubscripions(
+		return getAccountService().getSubscriptions(
 				Util.getLoggedInUser(request));
 	}
 

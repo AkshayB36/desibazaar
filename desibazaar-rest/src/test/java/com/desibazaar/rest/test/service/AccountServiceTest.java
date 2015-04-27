@@ -1,9 +1,16 @@
-package com.desibazaar.rest;
+package com.desibazaar.rest.test.service;
 
 /**
  * @author Sai Sarath Kuchipudi
  *
  */
+
+import static org.junit.Assert.assertEquals;
+import static org.mockito.Matchers.any;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.verifyNoMoreInteractions;
+import static org.mockito.Mockito.when;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +27,6 @@ import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
-import static org.junit.Assert.*;
-import static org.mockito.Matchers.any;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-import static org.mockito.Mockito.verifyNoMoreInteractions;
-import static org.mockito.Mockito.when;
-
-import com.desibazaar.rest.converter.EntityToDtoConverter;
 import com.desibazaar.rest.dao.IUserDao;
 import com.desibazaar.rest.entity.EItem;
 import com.desibazaar.rest.entity.EUser;
@@ -37,7 +36,8 @@ import com.desibazaar.rest.vo.User;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
+@ContextConfiguration(locations = {
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
 		"file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 @WebAppConfiguration
 public class AccountServiceTest {

@@ -16,7 +16,7 @@ public interface IAccountService {
 
 	public User getUser(String email);
 
-	public List<Item> getSubscripions(String email);
+	public List<Item> getSubscriptions(String email);
 
 	public List<Item> getMyItems(String email);
 

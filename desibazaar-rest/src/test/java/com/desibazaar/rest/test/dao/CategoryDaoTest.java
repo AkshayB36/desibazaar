@@ -1,11 +1,11 @@
-package com.desibazaar.rest;
+package com.desibazaar.rest.test.dao;
 
 /**
  * @author Sai Sarath Kuchipudi
  *
  */
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 import java.util.List;
 
@@ -21,22 +21,22 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import com.desibazaar.rest.dao.ICategoryDao;
 import com.desibazaar.rest.entity.ECategory;
 
-
 @RunWith(SpringJUnit4ClassRunner.class)
 @Transactional
-@ContextConfiguration(locations = { "file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
+@ContextConfiguration(locations = {
+		"file:src/main/webapp/WEB-INF/spring/appServlet/servlet-context.xml",
 		"file:src/main/webapp/WEB-INF/spring/root-context.xml" })
 @WebAppConfiguration
 public class CategoryDaoTest {
 
 	@Autowired
 	private ICategoryDao categoryDao;
-	
+
 	@Test
 	public void getCategories() {
-		List<ECategory> ecats=categoryDao.getCategories();
-		assertEquals(4,ecats.size());
-		assertEquals("Electronics",ecats.get(0).getName());
-		assertEquals(null,ecats.get(0).getDescription());
+		List<ECategory> ecats = categoryDao.getCategories();
+		assertEquals(4, ecats.size());
+		assertEquals("Electronics", ecats.get(0).getName());
+		assertEquals(null, ecats.get(0).getDescription());
 	}
 }

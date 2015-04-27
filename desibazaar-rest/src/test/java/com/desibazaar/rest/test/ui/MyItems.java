@@ -1,4 +1,4 @@
-package com.desibazaar.rest.uiTesting;
+package com.desibazaar.rest.test.ui;
 
 import org.junit.Assert;
 import org.junit.Test;
@@ -7,7 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class myItems {
+public class MyItems {
 
 	@Test
 	public void getLogin() {

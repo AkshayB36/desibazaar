@@ -1,4 +1,5 @@
-package com.desibazaar.rest.uiTesting;
+package com.desibazaar.rest.test.ui;
+
 import org.junit.Assert;
 import org.junit.Test;
 import org.openqa.selenium.By;
@@ -6,8 +7,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
 
-public class SubscribeTest {
-
+public class LoginTest {
 
 	@Test
 	public void getLogin() {
@@ -33,20 +33,13 @@ public class SubscribeTest {
 						.xpath("/html/body/div/ng-view/div/form/fieldset/div[3]/div/button[1]"));
 
 		go_element.click();
-		WebElement subscribe_element = driver
-				.findElement(By
-						.xpath("/html/body/div/ng-view/div/div[2]/div[1]/div/div[2]/h3/a"));
-		
-		subscribe_element.click();
-		
-		WebElement heading_element = driver
-				.findElement(By
-						.xpath("/html/body/div/ng-view/div/div[1]/div/h1"));
-		
-		heading_element.sendKeys("g");
-		
-		
-		
+		WebElement logout_element = driver.findElement(By
+				.xpath("/html/body/nav/div/div[2]/ul/li[6]/a"));
+
+		System.out.println();
+		logout_element.getText();
+		Assert.assertEquals("Logout", "Logout");
+
 		driver.quit();
 	}
 }
