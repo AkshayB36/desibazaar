@@ -25,6 +25,7 @@ public class Item {
 	private String review;
 	private List<Bid> bids;
 	private Status status;
+	private boolean subscribed;
 
 	public Long getItemId() {
 		return itemId;
@@ -146,4 +147,11 @@ public class Item {
 		this.status = status;
 	}
 
+	public void setSubscribed(boolean subscribed) {
+		this.subscribed = subscribed;
+	}
+
+	public boolean isSubscribed() {
+		return subscribed;
+	}
 }

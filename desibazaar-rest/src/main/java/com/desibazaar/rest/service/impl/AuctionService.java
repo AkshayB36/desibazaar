@@ -92,6 +92,16 @@ public class AuctionService implements IAuctionService {
 	@Override
 	public List<Item> getAuctions(String email) {
 		List<EItem> eItems = getItemDao().getAuctions(email);
+		if (email != null) {
+			EUser eUser = getUserDao().getUser(email);
+			for (EItem eItem : eItems) {
+				if (eUser.getSubscriptions().contains(eItem)) {
+					eItem.setSubscribed(true);
+				} else {
+					eItem.setSubscribed(false);
+				}
+			}
+		}
 		return EntityToDtoConverter.convertEItemToItem(eItems);
 	}
 

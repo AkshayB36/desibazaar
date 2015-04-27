@@ -48,6 +48,7 @@ public class EntityToDtoConverter {
 		item.setReview(eItem.getReview());
 		item.setBids(convertEBidToBid(eItem.getBids()));
 		item.setStatus(eItem.getStatus());
+		item.setSubscribed(eItem.isSubscribed());
 		return item;
 	}
 

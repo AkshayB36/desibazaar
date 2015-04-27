@@ -15,6 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 import com.desibazaar.rest.enums.Status;
 
@@ -79,6 +80,9 @@ public class EItem {
 	@ManyToMany
 	@JoinTable(name = "User_Subscription", joinColumns = { @JoinColumn(name = "item_id") }, inverseJoinColumns = { @JoinColumn(name = "email") })
 	private List<EUser> subscribers;
+
+	@Transient
+	private boolean subscribed;
 
 	public Long getItemId() {
 		return itemId;
@@ -207,5 +211,12 @@ public class EItem {
 	public void setSubscribers(List<EUser> subscribers) {
 		this.subscribers = subscribers;
 	}
+	
+	public boolean isSubscribed() {
+		return subscribed;
+	}
 
+	public void setSubscribed(boolean subscribed) {
+		this.subscribed = subscribed;
+	}
 }

@@ -1,5 +1,6 @@
 package com.desibazaar.rest.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.transaction.Transactional;
@@ -10,7 +11,9 @@ import org.springframework.stereotype.Service;
 import com.desibazaar.rest.converter.DtoToEntityConverter;
 import com.desibazaar.rest.converter.EntityToDtoConverter;
 import com.desibazaar.rest.dao.IUserDao;
+import com.desibazaar.rest.entity.EItem;
 import com.desibazaar.rest.entity.EUser;
+import com.desibazaar.rest.enums.Status;
 import com.desibazaar.rest.service.IAccountService;
 import com.desibazaar.rest.vo.Item;
 import com.desibazaar.rest.vo.User;
@@ -49,8 +52,14 @@ public class AccountService implements IAccountService {
 	@Override
 	public List<Item> getSubscriptions(String email) {
 		EUser eUser = getDao().getUser(email);
-		return EntityToDtoConverter
-				.convertEItemToItem(eUser.getSubscriptions());
+		List<EItem> eItems = new ArrayList<EItem>();
+		for (EItem eItem : eUser.getSubscriptions()) {
+			if (eItem.getStatus() == Status.Active
+					|| eItem.getStatus() == Status.ToStart) {
+				eItems.add(eItem);
+			}
+		}
+		return EntityToDtoConverter.convertEItemToItem(eItems);
 	}
 
 	@Override
