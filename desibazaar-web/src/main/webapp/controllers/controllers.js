@@ -44,7 +44,6 @@ app.controller('MyAuctionsController', function($scope, auctionService) {
 	}
 
 });
-
 app.controller('EditItemsController', function($scope, $routeParams, $location,
 		$window, auctionService) {
 	$scope.auction = {};
@@ -90,11 +89,13 @@ app.controller('DeleteItemController', function($scope, $location,
 	}
 });
 
-app.controller('AccountController', function($scope, accountService) {
+app.controller('AccountController', function($scope, $location, $window, accountService) {
 	$scope.newUser = {};
 
 	$scope.addUser = function() {
 		accountService.addUser($scope.newUser);
+		$location.path("/login/");
+		$window.alert("User has been registered!");
 	}
 });
 
@@ -113,13 +114,16 @@ app.controller('ImageUpload', function($scope, $rootScope, categoryService,
 	});
 });
 
+
 app.controller('AddItemController', function($scope, categoryService,
 		auctionService) {
 
 	$scope.newItem = {};
 	$scope.newItem.endsAt = new Date();
+	$scope.newItem.startTime = new Date();
 	$scope.flow = {};
 	$scope.categories = [];
+	$scope.newItem.category={};
 	$scope.uploaded = false;
 	loadRemoteData();
 
@@ -129,8 +133,11 @@ app.controller('AddItemController', function($scope, categoryService,
 		$scope.newItem.startsAt.setMinutes($scope.newItem.startTime
 				.getMinutes());
 		$scope.newItem.startsAt.setSeconds(00);
-		$scope.newItem.endsAt.setTime($scope.newItem.startsAt.getTime()
-				+ (d1 * 60000));
+		$scope.newItem.endsAt.setTime($scope.newItem.startsAt.getTime() + (d1*60000));
+		var e = document.getElementById("select");
+		var categ = e.options[e.selectedIndex].text;
+		$scope.newItem.category.name=categ;
+
 		$scope.flow.images.upload();
 	}
 	function loadRemoteData() {

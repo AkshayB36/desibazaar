@@ -13,13 +13,15 @@
 
 	<form class="form-horizontal" style="width: 1000px; height: 500px">
 		<fieldset>
-			<div class="form-group">
+			<div class="form-group"
+				ng-class="{ 'has-error' : userForm.name.$invalid && !userForm.name.$pristine }">
 				<label for="input" class="col-lg-2 control-label">Name</label>
 				<div class="col-lg-10">
-					<input ng-model="newItem.name" type="text" class="form-control"
-						id="inputName" placeholder="Name" style="height: 30px"
-						maxlength="40" required>
-
+					<input ng-model="newItem.name" name="user" type="text"
+						class="form-control" id="inputName" placeholder="Name"
+						style="height: 30px" maxlength="40">
+					<p ng-show="userForm.name.$invalid && !userForm.name.$pristine"
+						class="help-block">You name is required.</p>
 				</div>
 			</div>
 
@@ -71,38 +73,35 @@
 				<div ng-controller="TimepickerDemoCtrl">
 					<label for="StartTime" class="col-lg-2 control-label">Start
 						Time</label>
-					<timepicker ng-model="newItem.startTime" ng-change="changed()" hour-step="hstep"
-						minute-step="mstep" show-meridian="ismeridian"></timepicker>
+					<timepicker ng-model="newItem.startTime" ng-change="changed()"
+						hour-step="hstep" minute-step="mstep" show-meridian="ismeridian"></timepicker>
 
 				</div>
 				<br>
 
 				<div class="form-group">
-				<label for="input" class="col-lg-2 control-label">Duration</label>
-				<div class="col-lg-10">
-					<input ng-model="duration" type="number" class="form-control"
-						id="inputDuration" placeholder="Enter Time duration between 5-60 minutes" 
-						maxlength="40" required>minutes
+					<label for="input" class="col-lg-2 control-label">Duration</label>
+					<div class="col-lg-10">
+						<input ng-model="duration" type="number" class="form-control"
+							id="inputDuration"
+							placeholder="Enter Time duration between 5-60 minutes"
+							maxlength="40" required>minutes
 
+					</div>
 				</div>
-			</div>
 				<div class="form-group">
 					<label for="select" class="col-lg-2 control-label"
 						style="height: 30px">Select Category</label>
 
 					<div class="col-lg-10">
-						<select class="form-control" id="select">
-							<option>Electronics</option>
-							<option>Fashion</option>
-							<option>Home Goods</option>
-							<option>Jewelry</option>
-							<option>Fine Art</option>
+						<select class="form-control" id="select" ng-model="selectedItem" ng-options="item.name for item in categories">
+							
 						</select>
 
 					</div>
 				</div>
-			
-		
+
+
 
 			</div>
 			<div class="form-group">
