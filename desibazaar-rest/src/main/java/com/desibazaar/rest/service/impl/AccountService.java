@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,6 +26,7 @@ import com.desibazaar.rest.vo.User;
 @Service
 @Transactional
 public class AccountService implements IAccountService {
+	private final static Logger LOGGER = Logger.getLogger(AccountService.class);
 
 	@Autowired
 	private IUserDao userDao;
@@ -34,6 +36,7 @@ public class AccountService implements IAccountService {
 		user.setRating(0F);
 		EUser eUser = DtoToEntityConverter.convertUserToEUser(user, null);
 		getDao().createUser(eUser);
+		LOGGER.debug("User created : " + user.getEmail());
 	}
 
 	@Override
@@ -41,6 +44,7 @@ public class AccountService implements IAccountService {
 		EUser eUser = getDao().getUser(user.getEmail());
 		DtoToEntityConverter.convertUserToEUser(user, eUser);
 		getDao().updateUser(eUser);
+		LOGGER.debug("User updated : " + user.getEmail());
 	}
 
 	@Override

@@ -123,6 +123,11 @@
 			<artifactId>xml-apis</artifactId>
 			<version>1.4.01</version>
 		</dependency>
+		<dependency>
+			<groupId>log4j</groupId>
+			<artifactId>log4j</artifactId>
+			<version>1.2.17</version>
+		</dependency>
 	</dependencies>
 	<build>
 		<finalName>desibazaar-rest</finalName>
@@ -146,14 +151,9 @@
 				<artifactId>tomcat7-maven-plugin</artifactId>
 				<version>2.1</version>
 			</plugin>
-			<!-- <plugin>
-				<groupId>org.apache.tomcat.maven</groupId>
-				<artifactId>tomcat7-maven-plugin</artifactId>
-				<version>2.0</version>
-				<configuration>
-					<path>/desibazaar</path>
-				</configuration>
-			</plugin> -->
+			<!-- <plugin> <groupId>org.apache.tomcat.maven</groupId> <artifactId>tomcat7-maven-plugin</artifactId> 
+				<version>2.0</version> <configuration> <path>/desibazaar</path> </configuration> 
+				</plugin> -->
 		</plugins>
 	</build>
 </project>

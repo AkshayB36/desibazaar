@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.transaction.Transactional;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +33,8 @@ import com.desibazaar.rest.vo.Item;
 @Service
 @Transactional
 public class AuctionService implements IAuctionService {
+	private final static Logger LOGGER = Logger.getLogger(AuctionService.class);
+
 	@Autowired
 	private ISchedulingService schedulingService;
 	@Autowired
@@ -50,8 +53,11 @@ public class AuctionService implements IAuctionService {
 		eItem.setRating(-1);
 		eItem.setSellingPrice(0F);
 		getItemDao().createAuction(eItem);
+		LOGGER.debug("Item created : " + item.getName());
 		getSchedulingService().addAuctionJob(eItem.getItemId(),
 				eItem.getStartsAt(), eItem.getEndsAt());
+		LOGGER.debug("Auction scheduled : " + item.getName() + " Start Time : "
+				+ eItem.getStartsAt() + " End Time : " + eItem.getEndsAt());
 	}
 
 	@Override
@@ -81,6 +87,7 @@ public class AuctionService implements IAuctionService {
 	@Override
 	public void deleteAuction(Long itemId) {
 		getItemDao().deleteAuction(itemId);
+		LOGGER.debug("Item deleted : " + itemId);
 	}
 
 	@Override
@@ -118,6 +125,8 @@ public class AuctionService implements IAuctionService {
 		eUser.setEmail(email);
 		eItem.getSubscribers().add(eUser);
 		getItemDao().updateAuction(eItem);
+		LOGGER.debug("Auction subscribed Item Id : " + itemId + " User Name : "
+				+ email);
 	}
 
 	@Override
@@ -127,6 +136,8 @@ public class AuctionService implements IAuctionService {
 		eUser.setEmail(email);
 		eItem.getSubscribers().remove(eUser);
 		getItemDao().updateAuction(eItem);
+		LOGGER.debug("Auction unsubscribed Item Id : " + itemId + " User Name : "
+				+ email);
 	}
 
 	@Override

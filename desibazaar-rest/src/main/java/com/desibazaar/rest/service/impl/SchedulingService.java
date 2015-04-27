@@ -10,6 +10,7 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 
+import org.apache.log4j.Logger;
 import org.quartz.JobDetail;
 import org.quartz.Scheduler;
 import org.quartz.SchedulerException;
@@ -26,6 +27,7 @@ import com.desibazaar.rest.service.ISchedulingService;
  */
 @Service
 public class SchedulingService implements ISchedulingService {
+	private final static Logger LOGGER = Logger.getLogger(SchedulingService.class);
 	private Scheduler sched;
 
 	@Override
@@ -35,6 +37,7 @@ public class SchedulingService implements ISchedulingService {
 			SchedulerFactory schedFact = new StdSchedulerFactory();
 			sched = schedFact.getScheduler();
 			sched.start();
+			LOGGER.debug("Scheduler Initialized");
 		} catch (SchedulerException e) {
 			e.printStackTrace();
 		}
@@ -45,6 +48,7 @@ public class SchedulingService implements ISchedulingService {
 	public void destroyScheduler() {
 		try {
 			sched.shutdown();
+			LOGGER.debug("Scheduler Destroyed");
 		} catch (SchedulerException e) {
 			e.printStackTrace();
 		}
