@@ -136,7 +136,7 @@ public class UserControllerTest {
 		second.setItemId(2L);
 		second.setName("Micromax Canvas");
 
-		when(userService.getSubscripions("varda@gmail.com")).thenReturn(
+		when(userService.getSubscriptions("varda@gmail.com")).thenReturn(
 				Arrays.asList(first, second));
 
 		mockMvc.perform(
@@ -149,7 +149,7 @@ public class UserControllerTest {
 				.andExpect(jsonPath("$[1].itemId", is(2)))
 				.andExpect(jsonPath("$[1].name", is("Micromax Canvas")));
 
-		verify(userService, times(1)).getSubscripions("varda@gmail.com");
+		verify(userService, times(1)).getSubscriptions("varda@gmail.com");
 		verifyNoMoreInteractions(userService);
 	}
 

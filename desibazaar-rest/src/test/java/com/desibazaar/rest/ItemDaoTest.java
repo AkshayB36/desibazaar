@@ -41,11 +41,11 @@ public class ItemDaoTest {
 
 	@Test
 	public void getAuctions() throws Exception {
-		itemDao.getAuctions();
-		List<EItem> auctions = itemDao.getAuctions();
+		itemDao.getAuctions("");
+		List<EItem> auctions = itemDao.getAuctions("");
 		auctions.size();
-		assertEquals(9, auctions.size());
-		EItem eitem1 = auctions.get(0);
+		assertEquals(4, auctions.size());
+		EItem eitem1 = auctions.get(2);
 		assertEquals("Abacus Toy", eitem1.getName());
 		assertEquals("Recommended age: 2 to 4 years Standard Abacus 1 to 10", eitem1.getDescription());
 		assertEquals(767f, eitem1.getBasePrice(), 0);
@@ -55,7 +55,7 @@ public class ItemDaoTest {
 		assertEquals(4, eitem1.getRating(), 0);
 		assertEquals("Worth every dollar", eitem1.getReview());
 		assertEquals(new Timestamp(115,03,27,13,30,30,0),eitem1.getStartsAt());
-		assertEquals(Status.Sold, eitem1.getStatus());
+		assertEquals(Status.ToStart, eitem1.getStatus());
 	}
 
 	@Test

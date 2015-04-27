@@ -5,6 +5,10 @@ package com.desibazaar.rest;
  *
  */
 
+import static org.junit.Assert.*;
+
+import java.util.List;
+
 import javax.transaction.Transactional;
 
 import org.junit.Test;
@@ -15,6 +19,7 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 import org.springframework.test.context.web.WebAppConfiguration;
 
 import com.desibazaar.rest.dao.ICategoryDao;
+import com.desibazaar.rest.entity.ECategory;
 
 
 @RunWith(SpringJUnit4ClassRunner.class)
@@ -29,6 +34,9 @@ public class CategoryDaoTest {
 	
 	@Test
 	public void getCategories() {
-		categoryDao.getCategories();
+		List<ECategory> ecats=categoryDao.getCategories();
+		assertEquals(4,ecats.size());
+		assertEquals("Electronics",ecats.get(0).getName());
+		assertEquals(null,ecats.get(0).getDescription());
 	}
 }

@@ -32,18 +32,12 @@ public class UserDaoTest {
 	@Test
 	public void createUser() {
 		EUser user=new EUser();
-		/*List<EItem> myItems=(List<EItem>) new EItem();
-		List<EItem> myPurchases=(List<EItem>) new EItem();
-		List<EItem> subscriptions=(List<EItem>) new EItem();*/
 		user.setAddress("9544 University Terrace Drive, Charlotte, NC");
 		user.setEmail("ss@yahoo.com");
-		//user.setMyItems(myItems);
-		//user.setMyPurchases(myPurchases);
 		user.setName("Bob");
 		user.setNumber("8393920202");
 		user.setPassword("password");
 		user.setRating(3.5f);
-		//user.setSubscriptions(subscriptions);
 		userDao.createUser(user);
 	}
 	
@@ -62,7 +56,7 @@ public class UserDaoTest {
 		assertEquals("sarath",user2.getName());
 		assertEquals("9848012345",user2.getNumber());
 		assertEquals("sarath",user2.getPassword());
-		assertEquals(null,user2.getAddress());
+		assertEquals("UT Dr Charlotte",user2.getAddress());
 		assertEquals(0f,user2.getRating(),0);
 	}
 }
