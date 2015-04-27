@@ -11,6 +11,6 @@
 
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<annotation-driven />
-	<context:component-scan base-package="com.desibazaar.rest.test.service.controller" />
+	<context:component-scan base-package="com.desibazaar.rest.controller" />
 
 </beans:beans>
