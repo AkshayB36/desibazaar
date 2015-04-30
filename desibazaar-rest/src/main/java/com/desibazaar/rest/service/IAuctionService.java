@@ -19,7 +19,7 @@ public interface IAuctionService {
 
 	public void deleteAuction(Long itemId);
 
-	public Item getAuction(Long itemId);
+	public Item getAuction(Long itemId, String email);
 
 	public List<Item> getAuctions(String email);
 

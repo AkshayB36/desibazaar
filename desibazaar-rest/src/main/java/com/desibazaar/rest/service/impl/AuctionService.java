@@ -91,8 +91,16 @@ public class AuctionService implements IAuctionService {
 	}
 
 	@Override
-	public Item getAuction(Long itemId) {
+	public Item getAuction(Long itemId, String email) {
 		EItem eItem = getItemDao().getAuction(itemId);
+		if (email != null) {
+			EUser eUser = getUserDao().getUser(email);
+			if (eUser.getSubscriptions().contains(eItem)) {
+				eItem.setSubscribed(true);
+			} else {
+				eItem.setSubscribed(false);
+			}
+		}
 		return EntityToDtoConverter.convertEItemToItem(eItem);
 	}
 
@@ -136,8 +144,8 @@ public class AuctionService implements IAuctionService {
 		eUser.setEmail(email);
 		eItem.getSubscribers().remove(eUser);
 		getItemDao().updateAuction(eItem);
-		LOGGER.debug("Auction unsubscribed Item Id : " + itemId + " User Name : "
-				+ email);
+		LOGGER.debug("Auction unsubscribed Item Id : " + itemId
+				+ " User Name : " + email);
 	}
 
 	@Override

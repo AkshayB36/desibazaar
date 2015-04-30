@@ -92,14 +92,14 @@ public class AuctionControllerTest {
 		first.setItemId(1L);
 		first.setName("Samsung Galaxy");
 
-		when(auctionService.getAuction(1L)).thenReturn(first);
+		when(auctionService.getAuction(1L,null)).thenReturn(first);
 
 		mockMvc.perform(get("/auctions/1")).andExpect(status().isOk())
 				.andExpect(content().contentType("application/json"))
 				.andExpect(jsonPath("$itemId", is(1)))
 				.andExpect(jsonPath("$name", is("Samsung Galaxy")));
 
-		verify(auctionService, times(1)).getAuction(1L);
+		verify(auctionService, times(1)).getAuction(1L,null);
 		verifyNoMoreInteractions(auctionService);
 	}
 

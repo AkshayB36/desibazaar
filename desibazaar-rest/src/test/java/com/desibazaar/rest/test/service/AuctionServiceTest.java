@@ -124,7 +124,7 @@ public class AuctionServiceTest {
 		eitem.setItemId(1L);
 		long id = eitem.getItemId();
 		when(itemDao.getAuction(id)).thenReturn(eitem);
-		Item item = auctionservice.getAuction(id);
+		Item item = auctionservice.getAuction(id,null);
 
 		assertEquals(300f, item.getBasePrice(), 0);
 		assertEquals(

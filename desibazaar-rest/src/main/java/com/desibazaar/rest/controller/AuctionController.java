@@ -59,9 +59,10 @@ public class AuctionController {
 	}
 
 	@RequestMapping(value = "/{item_id}", method = RequestMethod.GET, produces = "application/json")
-	public @ResponseBody Item getAuction(@PathVariable("item_id") Long itemId) {
+	public @ResponseBody Item getAuction(@PathVariable("item_id") Long itemId,
+			HttpServletRequest request) {
 		LOGGER.debug("Received getAuction() request Item Id : " + itemId);
-		return getAuctionService().getAuction(itemId);
+		return getAuctionService().getAuction(itemId, Util.getLoggedInUser(request));
 	}
 
 	@RequestMapping(method = RequestMethod.GET, produces = "application/json")

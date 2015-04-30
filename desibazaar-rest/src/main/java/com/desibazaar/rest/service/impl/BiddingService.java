@@ -29,7 +29,7 @@ public class BiddingService implements IBiddingService {
 
 	@Override
 	public void handleAuctionStartStop(Long auctionId) {
-		Item item = getAuctionService().getAuction(auctionId);
+		Item item = getAuctionService().getAuction(auctionId, null);
 		if (auctionBids.containsKey(auctionId)) {
 			List<Bid> bids = auctionBids.get(auctionId);
 			LOGGER.debug("Auction Stop request Auction Id : " + auctionId + " "
