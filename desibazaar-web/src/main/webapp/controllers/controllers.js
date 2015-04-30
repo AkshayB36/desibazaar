@@ -169,7 +169,11 @@ app.controller('SubscribeController', function($scope, auctionService) {
 });
 
 app.controller('ButtonController', function($scope, auctionService) {
-	$scope.subscribed = false;
+	if($scope.auction.subscribed==false){
+		$scope.subscribed = false;
+	}else{
+		$scope.subscribed=true;
+	}
 	$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe' : 'Subscribe';
 	$scope.toggleSubscribe = function() {
 		if ($scope.subscribed == false) {
@@ -183,8 +187,7 @@ app.controller('ButtonController', function($scope, auctionService) {
 		}
 		function toggle() {
 			$scope.subscribed = !$scope.subscribed;
-			$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe'
-					: 'Subscribe';
+			$scope.subscribeButton = $scope.subscribed ? 'Unsubscribe' : 'Subscribe';
 		}
 	};
 });
@@ -372,15 +375,4 @@ app.controller('RatingController', function($scope, ratingService) {
 
 });
 
-app.controller('CountDownController', function($scope) {
 
-	$scope.date = new Date();
-
-	$scope.countDown = $scope.someData;
-	
-	$scope.countDown1 = $scope.dataTime;
-	/*
-	 * var timer = setInterval(function() { $scope.countDown--; $scope.$apply();
-	 * console.log($scope.countDown); }, 1000);
-	 */
-});
